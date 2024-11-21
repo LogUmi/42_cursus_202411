@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 18:25:36 by lgerard           #+#    #+#             */
-/*   Updated: 2024/11/17 20:18:57 by lgerard          ###   ########.fr       */
+/*   Updated: 2024/11/21 11:13:06 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ static char	**ft_strextr(char **ns, char const *s, char c, size_t j)
 			j++;
 		}
 	}
+	ns[j] = 0;
 	return (ns);
 }
 
@@ -70,6 +71,8 @@ char	**ft_split(char const *s, char c)
 	size_t	j;
 	char	**ns;
 
+	if (s == 0 || c == 0)
+		return (0);
 	j = ft_nbwords(s, c, 0, 0);
 	ns = (char **)malloc((j + 1) * sizeof(char *));
 	if (ns == 0)
@@ -78,7 +81,7 @@ char	**ft_split(char const *s, char c)
 		return (0);
 	return (ns);
 }
-/* 
+/*  
 #include <stdio.h>
 #include <ctype.h>
 
@@ -92,18 +95,23 @@ static void	ft_print(char *s1, char c)
 	j = 0;
 	printf("chaine: %s ... carac: %c\n", s1, c);
 	s2 = ft_split(s1, c);
-	printf("pointeur: %p\n", &s2);
-	while (s2[i][0] != 0)
+	if (s2)
 	{
-		printf("chaine retour: %s ... pointeur: %p ... ", s2[i], &s2[i]);	
-		j = 0;
-		while (s2[i][j] != 0)
-			printf("%d ",s2[i][j++]);
-		printf("\n");
-		i++;
+		printf("pointeur: %p\n", &s2);
+		while (s2[i]!= 0)
+		{
+			printf("chaine retour: %s ... pointeur: %p ... ", s2[i], &s2[i]);	
+			j = 0;
+			while (s2[i][j] != 0)
+				printf("%d ",s2[i][j++]);
+			printf("\n");
+			i++;
+		}
+		ft_splitfree(s2, i);
+		printf(" \n\n");
 	}
-	ft_splitfree(s2, i);
-	printf(" \n\n");
+	else
+		printf("pointeur: NULL\n\n");
 }
 
 int	main(void)
@@ -127,4 +135,5 @@ int	main(void)
 	ft_print("**abc:**",'*');
 	ft_print("***", '*');
 	return (0);
-} */
+} 
+ */
