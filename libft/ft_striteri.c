@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 18:47:36 by lgerard           #+#    #+#             */
-/*   Updated: 2024/11/21 19:43:59 by lgerard          ###   ########.fr       */
+/*   Updated: 2024/11/22 10:24:05 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,15 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 
 	i = 0;
 	if (s == 0)
-		return;
+		return ;
 	while (s[i] != 0)
 	{
 		f(i, &s[i]);
 		i++;
 	}
-	return;
+	return ;
 }
-#include <stdio.h>
+/* #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include "libft.h"
@@ -34,7 +34,7 @@ void	ft_striteri(char *s, void (*f)(unsigned int, char *))
 static void	ft_getupper(unsigned int i, char *c)
 {
 	if (i >= 0)
-    	c[0] -= ft_toupper(*c);
+    	*c = ft_toupper(*c);
 }
 
 static void	ft_print(char *s1)
@@ -66,4 +66,4 @@ int	main(void)
 	ft_print(" Salut a toi !");
 	ft_print("");
 	return (0);
-}
+}*/
