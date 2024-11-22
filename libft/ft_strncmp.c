@@ -6,11 +6,11 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 18:15:33 by lgerard           #+#    #+#             */
-/*   Updated: 2024/11/09 19:19:28 by lgerard          ###   ########.fr       */
+/*   Updated: 2024/11/22 17:20:22 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include <stdlib.h>
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
@@ -23,7 +23,7 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 		i++;
 	if (n == i)
 		return (0);
-	return (s1[i] - s2[i]);
+	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
 }
 /* #include <stdio.h>
 #include <string.h>
@@ -31,13 +31,13 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 
 int	main(void)
 {
-	char	s1 [] = "01234567890";
-	char	s2 [] = "01234000000";
+	char	s1 [] = "test\200";
+	char	s2 [] = "test\0";
 	char	s3 [] = "aaaaaaaaaaaa";
 	char	s4 [] = "";
 	char	s5 [] = "012";
 	char	s6 [] = "0z";
-	int			n = 5;
+	int			n = 6;
 	
 	printf("chaine 1: %s ...  chaine 2: %s .... n : %d\n", s1, s2, n);
 	printf("Pas tienne : %d\n", strncmp(s1, s2, n));
@@ -66,7 +66,6 @@ int	main(void)
 	n = 0;
 	printf("chaine 1: %s ...  chaine 2: %s .... n : %d\n", s1, s2, n);
 	printf("Pas tienne : %d\n", strncmp(s1, s2, n));
-	printf("Tienne     : %d\n", ft_strncmp( s1, s2, n));
-		 
+	printf("Tienne     : %d\n", ft_strncmp( s1, s2, n));	 
 	return (0);
 } */

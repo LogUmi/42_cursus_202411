@@ -6,11 +6,11 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 15:58:11 by lgerard           #+#    #+#             */
-/*   Updated: 2024/11/08 18:42:54 by lgerard          ###   ########.fr       */
+/*   Updated: 2024/11/22 18:11:51 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include <stdlib.h>
 
 void	*ft_memmove(void *dest, void *src, size_t n)
 {
@@ -23,6 +23,8 @@ void	*ft_memmove(void *dest, void *src, size_t n)
 	str_s = src;
 	i = 0;
 	j = 1;
+	if (dest == 0 && src == 0)
+		return (0);
 	if (dest > src)
 	{
 		i = n - 1;

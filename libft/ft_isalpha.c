@@ -6,11 +6,11 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 16:24:26 by lgerard           #+#    #+#             */
-/*   Updated: 2024/11/07 17:32:44 by lgerard          ###   ########.fr       */
+/*   Updated: 2024/11/22 15:50:21 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include <stdlib.h>
 
 int	ft_isalpha(int c)
 {

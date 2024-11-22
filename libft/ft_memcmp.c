@@ -6,11 +6,11 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/10 16:56:44 by lgerard           #+#    #+#             */
-/*   Updated: 2024/11/14 18:22:22 by lgerard          ###   ########.fr       */
+/*   Updated: 2024/11/22 17:23:26 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include <stdlib.h>
 
 int	ft_memcmp(const void *s1, const void *s2, size_t n)
 {
@@ -29,7 +29,7 @@ int	ft_memcmp(const void *s1, const void *s2, size_t n)
 	}
 	if (i == n)
 		return (0);
-	return (ss1[i] - ss2[i]);
+	return ((unsigned char)ss1[i] - (unsigned char)ss2[i]);
 }
 /* #include <stdio.h>
 #include <string.h>

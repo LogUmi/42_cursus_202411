@@ -6,11 +6,11 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 19:19:14 by lgerard           #+#    #+#             */
-/*   Updated: 2024/11/07 17:31:46 by lgerard          ###   ########.fr       */
+/*   Updated: 2024/11/22 15:47:23 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include <stdlib.h>
 
 void	ft_bzero(void *s, size_t n)
 {

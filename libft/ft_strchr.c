@@ -6,11 +6,11 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 15:52:49 by lgerard           #+#    #+#             */
-/*   Updated: 2024/11/09 17:59:55 by lgerard          ###   ########.fr       */
+/*   Updated: 2024/11/22 15:53:24 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include <stdlib.h>
 
 char	*ft_strchr(const char *s, int c)
 {

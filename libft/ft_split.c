@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 18:25:36 by lgerard           #+#    #+#             */
-/*   Updated: 2024/11/21 11:13:06 by lgerard          ###   ########.fr       */
+/*   Updated: 2024/11/22 20:54:12 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,13 @@ static	char	**ft_splitfree(char **ns, int j)
 
 static size_t	ft_nbwords(char const *s, char c, size_t i, size_t n)
 {
-	while (s[i] != 0)
+	while ((unsigned char)s[i] != 0)
 	{
-		while (s[i] != 0 && s[i] == c)
+		while ((unsigned char)s[i] != 0 && (unsigned char)s[i] == c)
 			i++;
-		while (s[i] != 0 && s[i] != c)
+		while ((unsigned char)s[i] != 0 && (unsigned char)s[i] != c)
 			i++;
-		if (s[i - 1] != c)
+		if ((unsigned char)s[i - 1] != c)
 			n++;
 	}
 	return (n);
@@ -44,17 +44,17 @@ static char	**ft_strextr(char **ns, char const *s, char c, size_t j)
 	size_t	len;
 
 	i = 0;
-	while (s[i] != 0)
+	while ((unsigned char)s[i] != 0)
 	{
-		while (s[i] != 0 && s[i] == c)
+		while ((unsigned char)s[i] != 0 && (unsigned char)s[i] == c)
 			i++;
 		len = 0;
-		while (s[i] != 0 && s[i] != c)
+		while ((unsigned char)s[i] != 0 && (unsigned char)s[i] != c)
 		{
 			len++;
 			i++;
 		}
-		if (s[i - 1] != c)
+		if ((unsigned char)s[i - 1] != c)
 		{
 			ns[j] = ft_substr(s, i - len, len);
 			if (ns[j] == 0)
@@ -81,7 +81,7 @@ char	**ft_split(char const *s, char c)
 		return (0);
 	return (ns);
 }
-/*  
+/* 
 #include <stdio.h>
 #include <ctype.h>
 
@@ -117,6 +117,8 @@ static void	ft_print(char *s1, char c)
 int	main(void)
 {
 	int i = 0;
+	
+	i = ft_nbwords("\0aa\0bbb",'\0', 0, 0);
 	i = ft_nbwords("/01234/56789/",'/', 0, 0);
 	i = ft_nbwords("/01234/56789",'/', 0, 0);
 	i = ft_nbwords("0/1234/56789",'/', 0, 0);
@@ -126,6 +128,7 @@ int	main(void)
 	i = ft_nbwords("**abc:**",'*', 0, 0);
 	i = ft_nbwords("***",'*', 0, 0);
 	i = ft_nbwords("**6***6*", '*', 0, 0);
+	ft_print("\0aa\0bbb",'\0');
 	ft_print("/01234/56789/",'/');
 	ft_print("/01234/56789",'/');
 	ft_print("0/1234/56789",'/');
@@ -136,4 +139,4 @@ int	main(void)
 	ft_print("***", '*');
 	return (0);
 } 
- */
+  */

@@ -6,13 +6,13 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/21 11:39:16 by lgerard           #+#    #+#             */
-/*   Updated: 2024/11/21 16:35:08 by lgerard          ###   ########.fr       */
+/*   Updated: 2024/11/22 20:11:15 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-static	int	ft_convstr(char *num, int n, int i)
+static	int	ft_convstr(char *num, long n, int i)
 {
 	char	c;
 
@@ -26,33 +26,28 @@ static	int	ft_convstr(char *num, int n, int i)
 	{
 		i = ft_convstr(num, n / 10, i);
 		n = n % 10;
-		c = '0' + n;
+		c = c + n;
 		num[i++] = c;
 	}
 	else
 	{
-		if (n < 10)
-		{
-			c = '0' + n;
-			num[i++] = c;
-		}
+		c = c + n;
+		num[i++] = c;
 	}
 	return (i);
 }
 
-static	size_t	ft_lenint(int n)
+static	size_t	ft_lenint(long n)
 {
 	int	i;
 
 	i = 0;
-	if (n == -2147483648)
-		return (11);
 	if (n < 0)
 	{
 		i++;
 		n *= -1;
 	}
-	if (n > 10)
+	if (n > 9)
 	{
 		n /= 10;
 		i++;
@@ -65,20 +60,14 @@ char	*ft_itoa(int n)
 {
 	char	*num;
 	int		i;
+	long	nn;
 
 	i = 0;
-	num = (char *)malloc((ft_lenint(n) + 1) * sizeof(char));
+	nn = (long)n;
+	num = (char *)malloc((ft_lenint(nn) + 1) * sizeof(char));
 	if (num == 0)
 		return (0);
-	if (n == -2147483648)
-	{
-		num[i++] = '-';
-		i = ft_convstr(num, (n / 10) * -1, i);
-		num[i++] = '8';
-		num[i++] = 0;
-	}
-	else
-		num[ft_convstr(num, n, i)] = 0;
+	num[ft_convstr(num, nn, i)] = 0;
 	return (num);
 }
 /* 
@@ -104,6 +93,8 @@ int	main(void)
 {
 	
  	ft_print(12345);
+	ft_print(10);
+	ft_print(-10);
 	ft_print(-12345);
 	ft_print(012345);
 	ft_print(2147483647);

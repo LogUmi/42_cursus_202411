@@ -6,11 +6,11 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/11 17:17:34 by lgerard           #+#    #+#             */
-/*   Updated: 2024/11/14 18:21:55 by lgerard          ###   ########.fr       */
+/*   Updated: 2024/11/22 15:49:15 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include <stdlib.h>
 
 int	ft_atoi(const char *nptr)
 {

@@ -6,12 +6,14 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 15:17:27 by lgerard           #+#    #+#             */
-/*   Updated: 2024/11/22 13:13:42 by lgerard          ###   ########.fr       */
+/*   Updated: 2024/11/22 16:27:31 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+
+# include <stdlib.h>
 
 int		ft_atoi(const char *nptr);
 void	ft_bzero(void *s, size_t n);

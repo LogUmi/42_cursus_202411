@@ -6,11 +6,11 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 19:42:06 by lgerard           #+#    #+#             */
-/*   Updated: 2024/11/07 17:34:12 by lgerard          ###   ########.fr       */
+/*   Updated: 2024/11/22 18:09:38 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include <stdlib.h>
 
 void	*ft_memcpy(void *dest, void *src, size_t n)
 {
@@ -21,6 +21,8 @@ void	*ft_memcpy(void *dest, void *src, size_t n)
 	str = dest;
 	srcc = src;
 	i = 0;
+	if (str == 0 && srcc == 0)
+		return (0);
 	while (n > 0)
 	{
 		str[i] = srcc[i];

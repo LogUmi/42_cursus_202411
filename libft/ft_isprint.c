@@ -6,11 +6,11 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 17:33:49 by lgerard           #+#    #+#             */
-/*   Updated: 2024/11/07 17:33:57 by lgerard          ###   ########.fr       */
+/*   Updated: 2024/11/22 15:51:16 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include <stdlib.h>
 
 int	ft_isprint(int c)
 {

@@ -6,11 +6,11 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 16:04:24 by lgerard           #+#    #+#             */
-/*   Updated: 2024/11/07 18:31:01 by lgerard          ###   ########.fr       */
+/*   Updated: 2024/11/22 15:49:51 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include <stdlib.h>
 
 int	ft_isalnum(int c)
 {

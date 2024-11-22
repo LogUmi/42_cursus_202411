@@ -6,11 +6,11 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 18:57:59 by lgerard           #+#    #+#             */
-/*   Updated: 2024/11/09 17:55:19 by lgerard          ###   ########.fr       */
+/*   Updated: 2024/11/22 16:19:58 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include <stdlib.h>
 
 int	ft_tolower(int c)
 {

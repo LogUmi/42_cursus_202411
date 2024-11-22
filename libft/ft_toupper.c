@@ -6,11 +6,11 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/08 18:31:58 by lgerard           #+#    #+#             */
-/*   Updated: 2024/11/08 18:54:55 by lgerard          ###   ########.fr       */
+/*   Updated: 2024/11/22 16:20:13 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include <stdlib.h>
 
 int	ft_toupper(int c)
 {

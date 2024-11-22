@@ -6,17 +6,20 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/07 17:40:41 by lgerard           #+#    #+#             */
-/*   Updated: 2024/11/08 18:47:04 by lgerard          ###   ########.fr       */
+/*   Updated: 2024/11/22 16:35:40 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include <stdlib.h>
+#include "libft.h"
 
 size_t	ft_strlcpy(char *dst, char *src, size_t size)
 {
 	size_t	i;
 
 	i = 0;
+	if (size == 0)
+		return (ft_strlen(src));
 	while ((i < (size - 1)) && (src[i] != 0))
 	{
 		dst[i] = src[i];

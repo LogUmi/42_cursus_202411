@@ -6,11 +6,11 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/09 19:28:02 by lgerard           #+#    #+#             */
-/*   Updated: 2024/11/14 18:20:31 by lgerard          ###   ########.fr       */
+/*   Updated: 2024/11/22 15:52:06 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include <stdlib.h>
 
 void	*ft_memchr(const void *s, int c, size_t n)
 {

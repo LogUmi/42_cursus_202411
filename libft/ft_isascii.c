@@ -6,11 +6,11 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 16:26:48 by lgerard           #+#    #+#             */
-/*   Updated: 2024/11/07 17:33:24 by lgerard          ###   ########.fr       */
+/*   Updated: 2024/11/22 15:50:33 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include <stdlib.h>
 
 int	ft_isascii(int c)
 {

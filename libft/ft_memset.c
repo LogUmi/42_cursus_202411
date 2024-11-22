@@ -6,11 +6,11 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 18:04:24 by lgerard           #+#    #+#             */
-/*   Updated: 2024/11/07 17:34:31 by lgerard          ###   ########.fr       */
+/*   Updated: 2024/11/22 15:52:47 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
+#include <stdlib.h>
 
 void	*ft_memset(void *s, int c, size_t n)
 {
