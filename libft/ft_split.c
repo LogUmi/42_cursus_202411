@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/15 18:25:36 by lgerard           #+#    #+#             */
-/*   Updated: 2024/11/22 20:54:12 by lgerard          ###   ########.fr       */
+/*   Updated: 2024/11/23 15:24:47 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ char	**ft_split(char const *s, char c)
 	size_t	j;
 	char	**ns;
 
-	if (s == 0 || c == 0)
+	if (s == 0)
 		return (0);
 	j = ft_nbwords(s, c, 0, 0);
 	ns = (char **)malloc((j + 1) * sizeof(char *));
@@ -118,7 +118,7 @@ int	main(void)
 {
 	int i = 0;
 	
-	i = ft_nbwords("\0aa\0bbb",'\0', 0, 0);
+	i = ft_nbwords("aa\0bbb",'\0', 0, 0);
 	i = ft_nbwords("/01234/56789/",'/', 0, 0);
 	i = ft_nbwords("/01234/56789",'/', 0, 0);
 	i = ft_nbwords("0/1234/56789",'/', 0, 0);
@@ -128,7 +128,7 @@ int	main(void)
 	i = ft_nbwords("**abc:**",'*', 0, 0);
 	i = ft_nbwords("***",'*', 0, 0);
 	i = ft_nbwords("**6***6*", '*', 0, 0);
-	ft_print("\0aa\0bbb",'\0');
+	ft_print("aa\0bbb",'\0');
 	ft_print("/01234/56789/",'/');
 	ft_print("/01234/56789",'/');
 	ft_print("0/1234/56789",'/');

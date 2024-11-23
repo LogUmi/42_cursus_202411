@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 15:24:02 by lgerard           #+#    #+#             */
-/*   Updated: 2024/11/22 19:43:40 by lgerard          ###   ########.fr       */
+/*   Updated: 2024/11/23 16:22:28 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,10 @@ char	*ft_substr(char const *s, unsigned int start, size_t len)
 
 	i = 0;
 	j = 0;
+	if (len > ft_strlen(s) - start)
+		len = ft_strlen(s) - start;
+	if (start >= ft_strlen(s))
+		return (ft_strdup(""));
 	ns = (char *)malloc((len + 1) * sizeof(char));
 	if (ns == 0)
 		return (0);

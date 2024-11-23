@@ -6,17 +6,17 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/06 19:42:06 by lgerard           #+#    #+#             */
-/*   Updated: 2024/11/22 18:09:38 by lgerard          ###   ########.fr       */
+/*   Updated: 2024/11/23 15:37:55 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-void	*ft_memcpy(void *dest, void *src, size_t n)
+void	*ft_memcpy(void *dest, const void *src, size_t n)
 {
-	char	*str;
-	char	*srcc;
-	int		i;
+	char		*str;
+	const char	*srcc;
+	int			i;
 
 	str = dest;
 	srcc = src;
