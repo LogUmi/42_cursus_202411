@@ -34,6 +34,14 @@ SRCS =	ft_strlen.c \
 		ft_putendl_fd.c \
 		ft_putnbr_fd.c
 OBJS =	$(SRCS:.c=.o)
+SRCSBONUS = ft_lstadd_back_bonus.c \
+			ft_lstadd_front_bonus.c \
+			ft_lstclear_bonus.c \
+			ft_lstdelone_bonus.c \
+			*ft_lstlast(t_list *lst) \
+			ft_lstnew_bonus.c \
+			ft_lstsize_bonus.c
+OBJSBONUS =$(OBJS) $(SRCSBONUS:.c=.o)
 HDRS =	libft.h
 CC =	cc
 FLAGS =	-Wall -Wextra -Werror
@@ -47,8 +55,14 @@ $(NAME):	$(OBJS)
 %.o:		%.c $(HDRS)
 			$(CC) $(FLAGS) -c $< -o $@ -I.
 
+bonus:		$(OBJS) $(OBJSBONUS)
+			$(AR) $(NAME) $(OBJS) $(OBJSBONUS)
+
+%_bonus.o:		%_bonus.c $(HDRS)
+			$(CC) $(FLAGS) -c $< -o $@ -I.
+
 clean:	
-			rm -rf $(OBJS)
+			rm -rf $(OBJS) $(OBJSBONUS)
 
 fclean:		clean
 			rm -rf $(NAME)
