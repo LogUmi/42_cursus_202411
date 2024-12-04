@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   libftprintf.h                                      :+:      :+:    :+:   */
+/*   libftprintf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 12:15:47 by lgerard           #+#    #+#             */
-/*   Updated: 2024/11/29 18:32:11 by lgerard          ###   ########.fr       */
+/*   Updated: 2024/12/04 16:18:49 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,5 @@
 # include "libft/libft.h"
 
 int		ft_printf(const char *str, ...);
-char	*ft_itoau(unsigned int n);
-
+char	*ft_itoabase(long long n, const char *base);
 #endif

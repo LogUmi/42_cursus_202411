@@ -1,7 +1,6 @@
 NAME = 	libftprintf.a
-HDRS = 	ft_printf.h
-SRCS = 	ft_printf.c \
-		ft_itoau.c
+HDRS = 	libftpprintf.h
+SRCS = 	ft_printf.c ft_itoabase.c
 OBJS = $(SRCS:.c=.o)
 LDIR = libft
 LIBR = $(LDIR)/libft.a
@@ -12,22 +11,24 @@ AR = ar -rcs
 all:		$(NAME)		
 
 $(NAME):	$(OBJS)	$(LIBR)
-			$(AR) $(NAME) $(OBJS) $(LIBR)	
+			$(AR) $(NAME) $(OBJS)	
 
-%.o:		%.c $(HDRS) $(LIBR)	
-			$(CC) $(FLAGS) -c $< -o $@ -I. -I$(LDIR)	
+%.o:		%.c	
+			$(CC) $(FLAGS) -MMD -c $< -o $@ -I. -I$(LDIR) 
+			
+-include $(OBJS:.o=.d)	
 
 $(LIBR):		
-			$(MAKE) -C $(LDIR) all	
+			[ -d $(LDIR) ] && $(MAKE) -C $(LDIR) all	
 
 clean:	
-			rm -rf $(OBJS)	gdb
+			rm -rf $(OBJS) $(OBJS:.o=.d)
 			$(MAKE) -C $(LDIR) clean	
 
 fclean:		clean	
 			rm -rf $(NAME)	
 			$(MAKE) -C $(LDIR) fclean	
 
-re:			fclean all	
+re:			fclean all
 
 .PHONY:		all clean fclean re
