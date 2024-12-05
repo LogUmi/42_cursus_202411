@@ -130,7 +130,7 @@ int	ft_printf(const char *str, ...)
 	va_end(args);
 	return (nchar);
 }
-
+/* 
 #include <stdio.h>
 #include <ctype.h>
 
@@ -173,4 +173,4 @@ int	main(int argc, char **argv)
 		printf("\n\n");
 	}
 	 return (0);
-}
+} */
