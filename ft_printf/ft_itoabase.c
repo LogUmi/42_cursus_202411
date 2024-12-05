@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoabase.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 18:42:02 by lgerard           #+#    #+#             */
-/*   Updated: 2024/12/04 16:12:45 by lgerard          ###   ########.fr       */
+/*   Updated: 2024/12/05 09:52:31 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 static	int	ft_convstr(char *num, long long n, const char *base, int i)
 {

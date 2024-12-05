@@ -1,5 +1,5 @@
 NAME = 	libftprintf.a
-HDRS = 	libftpprintf.h
+HDRS = 	ft_printf.h
 SRCS = 	ft_printf.c ft_itoabase.c
 OBJS = $(SRCS:.c=.o)
 LDIR = libft
@@ -20,6 +20,8 @@ $(NAME):	$(OBJS)	$(LIBR)
 
 $(LIBR):		
 			[ -d $(LDIR) ] && $(MAKE) -C $(LDIR) all	
+			cp $(LIBR) .
+			mv $(notdir $(LIBR)) $(NAME)	
 
 clean:	
 			rm -rf $(OBJS) $(OBJS:.o=.d)

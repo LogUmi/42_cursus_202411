@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 11:14:21 by lgerard           #+#    #+#             */
-/*   Updated: 2024/12/04 18:22:48 by lgerard          ###   ########.fr       */
+/*   Updated: 2024/12/05 14:01:30 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdarg.h>
 #include <unistd.h>
-#include "libftprintf.h"
+#include "ft_printf.h"
 
 static int	ft_printspecs3(const char *str, int *len, int *nchar, va_list args)
 {
@@ -130,7 +130,7 @@ int	ft_printf(const char *str, ...)
 	va_end(args);
 	return (nchar);
 }
-/* 
+
 #include <stdio.h>
 #include <ctype.h>
 
@@ -140,14 +140,28 @@ int	main(int argc, char **argv)
 	int j = 1;
 	
 	char	*s = "coucou";
-
+	i = printf(" %c %c %c ", (int)'0', (int)0, (int)'1');
+	printf("... %d\n", i);
+	i = ft_printf(" %c %c %c ", (int)'0', (int)0, (int)'1');
+	printf("... %d\n", i);
+	printf("\n");
+	i = printf(" %c %c %c ", '1', '2', '3');
+	printf("... %d\n", i);
+	i = ft_printf(" %c %c %c ", '1', '2', '3');
+	printf("... %d\n", i);
+	printf("\n");
+	i = printf(" %c %c %c ", '2', '1', 0);
+	printf("... %d\n", i);
+	i = ft_printf(" %c %c %c ", '2', '1', 0);
+	printf("... %d\n", i);
+	printf("\n");
 	i = printf("01234\t , %%, %c, %s, %s:, %d, %i, %u, %x, %p end", 'O',
 	"56789%s", "",-2147483647, -2147483647, 2147483647, 255, s);
 	printf("... %d\n", i);
 	i = ft_printf("01234\t , %%, %c, %s, %s:, %d, %i, %u, %x, %p end",
-	 'O',"56789%s", "",-2147483648, -2147483647, 2147483648, 255, s);
+	 'O', "56789%s", "",-2147483648, -2147483647, 2147483648, 255, s);
 	printf("... %d\n", i);
-	printf("\n\n");
+	printf("\n");
 	if (argc < 2)
 		return (0);
 	while (j < argc)
@@ -159,4 +173,4 @@ int	main(int argc, char **argv)
 		printf("\n\n");
 	}
 	 return (0);
-} */
+}
