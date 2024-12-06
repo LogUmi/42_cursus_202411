@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 12:15:47 by lgerard           #+#    #+#             */
-/*   Updated: 2024/12/05 09:53:07 by lgerard          ###   ########.fr       */
+/*   Updated: 2024/12/06 16:29:37 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,4 +18,5 @@
 
 int		ft_printf(const char *str, ...);
 char	*ft_itoabase(long long n, const char *base);
+char	*ft_itoabaseptr(void *ptr, const char *base, int *nchar);
 #endif

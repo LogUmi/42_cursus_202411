@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 17:53:01 by lgerard           #+#    #+#             */
-/*   Updated: 2024/12/05 11:10:24 by lgerard          ###   ########.fr       */
+/*   Updated: 2024/12/05 17:33:35 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ size_t	ft_strlen(const char *str)
 	i = 0;
 	if (!str)
 		return (0);
-	while (!str)
+	while (str[i] != 0)
 		i++;
 	return (i);
 }

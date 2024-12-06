@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 11:14:21 by lgerard           #+#    #+#             */
-/*   Updated: 2024/12/05 14:01:30 by lgerard          ###   ########.fr       */
+/*   Updated: 2024/12/06 16:42:45 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,18 +33,13 @@ static int	ft_printspecs2(const char *str, int *len, int *nchar, va_list args)
 	if (str[0] == 'x' || str[0] == 'X' || str[0] == 'p')
 	{
 		if (str[0] == 'x')
-			s = ft_itoabase(va_arg(args, int), "0123456789abcdef");
+			s = ft_itoabase(va_arg(args, unsigned int), "0123456789abcdef");
 		if (str[0] == 'X')
-			s = ft_itoabase(va_arg(args, int), "0123456789ABCDEF");
+			s = ft_itoabase(va_arg(args, unsigned int), "0123456789ABCDEF");
 		if (str[0] == 'p')
-			s = ft_itoabase(va_arg(args, long long), "0123456789abcdef");
+			s = ft_itoabaseptr(va_arg(args, void *), "0123456789abcdef", nchar);
 		if (!s)
 			return (-1);
-		if (str[0] == 'p')
-		{
-			write (1, "0x", 2);
-			(*nchar) += 2;
-		}
 		ft_putstr_fd(s, 1);
 		(*nchar) += ft_strlen(s);
 		free(s);
@@ -72,6 +67,8 @@ static int	ft_printspecs1(const char *str, int *len, int *nchar, va_list args)
 	if (str[0] == 's')
 	{
 		s = va_arg(args, char *);
+		if (!s)
+			s = "(null)";
 		ft_putstr_fd(s, 1);
 		(*nchar) += ft_strlen(s);
 		(*len)++;
@@ -133,6 +130,7 @@ int	ft_printf(const char *str, ...)
 /* 
 #include <stdio.h>
 #include <ctype.h>
+#include <limits.h>
 
 int	main(int argc, char **argv)
 {
@@ -140,6 +138,26 @@ int	main(int argc, char **argv)
 	int j = 1;
 	
 	char	*s = "coucou";
+	i = printf(" %p %p ", (void *)LONG_MIN, (void *)LONG_MAX);
+	printf("... %d\n", i);
+	i = ft_printf(" %p %p ", (void *)LONG_MIN, (void *)LONG_MAX);
+	printf("... %d\n", i);
+	printf("\n");
+	i = printf(" %p %p ", (void *)ULONG_MAX,(void *)-ULONG_MAX);
+	printf("... %d\n", i);
+	i = ft_printf(" %p %p ",(void *)ULONG_MAX,(void *)-ULONG_MAX);
+	printf("... %d\n", i);
+	printf("\n");
+	i = printf(" %p %p ", (void *)0, (void *)0);
+	printf("... %d\n", i);
+	i = ft_printf(" %p %p ", (void *)0, (void *)0);
+	printf("... %d\n", i);
+	printf("\n");
+	i = printf(" NULL %s NULL ", (char *)NULL);
+	printf("... %d\n", i);
+	i = ft_printf(" NULL %s NULL ", (char *)NULL);
+	printf("... %d\n", i);
+	i = ft_printf(" %s, %s:end", "56789%s", "");
 	i = printf(" %c %c %c ", (int)'0', (int)0, (int)'1');
 	printf("... %d\n", i);
 	i = ft_printf(" %c %c %c ", (int)'0', (int)0, (int)'1');
