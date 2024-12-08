@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   ft_printf2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 11:14:21 by lgerard           #+#    #+#             */
-/*   Updated: 2024/12/08 23:20:55 by lgerard          ###   ########.fr       */
+/*   Updated: 2024/12/08 23:25:36 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <unistd.h>
 #include "ft_printf.h"
 
-static int	ft_printspecs(const char *str, va_list args)
+int	ft_printspecs(const char *str, va_list *args)
 {
 	int	nchar;
 
@@ -22,21 +22,21 @@ static int	ft_printspecs(const char *str, va_list args)
 	if (str[0] == '%')
 		nchar = ft_printchar(37);
 	else if (str[0] == 'c')
-		nchar = ft_printchar(va_arg(args, int));
+		nchar = ft_printchar(va_arg((*args), int));
 	else if (str[0] == 's')
-		nchar = ft_printstr(va_arg(args, const char *));
+		nchar = ft_printstr(va_arg((*args), char *));
 	else if (str[0] == 'i')
-		nchar = ft_printint(va_arg(args, int));
+		nchar = ft_printint(va_arg((*args), int));
 	else if (str[0] == 'd')
-		nchar = ft_printint(va_arg(args, int));
+		nchar = ft_printint(va_arg((*args), int));
 	else if (str[0] == 'u')
-		nchar = ft_putnsbase(va_arg(args, unsigned int), "0123456789");
+		nchar = ft_putnsbase(va_arg((*args), unsigned int), "0123456789");
 	else if (str[0] == 'x')
-		nchar = ft_putnsbase(va_arg(args, unsigned int), "0123456789abcdef");
+		nchar = ft_putnsbase(va_arg((*args), unsigned int), "0123456789abcdef");
 	else if (str[0] == 'X')
-		nchar = ft_putnsbase(va_arg(args, unsigned int), "0123456789ABCDEF");
+		nchar = ft_putnsbase(va_arg((*args), unsigned int), "0123456789ABCDEF");
 	else if (str[0] == 'p')
-		nchar = ft_printpointer(va_arg(args, void *), "0123456789abcdef");
+		nchar = ft_printpointer(va_arg((*args), void *), "0123456789abcdef");
 	return (nchar);
 }
 
@@ -54,7 +54,7 @@ int	ft_printf(const char *str, ...)
 		if ((unsigned char)str[len] != '%')
 			nchar += ft_printchar(str[len]);
 		else
-			nchar += ft_printspecs(&str[++len], args);
+			nchar += ft_printspecs(&str[++len], &args);
 		len++;
 	}
 	va_end(args);
@@ -70,6 +70,7 @@ int	main(int argc, char **argv)
 	int i = 0;
 	int j = 1;
 	char	*s = "coucou";
+
 	i = printf(" %d ", -1);
 	printf(" ... %i\n", i);
 	i = ft_printf(" %d ", -1);
@@ -104,7 +105,7 @@ int	main(int argc, char **argv)
 	printf("... %d\n", i);
 	i = ft_printf(" NULL %s NULL ", (char *)NULL);
 	printf("... %d\n", i);
-	i = ft_printf(" %s, %s:end", "56789%s", "");
+	i = ft_printf(" %s, %s:end\n", "56789%s", "");
 	i = printf(" %c %c %c ", (int)'0', (int)0, (int)'1');
 	printf("... %d\n", i);
 	i = ft_printf(" %c %c %c ", (int)'0', (int)0, (int)'1');
@@ -131,4 +132,4 @@ int	main(int argc, char **argv)
 		printf("\n\n");
 	}
 	 return (0);
- }  */
+ } */

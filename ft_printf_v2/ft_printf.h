@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 12:15:47 by lgerard           #+#    #+#             */
-/*   Updated: 2024/12/08 17:09:11 by lgerard          ###   ########.fr       */
+/*   Updated: 2024/12/08 23:19:52 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int		ft_putstrf(const char *str);
 int		ft_printchar(int i);
 int		ft_printstr(const char *str);
 int		ft_printint(int i);
-int		ft_printunsbase(unsigned int i, char *bs);
+int		ft_putnsbase(unsigned int i, char *bs);
 int		ft_putnbrullbase(unsigned long long i, char *bs);
 int		ft_printpointer(void *p, char *bs);
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf_number.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/08 01:39:29 by lgerard           #+#    #+#             */
-/*   Updated: 2024/12/08 17:49:05 by lgerard          ###   ########.fr       */
+/*   Updated: 2024/12/08 23:19:27 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ int	ft_printint(int i)
 		return (ft_printchar(i + 48));
 }
 
-int	ft_printunsbase(unsigned int i, char *bs)
+int	ft_putnsbase(unsigned int i, char *bs)
 {
 	int	nb;
 
 	nb = ft_strlenf(bs);
 	if (i > (unsigned int)(nb -1))
-		return (ft_printunsbase(i / nb, bs) + ft_printchar(bs[i % nb]));
+		return (ft_putnsbase(i / nb, bs) + ft_printchar(bs[i % nb]));
 	else
 		return (ft_printchar(bs[i]));
 }
