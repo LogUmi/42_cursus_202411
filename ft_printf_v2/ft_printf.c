@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 11:14:21 by lgerard           #+#    #+#             */
-/*   Updated: 2024/12/08 18:47:11 by lgerard          ###   ########.fr       */
+/*   Updated: 2024/12/08 19:13:09 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,15 +52,10 @@ int	ft_printf(const char *str, ...)
 	while (str[len] != 0)
 	{
 		if ((unsigned char)str[len] != '%')
-		{
-			write(1, &str[len++], 1);
-			nchar++;
-		}
+			nchar += ft_printchar(str[len]);
 		else
-		{
 			nchar += ft_printspecs(&str[++len], args);
-			len++;
-		}
+		len++;
 	}
 	va_end(args);
 	return (nchar);
@@ -86,8 +81,8 @@ int	main(int argc, char **argv)
 	i = printf("01234\t , %%, %c, %s, %s:, %d, %i, %u, %x, %p end", 'O',
 	"56789%s", "",-2147483647, -2147483647, 2147483647, 255, s);
 	printf("... %d\n", i);
-	i = ft_printf("01234\t , , %s, %s:, %d, %i, %u, %x, %p end", "56789%s", ""
-	,-2147483648, -2147483647, 2147483648, 255, s);
+	i = ft_printf("01234\t , %%, %c, %s, %s:, %d, %i, %u, %x, %p end", 'O',
+	 "56789%s", "", -2147483648, -2147483647, 2147483648, 255, s);
 	printf("... %d\n", i);
 	printf("\n");
 	i = printf(" %p %p ", (void *)LONG_MIN, (void *)LONG_MAX);
@@ -136,4 +131,4 @@ int	main(int argc, char **argv)
 		printf("\n\n");
 	}
 	 return (0);
- }  */
+ } */
