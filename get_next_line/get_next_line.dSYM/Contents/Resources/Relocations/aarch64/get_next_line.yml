@@ -1,0 +1,10 @@
+---
+triple:          'arm64-apple-darwin'
+binary-path:     '/Users/lgerard/Desktop/GitHub/42_cursus_202411/get_next_line/get_next_line'
+relocations:
+  - { offset: 0x26, size: 0x8, addend: 0x0, symName: _ft_size_file, symObjAddr: 0x0, symBinAddr: 0x100003A3C, symSize: 0x110 }
+  - { offset: 0x46, size: 0x8, addend: 0x0, symName: _ft_size_file, symObjAddr: 0x0, symBinAddr: 0x100003A3C, symSize: 0x110 }
+  - { offset: 0xA6, size: 0x8, addend: 0x0, symName: _ft_read_file, symObjAddr: 0x110, symBinAddr: 0x100003B4C, symSize: 0xC4 }
+  - { offset: 0x106, size: 0x8, addend: 0x0, symName: _ft_write_file, symObjAddr: 0x1D4, symBinAddr: 0x100003C10, symSize: 0x234 }
+  - { offset: 0x174, size: 0x8, addend: 0x0, symName: _main, symObjAddr: 0x408, symBinAddr: 0x100003E44, symSize: 0xF4 }
+...

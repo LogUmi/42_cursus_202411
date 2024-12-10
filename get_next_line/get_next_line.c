@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 17:38:38 by lgerard           #+#    #+#             */
-/*   Updated: 2024/12/09 18:22:31 by lgerard          ###   ########.fr       */
+/*   Updated: 2024/12/10 12:08:13 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,14 +63,14 @@ int	ft_read_file(char *filename, char *dico, int len)
 			close(fd);
 			return(-1);
 		}
-	dico[1024] = '\0';
+	dico[len] = '\0';
 	close(fd);
 	return (0);
 }
-int ft_write_file(char *filename, char *dico)
+int ft_write_file(char *filename, char *dico, int len)
 {
 	int		fd;
-	size_t	i;
+	int		i;
 	char	c;
 
 	fd = 0;
@@ -79,20 +79,28 @@ int ft_write_file(char *filename, char *dico)
 	fd = open(filename, O_CREAT|O_WRONLY, 777);
 	if (fd == -1)
 		return (-1);
-	while(dico[i] != '\n') // passe la premiere ligne
-		i++;
-	while (dico[i]!= 0)
+	while(dico[i++] != '\n') // passe la premiere ligne
+	while (i < (len - 2))
 	{
-		while(dico[i] != ',' && dico[i] != 0) //la premiere virgule apres \n indique la fin du mot.
-			write(fd, &dico[i++], 1);
-		while(dico[i] != '\n' && dico[i] != 0)
+		while(dico[i] != ',' && dico[i] > 31 && i < (len - 2)) //la premiere virgule apres \n indique la fin du mot.
+		{	
+			write(fd, &dico[i], 1);
+			printf("A (%i - %c) %d --> %d ", dico[i], dico[i], i, len);
 			i++;
+		}
+		while(dico[i] != '\n' && dico[i] != 0 && i < (len - 2))
+		{	
+			printf("B (%i - %c) %d --> %d ", dico[i], dico[i], i, len);
+			i++;
+		}
 		write(fd, &c, 1);
+		printf("C (%i - %c) %d --> %d ", dico[i], dico[i], i, len);
 		i++;
 	}
 	c = '\0';
 	write(fd, &c, 1);
 	close(fd);
+	//printf("%i, %i", dico[i - 2], dico[i - 1]);
 	return (0);
 }
 
@@ -101,7 +109,7 @@ int main (void)
 {
 	char	*filename;
 	char	*dico;
-	int	size;
+	int		size;
 	int		fd;
 	
 	filename = "dicoanglais.txt";
@@ -111,14 +119,14 @@ int main (void)
 	dico = (char *)malloc((size + 1) * sizeof(char));
 	if (dico == NULL)
 		return (0);
-	fd = ft_read_file(filename, dico, 1024);
+	fd = ft_read_file(filename, dico, size);
 	if (fd == -1)
 	{	
 		free(dico);
 		return (0);
 	}
 	filename = "test.txt";
-	fd = ft_write_file(filename, dico);
+	fd = ft_write_file(filename, dico, size);
 	/* while (dico[fd] != 0)
 	{
 		printf("%c(%i)", dico[fd], dico[fd]);
