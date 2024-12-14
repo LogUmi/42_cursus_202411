@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 17:38:43 by lgerard           #+#    #+#             */
-/*   Updated: 2024/12/13 14:33:30 by lgerard          ###   ########.fr       */
+/*   Updated: 2024/12/14 00:55:00 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@
 #  define BUFFER_SIZE 0
 # endif
 
-int	ft_strlengnl(const char *str);
-int	ft_strcpygnl(const char *src, char *dst);
+char	*get_next_line(int fd);
+int		ft_strlengnl(const char *str);
+char	*ft_strncpygnl(char *src, char *dst, int n);
 
 #endif

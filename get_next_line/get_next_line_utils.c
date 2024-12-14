@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 17:38:30 by lgerard           #+#    #+#             */
-/*   Updated: 2024/12/13 14:33:59 by lgerard          ###   ########.fr       */
+/*   Updated: 2024/12/14 00:31:40 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,26 @@ int	ft_strlengnl(const char *str)
 	return (i);
 }
 
-int	ft_strcpygnl(const char *src, char *dst)
+char	*ft_strncpygnl(char *src, char *dst, int n)
 {
 	int	i;
 
 	i = 0;
 	if (!src || !dst)
 		return (0);
-	while (i < ft_strlengnl(src))
+	while (i < n)
 	{
 		dst[i] = src[i];
 		i++;
 	}
 	dst[i] = '\0';
-	return (i);
+	i = 0;
+	while (src[i + n] != 0)
+	{
+		src[i] = src[i + n];
+		i++;
+	}
+	while (src[i] != 0)
+		src[i++] = 0;
+	return (dst);
 }
