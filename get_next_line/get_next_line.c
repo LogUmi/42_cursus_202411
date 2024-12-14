@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 17:38:38 by lgerard           #+#    #+#             */
-/*   Updated: 2024/12/14 01:18:22 by lgerard          ###   ########.fr       */
+/*   Updated: 2024/12/14 19:30:35 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,12 @@ char	*get_next_line(int fd)
 		{
 			rd = read(fd, &buffer[0], BUFFER_SIZE);
 			if (rd < 0)
+			{
+				j = 0;
+				while (j < 30000)
+					str[j++] = 0;
 				return (0);
+			}
 			if (rd != 0)
 			{	
 				j = 0;
@@ -73,7 +78,7 @@ int main (void)
 	int		i;
 	
 	i = 0;
-	fd = open("Text.txt", O_RDONLY);
+	fd = open("read_error.txt", O_RDONLY);
 	if (fd == -1)
 		return (0);
 	while (i++ < 100)
