@@ -1,38 +1,48 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/06 17:38:30 by lgerard           #+#    #+#             */
-/*   Updated: 2024/12/20 15:38:58 by lgerard          ###   ########.fr       */
+/*   Created: 2024/11/05 17:53:01 by lgerard           #+#    #+#             */
+/*   Updated: 2024/12/05 17:33:35 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strncpygnl(char *src, char *dst, int n, int way)
+#include <stdlib.h>
+
+size_t	ft_strlen(const char *str)
 {
 	int	i;
 
 	i = 0;
-	if (!src || !dst)
+	if (!str)
 		return (0);
-	while (i < n)
-	{
-		dst[i] = src[i];
+	while (str[i] != 0)
 		i++;
-	}
-	dst[i] = '\0';
-	if (way == 1)
-	{
-		i = 0;
-		while (src[i + n] != 0)
-		{
-			src[i] = src[i + n];
-			i++;
-		}
-		while (src[i] != 0)
-			src[i++] = 0;
-	}
-	return (dst);
+	return (i);
 }
+/*
+#include <stdio.h>
+#include <string.h>
+#include <ctype.h>
+
+int	main(int argc, char *argv[])
+{
+	int	i;
+	int j;
+	
+	i = argc - 1;
+	j = 0;
+	if (argc <= 1)
+		return (0);
+	while (i > 0)
+	{
+		printf("%s ...Pas tienne : %lu ... Tienne : %lu\n", 
+		argv[i], strlen(argv[i]),
+		ft_strlen(argv[i]));
+		i--;
+	}
+	return (0);
+}  */

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 17:38:38 by lgerard           #+#    #+#             */
-/*   Updated: 2024/12/15 22:37:40 by lgerard          ###   ########.fr       */
+/*   Updated: 2024/12/20 15:40:04 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 static char	*ft_getinit(char *buffer, char *str, int *k, int way)
 {

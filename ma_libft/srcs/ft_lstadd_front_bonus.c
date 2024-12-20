@@ -1,38 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
+/*   ft_lstadd_front_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/06 17:38:30 by lgerard           #+#    #+#             */
-/*   Updated: 2024/12/20 15:38:58 by lgerard          ###   ########.fr       */
+/*   Created: 2024/11/27 11:44:12 by lgerard           #+#    #+#             */
+/*   Updated: 2024/11/27 19:24:46 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strncpygnl(char *src, char *dst, int n, int way)
-{
-	int	i;
+#include "libft.h"
 
-	i = 0;
-	if (!src || !dst)
-		return (0);
-	while (i < n)
-	{
-		dst[i] = src[i];
-		i++;
-	}
-	dst[i] = '\0';
-	if (way == 1)
-	{
-		i = 0;
-		while (src[i + n] != 0)
-		{
-			src[i] = src[i + n];
-			i++;
-		}
-		while (src[i] != 0)
-			src[i++] = 0;
-	}
-	return (dst);
+void	ft_lstadd_front(t_list **lst, t_list *new)
+{
+	if (lst == 0 || new == 0)
+		return ;
+	new->next = *lst;
+	*lst = new;
 }

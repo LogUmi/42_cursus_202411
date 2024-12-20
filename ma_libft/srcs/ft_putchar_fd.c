@@ -1,38 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/06 17:38:30 by lgerard           #+#    #+#             */
-/*   Updated: 2024/12/20 15:38:58 by lgerard          ###   ########.fr       */
+/*   Created: 2024/11/22 11:44:47 by lgerard           #+#    #+#             */
+/*   Updated: 2024/11/22 12:06:02 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strncpygnl(char *src, char *dst, int n, int way)
-{
-	int	i;
+#include <unistd.h>
 
-	i = 0;
-	if (!src || !dst)
-		return (0);
-	while (i < n)
-	{
-		dst[i] = src[i];
-		i++;
-	}
-	dst[i] = '\0';
-	if (way == 1)
-	{
-		i = 0;
-		while (src[i + n] != 0)
-		{
-			src[i] = src[i + n];
-			i++;
-		}
-		while (src[i] != 0)
-			src[i++] = 0;
-	}
-	return (dst);
+void	ft_putchar_fd(char c, int fd)
+{
+	if (fd > -1)
+		write(fd, &c, 1);
+	return ;
 }
+/* 
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+static void	ft_print(char *s1)
+{
+	int	i = 0;
+	
+	while (s1[i] !=0)
+		ft_putchar_fd(s1[i++], 1);
+		
+	write(1, "\n", 1);
+}
+
+int	main(void)
+{
+	ft_print("bonjour");
+	ft_print(" Salut a toi !");
+	ft_print("");
+	return (0);
+} */
