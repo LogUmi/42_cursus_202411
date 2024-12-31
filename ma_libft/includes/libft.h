@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 15:17:27 by lgerard           #+#    #+#             */
-/*   Updated: 2024/12/29 17:22:24 by lgerard          ###   ########.fr       */
+/*   Updated: 2024/12/30 15:31:21 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,29 @@
 
 # include <stdlib.h>
 # include <stdarg.h>
+
+# ifndef GNL_BUFFER_SIZE
+#  define GNL_BUFFER_SIZE 1024
+# endif
+# if GNL_BUFFER_SIZE < 0
+#  undef GNL_BUFFER_SIZE
+#  define GNL_BUFFER_SIZE 0
+# endif
+# if GNL_BUFFER_SIZE > 1000000
+#  undef GNL_BUFFER_SIZE
+#  define BUFFER_SIZE 1000000
+# endif
+# ifndef GNL_STATIC_SIZE
+#  define GNL_STATIC_SIZE 21000
+# endif
+# if GNL_STATIC_SIZE < 0
+#  undef GNL_STATIC_SIZE
+#  define GNL_STATIC_SIZE 0
+# endif
+# if GNL_STATIC_SIZE > 21000
+#  undef GNL_STATIC_SIZE
+#  define GNL_STATIC_SIZE 21000
+# endif
 
 typedef struct s_list
 {
@@ -68,12 +91,15 @@ size_t	ft_strlcat(char *dst, const char *src, size_t size);
 size_t	ft_strlcpy(char *dst, const char *src, size_t size);
 size_t	ft_strlen(const char *str);
 int		ft_strlenf(const char *str);
-int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
+char	*ft_strncpygnl(char *src, char *dst, int n, int way);
 char	*ft_strrchr(const char *s, int c);
 char	*ft_strnstr(const char *big, const char *little, size_t len);
 char	*ft_strtrim(char const *s1, char const *set);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 int		ft_toupper(int c);
 int		ft_tolower(int c);
+char	*get_next_linedm(int fd);
+char	*get_next_lined(int fd);
 #endif

@@ -47,7 +47,9 @@ FILEC =	ft_strlen.c \
 		ft_lstmap_bonus.c \
 		ft_printf.c \
 		ft_printf_number.c \
-		ft_printf_string.c
+		ft_printf_string.c \
+		get_next_lined.c \
+		get_next_linedm.c
 FILEH = libft.h 
 SRCS =	$(addprefix $(DIRSR), $(FILEC))
 OBJS =	$(addprefix $(DIROB), $(FILEC:.c=.o))
