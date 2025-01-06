@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_lines.c                                   :+:      :+:    :+:   */
+/*   get_next_linesm.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/06 17:38:38 by lgerard           #+#    #+#             */
-/*   Updated: 2024/12/31 17:40:03 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/01/06 18:49:13 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <unistd.h>
 #include <stdlib.h>
 #include <stdio.h>
-#include "includes/libft.h"
+#include "libft.h"
 
 static char	*ft_getinit(char *buffer, char *str, int i[], int way)
 {
@@ -61,33 +61,33 @@ static int	ft_readfile(int fd, char *buffer, char *str, int i[])
 	return (rd);
 }
 
-char	*get_next_lines(int fd)
+char	*get_next_linesm(int fd)
 {
-	static char	str[GNL_STATIC_SIZE] = "\0\0\0\0\0";
+	static char	str[1025][GNL_STATIC_SIZE] = {{'\0'}};
 	char		buffer[GNL_BUFFER_SIZE];
 	int			i[2];
 	int			rd;
 
 	rd = -2;
-	if (fd < 0 || GNL_BUFFER_SIZE == 0 || GNL_STATIC_SIZE == 0)
+	if (fd < 0 || GNL_BUFFER_SIZE == 0 || GNL_STATIC_SIZE == 0 || fd > 1025)
 		return (0);
-	ft_getinit(&buffer[0], &str[0], i, 1);
-	while (str[i[0]] != '\n' && rd != 0 && i[0] < (GNL_STATIC_SIZE / 2) - 1)
+	ft_getinit(&buffer[0], &str[fd][0], i, 1);
+	while (str[fd][i[0]] != '\n' && rd != 0 && i[0] < (GNL_STATIC_SIZE / 2) - 1)
 	{
-		if (str[i[0]] == 0)
-			rd = ft_readfile(fd, &buffer[0], &str[0], i);
+		if (str[fd][i[0]] == 0)
+			rd = ft_readfile(fd, &buffer[0], &str[fd][0], i);
 		if (rd == -1)
 			return (0);
 		if (rd != 0)
 			i[0]++;
 	}
-	if (rd == 0 && i[0] == 0 && str[i[0]] == 0)
+	if (rd == 0 && i[0] == 0 && str[fd][i[0]] == 0)
 		return (0);
 	if (i[0] == (GNL_STATIC_SIZE / 2) - 1)
 		return (0);
-	if (str[i[0]] == 0)
+	if (str[fd][i[0]] == 0)
 		i[0]--;
-	return (ft_getinit(&str[0], &str[0], i, 2));
+	return (ft_getinit(&str[fd][0], &str[fd][0], i, 2));
 }
 /* 
 int main (void)
@@ -102,7 +102,7 @@ int main (void)
 		return (0);
 	while (i++ < 100)
 	{
-		s = get_next_lines(fd);
+		s = get_next_linesm(fd);
 		if(!s)
 		{
 			close(fd);

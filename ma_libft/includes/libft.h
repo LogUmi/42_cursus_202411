@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 15:17:27 by lgerard           #+#    #+#             */
-/*   Updated: 2024/12/30 15:31:21 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/01/06 18:46:25 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,4 +102,6 @@ int		ft_toupper(int c);
 int		ft_tolower(int c);
 char	*get_next_linedm(int fd);
 char	*get_next_lined(int fd);
+char	*get_next_linesm(int fd);
+char	*get_next_lines(int fd);
 #endif
