@@ -1,0 +1,74 @@
+lsblk
+cat /etc/os-release
+
+sudo usermod -aG sudo lgerard
+sudo groupadd user42
+sudo usermod -aG user42 lgerard
+groups lgerard
+getent group sudo
+
+timedatectl
+sudo apt install systemd-timesyncd
+sudo systemctl enable systemd-timesyncd
+sudo timedatectl set-ntp true
+sudo visudo
+sudoreplay -l
+
+config sudo:
+Defaults	passwd_tries=3
+Defaults	badpass_message="You have entered a bad password"
+Defaults	log_input
+Defaults	log_output
+Defaults	iolog_dir=/var/log/sudo
+Defaults	logfile=/var/log/sudo/sudo.log
+Defaults	requiretty
+Defaults	secure_path="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin"
+
+sudo apt install ufw
+sudo ufw enablelger
+sudo ufw status verbose
+sudo ufw allow ssh
+sudo ufw allow 4242
+sudo nano/etc/ssh/sshd_config
+config:
+Port 4242
+PermitRootLogin no
+
+sudo systemctl apparmor
+nano /etc/login.defs
+config:
+PASS_MAX_DAYS 30
+PASS_MIN_DAYS 2
+PASS_WARN_AGE 7
+
+sudo chage -M 30 lgerard
+sudo chage -M 30 root
+sudo chage -m 30 lgerard
+sudo chage -m 30 root
+sudo chage -l lgerard
+sudo chage -l root
+
+sudo apt install libpam-pwquality
+sudo nano etc/security/pwquality.conf
+minlen=10
+dcredit=-1
+lcredit=-1
+ucredit=-1
+maxrepeat=3
+usercheck=1
+difok=7
+enforce_for_root
+nano /etc/pam.d/common-password :
+password [success=1 default=ignore] pam_succeed_if.so user = root
+password requisite pam_pwquality.so retry=3 difok=0
+password requisite pam_pwquality.so retry=3 difok=7
+
+crontab -e:
+*/10 * * * * bash/root/monitoring.sh | wall
+
+
+crontab -r
+sudo adduser XXXXXX
+sudo groupadd XXXXXXX
+sudo hostnamectl set-hostname XXXXXXX
+
