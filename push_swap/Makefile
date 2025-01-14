@@ -1,6 +1,6 @@
-NAME = 	push_swap.a
-HDRS = 	push_swap.h
-SRCS = 	push_swap.c
+NAME = 	libftprintf.a
+HDRS = 	ft_printf.h
+SRCS = 	ft_printf.c ft_itoabase.c
 OBJS = $(SRCS:.c=.o)
 LDIR = libft
 LIBR = $(LDIR)/libft.a
@@ -14,13 +14,17 @@ $(NAME):	$(OBJS)	$(LIBR)
 			$(AR) $(NAME) $(OBJS)	
 
 %.o:		%.c	
-			$(CC) $(FLAGS) -c $< -o $@ -I. -I$(LDIR) 
+			$(CC) $(FLAGS) -MMD -c $< -o $@ -I. -I$(LDIR) 
 			
+-include $(OBJS:.o=.d)	
+
 $(LIBR):		
-			[ -d $(LDIR) ] && $(MAKE) -C $(LDIR) all		
+			[ -d $(LDIR) ] && $(MAKE) -C $(LDIR) all	
+			cp $(LIBR) .
+			mv $(notdir $(LIBR)) $(NAME)	
 
 clean:	
-			rm -rf $(OBJS)
+			rm -rf $(OBJS) $(OBJS:.o=.d)
 			$(MAKE) -C $(LDIR) clean	
 
 fclean:		clean	
