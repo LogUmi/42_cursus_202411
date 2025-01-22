@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:22:20 by lgerard           #+#    #+#             */
-/*   Updated: 2025/01/18 21:04:52 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/01/22 18:54:04 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include push_swap.h
+#include "push_swap.h"
 
-int	ft_error(char **tab)
+char	**ft_free(char **tab)
 {
 	int	i;
 
@@ -21,47 +21,64 @@ int	ft_error(char **tab)
 	{
 		while (tab[i])
 			free(tab[i++]);
-		free(**tab);
+		free(tab);
 	}
-	ft_printf("Error\n");
 	return (0);
 }
+
+int	ft_error(char **tab)
+{
+	if (tab)
+		ft_free(tab);
+	write(1, "Error\n", 6);
+	return (0);
+}
+
 static char	**ft_tabdup(char **tab, int dep, int nb)
 {
 	char	**new;
 	int		i;
 
 	i = 0;
-	new = malloc(sizeof(char *) * nb + 1)
+	new = (char **)malloc(sizeof(char *) * (nb + 1));
 	if (!new)
-		return (ft_error(NULL));
-	while(i < nb)
+		return (NULL);
+	while (i < nb)
 	{
-		new[i] = ft_strdup(tab[dep + i])
+		new[i] = ft_strdup(tab[dep + i]);
 		if (!new[i])
-			return (ft_error(new));
-		i++
-	}	
+			return (ft_free(new));
+		i++;
+	}
+	new[i] = 0;
 	return (new);
 }
 
 int	main(int argc, char **argv)
 {
 	char	**s;
-	
+	int		i;
+
 	s = NULL;
+	i = 1;
 	if (argc < 3)
 	{
 		if (argc == 1)
 			return (0);
-		if(ft_strlen(argv[1]) < 3)
+		if (ft_strlen(argv[1]) < 3 || !argv[1])
 			return (ft_error(s));
-		s = ft_split(argv[1], 32)
+		s = ft_split(argv[1], 32);
 	}
-	
 	else
-		s = ft_tabdup(argv, 1, argc - 1)
+	{
+		while (i < argc)
+			if (argv[i++][0] == 0)
+				return (ft_error(s));
+		s = ft_tabdup(argv, 1, argc - 1);
+	}
 	if (!s)
-			return (ft_error(s));
+		return (ft_error(s));
+	write(1, "Yep !", 5);
+	ft_free(s);
 	return (0);
 }

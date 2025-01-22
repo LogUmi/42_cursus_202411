@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:22:35 by lgerard           #+#    #+#             */
-/*   Updated: 2025/01/14 18:30:36 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/01/22 18:51:51 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,4 +14,9 @@
 # define PUSH_SWAP_H
 
 # include <stdio.h>
-# include "libft.h"
+# include <unistd.h>
+# include "libft/includes/libft.h"
+
+int		ft_error(char **tab);
+char	**ft_free(char **tab);
+#endif
