@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:22:20 by lgerard           #+#    #+#             */
-/*   Updated: 2025/01/22 18:54:04 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/01/23 12:11:55 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-char	**ft_free(char **tab)
+char	**ft_freetab(char **tab)
 {
 	int	i;
 
@@ -29,7 +29,7 @@ char	**ft_free(char **tab)
 int	ft_error(char **tab)
 {
 	if (tab)
-		ft_free(tab);
+		ft_freetab(tab);
 	write(1, "Error\n", 6);
 	return (0);
 }
@@ -47,11 +47,31 @@ static char	**ft_tabdup(char **tab, int dep, int nb)
 	{
 		new[i] = ft_strdup(tab[dep + i]);
 		if (!new[i])
-			return (ft_free(new));
+			return (ft_freetab(new));
 		i++;
 	}
 	new[i] = 0;
 	return (new);
+}
+
+int	ft_strisspace(char *str)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (str[i])
+	{
+		if ((str[i] > 8 && str[i] < 14) || str[i] == 32)
+			j++;
+		i++;
+	}
+	if (i == 0)
+		return (-1);
+	if ((i - j) == 0)
+		return (1);
+	return (0);
 }
 
 int	main(int argc, char **argv)
@@ -65,7 +85,7 @@ int	main(int argc, char **argv)
 	{
 		if (argc == 1)
 			return (0);
-		if (ft_strlen(argv[1]) < 3 || !argv[1])
+		if (!argv[1] || ft_strisspace(argv[1]) != 0)
 			return (ft_error(s));
 		s = ft_split(argv[1], 32);
 	}
@@ -79,6 +99,6 @@ int	main(int argc, char **argv)
 	if (!s)
 		return (ft_error(s));
 	write(1, "Yep !", 5);
-	ft_free(s);
+	ft_freetab(s);
 	return (0);
 }
