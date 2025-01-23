@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:22:35 by lgerard           #+#    #+#             */
-/*   Updated: 2025/01/23 17:38:31 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/01/23 22:30:48 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,5 +22,6 @@ char	**ft_freetab(char **tab);
 int		ft_strisspace(char *str);
 int		conformity(char **tab);
 int		ft_atoips(char *str, int *error, int i, int flag);
-int		ft_freenbr(int *nbr);
+int		ft_freenbr(int **nbr);
+int		nbrcheck(int **nbr, int n);
 #endif
