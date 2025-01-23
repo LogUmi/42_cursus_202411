@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:22:20 by lgerard           #+#    #+#             */
-/*   Updated: 2025/01/23 12:11:55 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/01/23 15:33:54 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,5 @@ int	main(int argc, char **argv)
 	}
 	if (!s)
 		return (ft_error(s));
-	write(1, "Yep !", 5);
-	ft_freetab(s);
-	return (0);
+	return (conformity(s));
 }

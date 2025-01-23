@@ -1,6 +1,7 @@
 NAME = 	push_swap.a
 HDRS = 	push_swap.h
-SRCS = 	push_swap.c
+SRCS = 	push_swap.c \
+		conformity.c
 OBJS = $(SRCS:.c=.o)
 LDIR = libft
 LIBR = $(LDIR)/libft.a
