@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:22:35 by lgerard           #+#    #+#             */
-/*   Updated: 2025/01/23 22:30:48 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/01/24 17:42:48 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,8 @@ int		ft_strisspace(char *str);
 int		conformity(char **tab);
 int		ft_atoips(char *str, int *error, int i, int flag);
 int		ft_freenbr(int **nbr);
-int		nbrcheck(int **nbr, int n);
+int		nbrcheck(int **nbr, int i);
+int		setstack(int **nbr, int i);
+void	ft_lstclear_ps(t_list **lst);
+int		ft_freestack(t_list **a, t_list **b, int **nbr);
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   conformity.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 15:37:15 by lgerard           #+#    #+#             */
-/*   Updated: 2025/01/23 22:56:18 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/01/24 19:02:01 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,29 +26,16 @@ int	ft_freenbr(int **nbr)
 	return (0);
 }
 
-int	ft_debug(int **nbr, int n)
-{
-	int	i;
-
-	i = 0;
-	while (i < n)
-	{
-		ft_printf("%5i %5i\n", nbr[i][0], nbr[i][1]);
-		i++;
-	}
-	return (ft_freenbr(nbr));
-}
-
 int	nbrcheck(int **nbr, int n)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (i < n - 1)
+	while (i < n)
 	{
 		j = i + 1;
-		while (j < n)
+		while (j <= n)
 		{
 			if (nbr[i][0] == nbr[j][0])
 			{
@@ -63,7 +50,7 @@ int	nbrcheck(int **nbr, int n)
 		}
 		i++;
 	}
-	return (ft_debug(nbr, n));
+	return (setstack(nbr, n));
 }
 
 int	ft_atoips(char *str, int *error, int i, int flag)
@@ -104,7 +91,7 @@ int	conformity(char **tab)
 	error = 0;
 	while (tab[i])
 		i++;
-	nbr = (int **)ft_calloc(sizeof(int *), i);
+	nbr = (int **)ft_calloc(sizeof(int *), i + 1);
 	if (!nbr)
 		return (ft_error(tab));
 	i = 0;
@@ -119,5 +106,5 @@ int	conformity(char **tab)
 	if (error != 0)
 		return (ft_freenbr(nbr) + (ft_error(tab)));
 	ft_freetab(tab);
-	return (nbrcheck(nbr, i));
+	return (nbrcheck(nbr, i - 1));
 }
