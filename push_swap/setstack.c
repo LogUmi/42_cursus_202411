@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setstack.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 15:35:39 by lgerard           #+#    #+#             */
-/*   Updated: 2025/01/25 15:31:37 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/01/25 19:36:53 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,16 +30,15 @@ int	ft_debug(t_list **a, int **nbr)
 	return (0);
 }
 
-void	ft_lstclear_ps(t_list **lst)
+static void	ft_lstclear_ps(t_list **lst)
 {
 	t_list	*tlst;
 	t_list	*slst;
-
+	
 	tlst = *lst;
 	while (tlst != 0)
 	{
 		slst = tlst->next;
-		
 		free(tlst);
 		tlst = slst;
 	}
@@ -49,9 +48,17 @@ void	ft_lstclear_ps(t_list **lst)
 
 int	ft_freestack(t_list **a, t_list **b, int **nbr)
 {
+	int i;
+
+	i = 0;	
 	ft_lstclear_ps(a);
 	ft_lstclear_ps(b);
-	ft_freenbr(nbr);
+	if	(nbr && nbr[0])
+	{
+		while (nbr[i])
+			free(nbr[i++]);
+		free(nbr);
+	}
 	return (0);
 }
 
@@ -70,6 +77,7 @@ int	setstack(int **nbr, int i)
 			return (ft_freestack(&a, &b, nbr));
 		ft_lstadd_front(&a, b);
 	}
+	b = NULL;
 	ft_debug(&a, nbr);
 	return (ft_freestack(&a, &b, nbr));
 }

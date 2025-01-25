@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 15:37:15 by lgerard           #+#    #+#             */
-/*   Updated: 2025/01/24 19:02:01 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/01/25 19:37:41 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	ft_freenbr(int **nbr)
 	return (0);
 }
 
-int	nbrcheck(int **nbr, int n)
+static int	nbrcheck(int **nbr, int n)
 {
 	int	i;
 	int	j;
