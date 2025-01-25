@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setstack.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 15:35:39 by lgerard           #+#    #+#             */
-/*   Updated: 2025/01/24 19:03:25 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/01/25 15:31:37 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	ft_freestack(t_list **a, t_list **b, int **nbr)
 {
 	ft_lstclear_ps(a);
 	ft_lstclear_ps(b);
-	//ft_freenbr(nbr);
+	ft_freenbr(nbr);
 	return (0);
 }
 
