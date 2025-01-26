@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:22:35 by lgerard           #+#    #+#             */
-/*   Updated: 2025/01/25 19:38:21 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/01/26 19:18:45 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,8 @@ int		ft_atoips(char *str, int *error, int i, int flag);
 int		ft_freenbr(int **nbr);
 int		setstack(int **nbr, int i);
 int		ft_freestack(t_list **a, t_list **b, int **nbr);
+char	*sa(t_list **a);
+char	*sb(t_list **b);
+char	*ss(t_list **a, t_list **b);
+char	*pa(t_list **a, t_list **b);
 #endif

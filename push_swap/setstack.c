@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 15:35:39 by lgerard           #+#    #+#             */
-/*   Updated: 2025/01/25 19:36:53 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/01/26 15:39:41 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static void	ft_lstclear_ps(t_list **lst)
 {
 	t_list	*tlst;
 	t_list	*slst;
-	
+
 	tlst = *lst;
 	while (tlst != 0)
 	{
@@ -48,12 +48,12 @@ static void	ft_lstclear_ps(t_list **lst)
 
 int	ft_freestack(t_list **a, t_list **b, int **nbr)
 {
-	int i;
+	int	i;
 
-	i = 0;	
+	i = 0;
 	ft_lstclear_ps(a);
 	ft_lstclear_ps(b);
-	if	(nbr && nbr[0])
+	if (nbr && nbr[0])
 	{
 		while (nbr[i])
 			free(nbr[i++]);
