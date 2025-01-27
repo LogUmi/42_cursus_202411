@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 17:50:30 by lgerard           #+#    #+#             */
-/*   Updated: 2025/01/27 18:46:08 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/01/27 21:48:41 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,18 @@ int	test_pushswap(t_list **a, t_list **b)
 			ft_printf("%s\n", sb(b));
 		if (c == 't')
 			ft_printf("%s\n", ss(a, b));
+		if (c == 'd')
+			ft_printf("%s\n",ra(a));
+		if (c == 'f')
+			ft_printf("%s\n",rb(b));
+		if (c == 'g')
+			ft_printf("%s\n",rr(a, b));
+		if (c == 'c')
+			ft_printf("%s\n",rra(a));
+		if (c == 'v')
+			ft_printf("%s\n",rrb(b));
+		if (c == 'b')
+			ft_printf("%s\n",rrr(a, b));
 		if( c != 'q')
 			ft_debug(a, b);
 	}

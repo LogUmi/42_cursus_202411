@@ -3,7 +3,9 @@ HDRS = 	push_swap.h
 SRCS = 	push_swap.c \
 		conformity.c \
 		setstack.c \
-		ft_swap_push.c
+		ft_swap_push.c \
+		ft_rotate.c \
+		ft_reverse.c
 OBJS = $(SRCS:.c=.o)
 LDIR = libft
 LIBR = $(LDIR)/libft.a
