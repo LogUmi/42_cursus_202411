@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:22:35 by lgerard           #+#    #+#             */
-/*   Updated: 2025/01/26 19:18:45 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/01/27 18:44:46 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,5 @@ char	*sa(t_list **a);
 char	*sb(t_list **b);
 char	*ss(t_list **a, t_list **b);
 char	*pa(t_list **a, t_list **b);
+char	*pb(t_list **a, t_list **b);
 #endif

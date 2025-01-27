@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 15:45:56 by lgerard           #+#    #+#             */
-/*   Updated: 2025/01/26 19:22:54 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/01/27 19:34:31 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,10 +21,10 @@ char	*sa(t_list **a)
 	if (ft_lstsize(lst) < 2)
 		return (NULL);
 	cfirst = lst->content;
-	while (lst != 0 && lst->next == 0)
+	while (lst != 0 && lst->next != 0)
 		lst = lst->next;
 	(*a)->content = lst->content;
-	lst->content = cfirst;		
+	lst->content = cfirst;
 	return ("sa");
 }
 
@@ -37,7 +37,7 @@ char	*sb(t_list **b)
 	if (ft_lstsize(lst) < 2)
 		return (NULL);
 	cfirst = lst->content;
-	while (lst != 0 && lst->next == 0)
+	while (lst != 0 && lst->next != 0)
 		lst = lst->next;
 	(*b)->content = lst->content;
 	lst->content = cfirst;		
@@ -46,8 +46,13 @@ char	*sb(t_list **b)
 
 char	*ss(t_list **a, t_list **b)
 {
-	if (sa(a) == NULL && sa(b) == NULL)
-		return (NULL);		
+	char	*ca;
+	char	*cb;
+	
+	ca = sa(a);
+	cb = sb(b);
+	if (ca == NULL && cb == NULL)
+		return (NULL);
 	return ("ss");
 }
 
@@ -69,10 +74,10 @@ char	*pa(t_list **a, t_list **b)
 	(*b)->next = nfirsta;
 	(*a) = *b;
 	(*b) = nfirstb;	
-	return ("pa");
+	return ("pa");	
 }
 
-char	*pa(t_list **a, t_list **b)
+char	*pb(t_list **a, t_list **b)
 {
 	void	*nfirsta;
 	void	*nfirstb;
