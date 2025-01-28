@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 17:50:30 by lgerard           #+#    #+#             */
-/*   Updated: 2025/01/27 21:48:41 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/01/28 16:23:06 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,36 +65,72 @@ int get_key_press()
 
 int	test_pushswap(t_list **a, t_list **b)
 {
-	char c = 0;
-
+	char	c = 0;
+	int		i = 0;
+	
 	while (c != 'q')
 	{
 		c = get_key_press();
 		if (c == '3')
-			ft_printf("%s\n", pa(a, b));
+		{
+			i++;
+			ft_printf("%s - (cpt = %i)\n", pa(a, b), i);;
+		}
 		if (c == '4')
-			ft_printf("%s\n", pb(a, b));
+		{
+			i++;
+			ft_printf("%s - (cpt = %i)\n", pb(a, b), i);
+		}
 		if (c == 'e')
-			ft_printf("%s\n", sa(a));
+		{
+			i++;
+			ft_printf("%s - (cpt = %i)\n", sa(a), i);
+		}
 		if (c == 'r')
-			ft_printf("%s\n", sb(b));
+		{	
+			i++;
+			ft_printf("%s - (cpt = %i)\n", sb(b), i);
+		}
 		if (c == 't')
-			ft_printf("%s\n", ss(a, b));
+		{
+			i++;
+			ft_printf("%s - (cpt = %i)\n", ss(a, b), i);
+		}
 		if (c == 'd')
-			ft_printf("%s\n",ra(a));
+		{
+			i++;
+			ft_printf("%s - (cpt = %i)\n",ra(a), i);
+		}
 		if (c == 'f')
-			ft_printf("%s\n",rb(b));
+		{
+			i++;
+			ft_printf("%s - (cpt = %i)\n",rb(b), i);
+		}
 		if (c == 'g')
-			ft_printf("%s\n",rr(a, b));
+		{
+			i++;
+			ft_printf("%s - (cpt = %i)\n",rr(a, b), i);
+		}
 		if (c == 'c')
-			ft_printf("%s\n",rra(a));
+		{
+			i++;
+			ft_printf("%s - (cpt = %i)\n",rra(a), i);
+		}
 		if (c == 'v')
-			ft_printf("%s\n",rrb(b));
+		{
+			i++;
+			ft_printf("%s - (cpt = %i)\n",rrb(b), i);
+		}
 		if (c == 'b')
-			ft_printf("%s\n",rrr(a, b));
+		{
+			i++;
+			ft_printf("%s - (cpt = %i)\n",rrr(a, b), i);
+		}
 		if( c != 'q')
 			ft_debug(a, b);
 	}
 	return (0);
-	
 }
+/* int		ft_debug(t_list **a, t_list **b);
+int 	get_key_press();
+int		test_pushswap(t_list **a, t_list **b); */

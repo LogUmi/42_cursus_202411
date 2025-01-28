@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_swap_push.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 15:45:56 by lgerard           #+#    #+#             */
-/*   Updated: 2025/01/27 21:41:53 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/01/28 19:12:57 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,8 @@ char	*sa(t_list **a)
 	lst = *a;
 	if (ft_lstsize(lst) < 2)
 		return (NULL);
-	cfirst = lst->content;
-	while (lst != 0 && lst->next != 0)
-		lst = lst->next;
-	(*a)->content = lst->content;
+	cfirst = lst->next->content;
+	lst->next->content = lst->content;
 	lst->content = cfirst;
 	return ("sa");
 }
@@ -36,11 +34,9 @@ char	*sb(t_list **b)
 	lst = *b;
 	if (ft_lstsize(lst) < 2)
 		return (NULL);
-	cfirst = lst->content;
-	while (lst != 0 && lst->next != 0)
-		lst = lst->next;
-	(*b)->content = lst->content;
-	lst->content = cfirst;		
+	cfirst = lst->next->content;
+	lst->next->content = lst->content;
+	lst->content = cfirst;	
 	return ("sb");
 }
 
