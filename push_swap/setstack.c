@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setstack.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 15:35:39 by lgerard           #+#    #+#             */
-/*   Updated: 2025/01/29 18:57:51 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/01/29 22:45:37 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ void	startorder(t_list **a, t_list **b)
 		return ;
 	if (ft_lstsize(*a) == 2)
 		algo_2(a, b);
+	if (ft_lstsize(*a) == 3)
+		algo_3(a, b);
 	ft_debug(a, b);
 }
 
