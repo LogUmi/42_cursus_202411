@@ -6,14 +6,14 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 15:35:39 by lgerard           #+#    #+#             */
-/*   Updated: 2025/01/28 19:20:32 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/01/29 18:57:51 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 int		ft_debug(t_list **a, t_list **b);
-int 	get_key_press();
+int		get_key_press(void);
 int		test_pushswap(t_list **a, t_list **b);
 
 static void	ft_lstclear_ps(t_list **lst)
@@ -48,21 +48,15 @@ int	ft_freestack(t_list **a, t_list **b, int **nbr)
 	return (0);
 }
 
-void	Excmde(t_list **a, t_list **b, char *cmde)
-{
-	char *prt;
-	
-	
-}
-
 void	startorder(t_list **a, t_list **b)
 {
-	if (ft_lstsize(a) == 1)
-		return;
-	if (ft_lstsize(a) == 2)
-		if ((*a)->content > (*a)->next->content)
-			
+	if (ft_lstsize(*a) == 1)
+		return ;
+	if (ft_lstsize(*a) == 2)
+		algo_2(a, b);
+	ft_debug(a, b);
 }
+
 int	setstack(int **nbr, int i)
 {
 	t_list	*a;
@@ -82,6 +76,6 @@ int	setstack(int **nbr, int i)
 	ft_debug(&a, &b);
 	ft_printf("%s\n)");
 	test_pushswap(&a, &b);
-	
+	startorder(&a, &b);
 	return (ft_freestack(&a, &b, nbr));
 }

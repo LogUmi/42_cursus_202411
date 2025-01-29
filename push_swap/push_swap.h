@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:22:35 by lgerard           #+#    #+#             */
-/*   Updated: 2025/01/27 21:45:46 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/01/29 19:25:00 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,6 @@ char	*rr(t_list **a, t_list **b);
 char	*rra(t_list **a);
 char	*rrb(t_list **b);
 char	*rrr(t_list **a, t_list **b);
+void	excmde(t_list **a, t_list **b, char *cmde);
+void	algo_2(t_list **a, t_list **b);
 #endif

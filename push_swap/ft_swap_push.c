@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 15:45:56 by lgerard           #+#    #+#             */
-/*   Updated: 2025/01/28 19:12:57 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/01/29 18:29:22 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,47 +16,47 @@ char	*sa(t_list **a)
 {
 	t_list	*lst;
 	void	*cfirst;
-	
+
 	lst = *a;
 	if (ft_lstsize(lst) < 2)
 		return (NULL);
 	cfirst = lst->next->content;
 	lst->next->content = lst->content;
 	lst->content = cfirst;
-	return ("sa");
+	return ("sa\n");
 }
 
 char	*sb(t_list **b)
 {
 	t_list	*lst;
 	void	*cfirst;
-	
+
 	lst = *b;
 	if (ft_lstsize(lst) < 2)
 		return (NULL);
 	cfirst = lst->next->content;
 	lst->next->content = lst->content;
-	lst->content = cfirst;	
-	return ("sb");
+	lst->content = cfirst;
+	return ("sb\n");
 }
 
 char	*ss(t_list **a, t_list **b)
 {
 	char	*ca;
 	char	*cb;
-	
+
 	ca = sa(a);
 	cb = sb(b);
 	if (ca == NULL && cb == NULL)
 		return (NULL);
-	return ("ss");
+	return ("ss\n");
 }
 
 char	*pa(t_list **a, t_list **b)
 {
 	void	*nfirsta;
 	void	*nfirstb;
-	
+
 	if (ft_lstsize(*b) == 0)
 		return (NULL);
 	if (ft_lstsize(*b) < 2)
@@ -69,15 +69,15 @@ char	*pa(t_list **a, t_list **b)
 		nfirsta = (*a);
 	(*b)->next = nfirsta;
 	(*a) = *b;
-	(*b) = nfirstb;	
-	return ("pa");	
+	(*b) = nfirstb;
+	return ("pa\n");
 }
 
 char	*pb(t_list **a, t_list **b)
 {
 	void	*nfirsta;
 	void	*nfirstb;
-	
+
 	if (ft_lstsize(*a) == 0)
 		return (NULL);
 	if (ft_lstsize(*a) < 2)
@@ -90,6 +90,6 @@ char	*pb(t_list **a, t_list **b)
 		nfirstb = (*b);
 	(*a)->next = nfirstb;
 	(*b) = *a;
-	(*a) = nfirsta;	
-	return ("pb");
+	(*a) = nfirsta;
+	return ("pb\n");
 }
