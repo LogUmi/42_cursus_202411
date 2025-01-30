@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 23:03:20 by lgerard           #+#    #+#             */
-/*   Updated: 2025/01/30 18:34:41 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/01/30 23:37:20 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,24 @@ static void	exucmde_1(t_list **a, t_list **b, char *cmde, char **prt)
 	if (ft_strncmp(cmde, "rr", 2) == 0)
 		(*prt) = rr(a, b);
 }
+char	*addcmde(char *cmde, char *src)
+{
+	int	i;
+	int j;
 
+	i = 0;
+	j = 0;
+	if (!src)
+		return (cmde);
+	while (cmde[i] != 0)
+		i++;
+	if (i > 0)
+		cmde[i++] = 32;
+	while (src[j] != 0)
+		cmde[i++] = src[j++];
+	cmde[i] = 0;
+	return (cmde);
+}
 static void	exucmde(t_list **a, t_list **b, char *cmde, char **prt)
 {
 	if (ft_strlen(cmde) == 3)

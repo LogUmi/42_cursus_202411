@@ -3,14 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   algo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 18:46:30 by lgerard           #+#    #+#             */
-/*   Updated: 2025/01/30 19:27:07 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/01/31 00:20:17 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	ft_debug(t_list **a, t_list **b);
+
 
 void	algo_2(t_list **a, t_list **b)
 {
@@ -65,22 +68,29 @@ void	algo_radix(t_list **a, t_list **b)
 	t_list	*lst;
 	int		*i;
 	int		j;
+	char	*cmde;
 
 	j = 0;
+	cmde = calloc(sizeof(char), ft_lstsize(*a) * 4  + 1);
+	if (!cmde)
+		return ;
 	while (j < 10)
 	{
-		lst = *a;
 		if (algo_radix_test(a, j) > 0)
 		{
+			lst = *a;
 			while (lst != 0)
 			{
 				i = lst->content;
 				lst = lst->next;
 				if (i[4 + j] == 1)
-					excmde(a, b, "pb");
+					cmde = addcmde(cmde, "pb");
 				else
-					excmde(a, b, "ra");
-			}	
+					cmde = addcmde(cmde, "ra");
+			}
+			excmde(a, b, cmde);
+			cmde[0] = 0;
+			lst = *b;
 			while (lst != 0)
 			{
 				excmde(a, b, "pa");
@@ -89,5 +99,6 @@ void	algo_radix(t_list **a, t_list **b)
 		}
 		j++;
 	}
-	lst = *b;
+	
+	free(cmde);
 }

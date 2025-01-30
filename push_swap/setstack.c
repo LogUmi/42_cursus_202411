@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   setstack.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 15:35:39 by lgerard           #+#    #+#             */
-/*   Updated: 2025/01/30 19:17:07 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/01/30 20:47:39 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	setstack(int **nbr, int i)
 	b = NULL;
 	testsort(&a, &b, 0, 0);
 	ft_debug(&a, &b);
-	ft_printf("%s\n)");
+	ft_printf("\n)");
 	test_pushswap(&a, &b);
 	startorder(&a, &b);
 	return (ft_freestack(&a, &b, nbr));

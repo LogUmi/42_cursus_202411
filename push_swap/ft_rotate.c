@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 15:46:16 by lgerard           #+#    #+#             */
-/*   Updated: 2025/01/29 23:02:37 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/01/30 21:50:36 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,17 @@
 char	*ra(t_list **a)
 {
 	t_list	*lst;
-	void	*cfirst;
+	t_list	*first;
 
-	lst = *a;
-	if (ft_lstsize(lst) < 2)
+	first = *a;
+	if (ft_lstsize(*a) < 2)
 		return (NULL);
-	cfirst = lst->next;
+	*a = first->next;
+	first->next = 0;
+	lst = *a;
 	while (lst != 0 && lst->next != 0)
 		lst = lst->next;
-	(*a)->next = 0;
-	lst->next = *a;
-	*a = cfirst;
+	lst->next = first;
 	return ("ra\n");
 }
 

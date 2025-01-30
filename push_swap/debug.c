@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 17:50:30 by lgerard           #+#    #+#             */
-/*   Updated: 2025/01/30 18:32:49 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/01/30 23:18:23 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,42 +14,6 @@
 #include <termios.h>
 #include <unistd.h>
 #include "push_swap.h"
-
-int	ft_debug(t_list **a, t_list **b)
-{
-	int		*i;
-	t_list	*lsta = *a;
-	t_list	*lstb = *b;
-	int		*j;
-	int		k;
-	
-	while (lsta != 0 || lstb != 0)
-	{
-		if (lsta != 0)
-		{
-			i = lsta->content;
-			lsta = lsta->next;
-			ft_printf("%05i %05i %05i %05i / ", i[0], i[1], i[2], i[3]);
-		}
-		else
-			ft_printf("%5c %5c %5c %5c / ", ' ', ' ', ' ', ' ');
-		if (lstb != 0)
-		{
-			j = lstb->content;
-			lstb = lstb->next;
-			ft_printf("%05i %05i %05i %05i / ", j[0], j[1], j[2], j[3]);
-		}
-		else
-			ft_printf("%5c %5c %5c %5c / ", ' ', ' ', ' ', ' ');
-		k = 0;
-		ft_printf(" ....");
-		while (k < 10)
-			ft_printf(" %1i ", i[k++ + 4]);
-		ft_printf("\n");
-	}
-		ft_printf("           a                         b\n\n");
-	return (0);
-}
 
 int get_key_press() 
 {
@@ -68,6 +32,45 @@ int get_key_press()
     tcsetattr(STDIN_FILENO, TCSANOW, &oldt);
 
     return ch;
+}
+
+int	ft_debug(t_list **a, t_list **b)
+{
+	int		*i;
+	t_list	*lsta = *a;
+	t_list	*lstb = *b;
+	int		*j;
+	int		k;
+	
+	while (lsta != 0 || lstb != 0)
+	{
+		if (lsta != 0)
+		{
+			i = lsta->content;
+			lsta = lsta->next;
+			//ft_printf("%p : ", lsta);
+			ft_printf("%05i %05i %05i %05i / ", i[0], i[1], i[2], i[3]);
+		}
+		else
+			ft_printf("%5c %5c %5c %5c / ", ' ', ' ', ' ', ' ');
+		if (lstb != 0)
+		{
+			j = lstb->content;
+			lstb = lstb->next;
+			//ft_printf("%p : ", lsta);
+			ft_printf("%05i %05i %05i %05i / ", j[0], j[1], j[2], j[3]);
+		}
+		else
+			ft_printf("%5c %5c %5c %5c / ", ' ', ' ', ' ', ' ');
+		k = 0;
+		ft_printf(" ....");
+		while (k < 10)
+			ft_printf(" %1i ", i[k++ + 4]);
+		ft_printf("\n");
+	}
+		ft_printf("           a                         b\n\n");
+		get_key_press();
+	return (0);
 }
 
 int	test_pushswap(t_list **a, t_list **b)
