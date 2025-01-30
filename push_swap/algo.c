@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 18:46:30 by lgerard           #+#    #+#             */
-/*   Updated: 2025/01/29 23:08:38 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/01/30 19:27:07 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,52 @@ void	algo_3(t_list **a, t_list **b)
 		excmde(a, b, "rra");
 	if (i[0] < j[0] && i[0] < k[0] && j[0] > k[0])
 		excmde(a, b, "sa ra");
+}
+static int	algo_radix_test(t_list **a, int bit)
+{
+	t_list	*lst;
+	int		*i;
+	int		j;
+
+	lst = *a;
+	j = 0;
+	while (lst != 0)
+	{
+		i = lst->content;
+		if (i[4 + bit] == 1)
+			j++;
+		lst = lst->next;
+	}
+	return (j);
+}
+void	algo_radix(t_list **a, t_list **b)
+{
+	t_list	*lst;
+	int		*i;
+	int		j;
+
+	j = 0;
+	while (j < 10)
+	{
+		lst = *a;
+		if (algo_radix_test(a, j) > 0)
+		{
+			while (lst != 0)
+			{
+				i = lst->content;
+				lst = lst->next;
+				if (i[4 + j] == 1)
+					excmde(a, b, "pb");
+				else
+					excmde(a, b, "ra");
+			}	
+			while (lst != 0)
+			{
+				excmde(a, b, "pa");
+				lst = lst->next;
+			}
+		}
+		j++;
+	}
+	lst = *b;
 }

@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 17:50:30 by lgerard           #+#    #+#             */
-/*   Updated: 2025/01/28 16:23:06 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/01/30 18:32:49 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	ft_debug(t_list **a, t_list **b)
 	t_list	*lsta = *a;
 	t_list	*lstb = *b;
 	int		*j;
+	int		k;
 	
 	while (lsta != 0 || lstb != 0)
 	{
@@ -28,19 +29,25 @@ int	ft_debug(t_list **a, t_list **b)
 		{
 			i = lsta->content;
 			lsta = lsta->next;
-			ft_printf("%05i %05i / ", i[0], i[1]);
+			ft_printf("%05i %05i %05i %05i / ", i[0], i[1], i[2], i[3]);
 		}
 		else
-			ft_printf("%5c %5c / ", ' ', ' ');
+			ft_printf("%5c %5c %5c %5c / ", ' ', ' ', ' ', ' ');
 		if (lstb != 0)
 		{
 			j = lstb->content;
 			lstb = lstb->next;
-			ft_printf("%05i %05i\n", j[0], j[1]);
+			ft_printf("%05i %05i %05i %05i / ", j[0], j[1], j[2], j[3]);
 		}
 		else
-			ft_printf("%5c %5c\n", ' ', ' ');
+			ft_printf("%5c %5c %5c %5c / ", ' ', ' ', ' ', ' ');
+		k = 0;
+		ft_printf(" ....");
+		while (k < 10)
+			ft_printf(" %1i ", i[k++ + 4]);
+		ft_printf("\n");
 	}
+		ft_printf("           a                         b\n\n");
 	return (0);
 }
 
@@ -74,60 +81,63 @@ int	test_pushswap(t_list **a, t_list **b)
 		if (c == '3')
 		{
 			i++;
-			ft_printf("%s - (cpt = %i)\n", pa(a, b), i);;
+			ft_printf("%s(cpt = %i)\n", pa(a, b), i);;
 		}
 		if (c == '4')
 		{
 			i++;
-			ft_printf("%s - (cpt = %i)\n", pb(a, b), i);
+			ft_printf("%s(cpt = %i)\n", pb(a, b), i);
 		}
 		if (c == 'e')
 		{
 			i++;
-			ft_printf("%s - (cpt = %i)\n", sa(a), i);
+			ft_printf("%s(cpt = %i)\n", sa(a), i);
 		}
 		if (c == 'r')
 		{	
 			i++;
-			ft_printf("%s - (cpt = %i)\n", sb(b), i);
+			ft_printf("%s(cpt = %i)\n", sb(b), i);
 		}
 		if (c == 't')
 		{
 			i++;
-			ft_printf("%s - (cpt = %i)\n", ss(a, b), i);
+			ft_printf("%s(cpt = %i)\n", ss(a, b), i);
 		}
 		if (c == 'd')
 		{
 			i++;
-			ft_printf("%s - (cpt = %i)\n",ra(a), i);
+			ft_printf("%s(cpt = %i)\n",ra(a), i);
 		}
 		if (c == 'f')
 		{
 			i++;
-			ft_printf("%s - (cpt = %i)\n",rb(b), i);
+			ft_printf("%s(cpt = %i)\n",rb(b), i);
 		}
 		if (c == 'g')
 		{
 			i++;
-			ft_printf("%s - (cpt = %i)\n",rr(a, b), i);
+			ft_printf("%s(cpt = %i)\n",rr(a, b), i);
 		}
 		if (c == 'c')
 		{
 			i++;
-			ft_printf("%s - (cpt = %i)\n",rra(a), i);
+			ft_printf("%s(cpt = %i)\n",rra(a), i);
 		}
 		if (c == 'v')
 		{
 			i++;
-			ft_printf("%s - (cpt = %i)\n",rrb(b), i);
+			ft_printf("%s(cpt = %i)\n",rrb(b), i);
 		}
 		if (c == 'b')
 		{
 			i++;
-			ft_printf("%s - (cpt = %i)\n",rrr(a, b), i);
+			ft_printf("%s(cpt = %i)\n",rrr(a, b), i);
 		}
 		if( c != 'q')
+		{
+			testsort(a, b, 0, 0);
 			ft_debug(a, b);
+		}
 	}
 	return (0);
 }

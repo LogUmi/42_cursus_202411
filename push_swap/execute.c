@@ -3,14 +3,41 @@
 /*                                                        :::      ::::::::   */
 /*   execute.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 23:03:20 by lgerard           #+#    #+#             */
-/*   Updated: 2025/01/29 23:07:27 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/01/30 18:34:41 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	testsort(t_list **a, t_list **b, int j, int k)
+{
+	t_list	*lst;
+	int	*i;
+	
+	lst = *a;
+	while (lst != 0)
+	{
+		i = lst->content;
+		i[2] = j++ + 1;
+		i[3] = 0;
+		if (i[2] == i[1])
+			k++;			
+		lst = lst->next;
+	}
+	lst = *b;
+	j = 0;
+	while (lst != 0)
+	{
+		i = lst->content;
+		i[3] = j++ + 1;						
+		i[2] = 0;
+		lst = lst->next;
+	}
+	return (k - ft_lstsize(*a) - ft_lstsize(*b));
+}
 
 static void	exucmde_1(t_list **a, t_list **b, char *cmde, char **prt)
 {
