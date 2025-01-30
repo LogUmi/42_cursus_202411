@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 18:46:30 by lgerard           #+#    #+#             */
-/*   Updated: 2025/01/31 00:20:17 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/01/31 00:35:43 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,9 +84,9 @@ void	algo_radix(t_list **a, t_list **b)
 				i = lst->content;
 				lst = lst->next;
 				if (i[4 + j] == 1)
-					cmde = addcmde(cmde, "pb");
-				else
 					cmde = addcmde(cmde, "ra");
+				else
+					cmde = addcmde(cmde, "pb");
 			}
 			excmde(a, b, cmde);
 			cmde[0] = 0;
