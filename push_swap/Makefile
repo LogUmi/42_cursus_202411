@@ -7,7 +7,8 @@ SRCS = 	push_swap.c \
 		ft_rotate.c \
 		ft_reverse.c \
 		algo.c \
-		execute.c
+		execute.c \
+		algo_radix.c
 OBJS = $(SRCS:.c=.o)
 LDIR = libft
 LIBR = $(LDIR)/libft.a
