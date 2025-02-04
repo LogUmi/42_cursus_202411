@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   conformity.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 15:37:15 by lgerard           #+#    #+#             */
-/*   Updated: 2025/01/30 17:44:49 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/02/03 23:16:18 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,26 +24,6 @@ int	ft_freenbr(int **nbr)
 		free(nbr);
 	}
 	return (0);
-}
-
-static void	checkdigit(int **nbr, int n)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	while (i <= n)
-	{
-		j = 0;
-		while (j < 10)
-		{
-			if (nbr[i][1] >> j & 1)
-				nbr[i][j++ + 4] = 1;
-			else
-				nbr[i][j++ + 4] = 0;
-		}
-		i++;
-	}
 }
 
 static int	nbrcheck(int **nbr, int n)
@@ -67,9 +47,6 @@ static int	nbrcheck(int **nbr, int n)
 		}
 		i++;
 	}
-	i = 0;
-	while (i <= n)
-		nbr[i++][1] += 1;
 	checkdigit(nbr, n);
 	return (setstack(nbr, n));
 }

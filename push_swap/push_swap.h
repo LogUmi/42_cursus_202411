@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:22:35 by lgerard           #+#    #+#             */
-/*   Updated: 2025/01/30 23:27:22 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/02/03 23:23:54 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,5 @@ void	algo_2(t_list **a, t_list **b);
 void	algo_3(t_list **a, t_list **b);
 void	algo_radix(t_list **a, t_list **b);
 char	*addcmde(char *cmde, char *src);
+void	checkdigit(int **nbr, int n);
 #endif

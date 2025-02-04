@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/29 23:03:20 by lgerard           #+#    #+#             */
-/*   Updated: 2025/01/30 23:37:20 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/02/03 23:55:01 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ int	testsort(t_list **a, t_list **b, int j, int k)
 	while (lst != 0)
 	{
 		i = lst->content;
-		i[2] = j++ + 1;
-		i[3] = 0;
+		i[2] = j++;
+		i[3] = -1;
 		if (i[2] == i[1])
 			k++;			
 		lst = lst->next;
@@ -32,8 +32,8 @@ int	testsort(t_list **a, t_list **b, int j, int k)
 	while (lst != 0)
 	{
 		i = lst->content;
-		i[3] = j++ + 1;						
-		i[2] = 0;
+		i[3] = j++;						
+		i[2] = -1;
 		lst = lst->next;
 	}
 	return (k - ft_lstsize(*a) - ft_lstsize(*b));
