@@ -1,86 +1,87 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   algo_radix16.c                                     :+:      :+:    :+:   */
+/*   algo_radix.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 16:55:51 by lgerard           #+#    #+#             */
-/*   Updated: 2025/02/06 16:43:33 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/02/06 15:40:38 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* #include "push_swap.h"
+#include "push_swap.h"
 
-int	set16bits(int	*nbr, int index)
+static int	algo_radix_test(int index, int i)
 {
-	int i;
-
-	if (index >= 16)
+	if (index >= 2)
 	{
-		i = set16bits(nbr, index % 16);
-		nbr[7 + i++] = index / 16;
+		i = algo_radix_test(index / 2, i);
+		i++;
 	}
-	if (index < 16)
-	{
+	if (index < 2)
 		i = 0;
-		nbr[7 + i++] = index;
-	}
 	return (i);
 }
 
-void	checkdigit(int **nbr, int n)
-{
-	int	i;
-
-	i = 0;
-	while (i <= n)
-	{
-		set16bits(nbr[i], nbr[i][1]);
-		i++;
-	}
-}
-
-static int	algo_radix_test(t_list **a, int bit)
+static	int algo_radix_npush(t_list **a, int j)
 {
 	t_list	*lst;
 	int		*i;
-	int		j;
+	int		k[2];
 
 	lst = *a;
-	j = 0;
+	k[0] = 0;
+	k[1] = 0;
 	while (lst != 0)
 	{
 		i = lst->content;
-		if (i[4 + bit] == 1)
-			j++;
+		if (i[7 + j] == 1)
+			k[1] += 1;
+		else
+			k[0] += 1;
 		lst = lst->next;
 	}
-	return (j);
-} 
-void	algo_radix16_0(t_list **a, t_list **b, char * cmde, int j)
+	return (k[0]);
+}
+/* void	algo_radix_1(t_list **a, t_list **b, char *cmde, int j)
 {
 	t_list	*lst;
 	int		*i;
-	int		k;
-	
-	k = 0;
-	while (k < 16)
+
+	lst = *a;
+	while (lst != 0)
 	{
-		lst = *a;
-		while (lst != 0)
-		{
-			i = lst->content;
-			lst = lst->next;
-			if (i[7 + j] == k)
-				cmde = addcmde(cmde, "pb");
-			else
-				cmde = addcmde(cmde, "ra");
-			}
-		k++;
-		excmde(a, b, cmde);
-		cmde[0] = 0;
+		i = lst->content;
+		lst = lst->next;
+		if (i[7 + j] != 1)
+		;
 	}
+	return (k[0]);
+} */
+
+void	algo_radix_0(t_list **a, t_list **b, char *cmde, int j)
+{
+	t_list	*lst;
+	int		*i;
+	int 	k;
+	
+	lst = *a;
+	k = algo_radix_npush(a, j);
+	while (lst != 0 && k != 0)
+	{
+		i = lst->content;
+		lst = lst->next;
+		if (i[7 + j] == 1)
+			cmde = addcmde(cmde, "ra");
+		else
+		{
+			cmde = addcmde(cmde, "pb");
+			k--;
+		}
+	}
+	excmde(a, b, cmde);
+	cmde[0] = 0;
 	lst = *b;
 	while (lst != 0)
 	{
@@ -91,21 +92,23 @@ void	algo_radix16_0(t_list **a, t_list **b, char * cmde, int j)
 	cmde[0] = 0;
 }
 
-void	algo_radix16(t_list **a, t_list **b)
+void	algo_radix(t_list **a, t_list **b)
 {
+	int		i;
 	int		j;
 	char	*cmde;
 
+	i = 0;
 	j = 0;
 	cmde = calloc(sizeof(char), ft_lstsize(*a) * 4  + 1);
 	if (!cmde)
 		return ;
-	while (j < (ft_lstsize(*a) / 16) + 1)
+	while (j <= algo_radix_test(ft_lstsize(*a), 0))
 	{
-		//algo_radix_test(a, j)
 		algo_radix_0(a, b, cmde, j);
+		testsort(a, b, 0, 0);
 		j++;
 	}
 	free(cmde);
 }
- */
+ 

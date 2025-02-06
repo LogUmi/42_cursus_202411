@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 15:37:15 by lgerard           #+#    #+#             */
-/*   Updated: 2025/02/05 16:52:25 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/02/06 12:08:40 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ static void	checkdigit(int **nbr, int n)
 		while (j < 32)
 		{
 			if (nbr[i][1] >> j & 1)
-				nbr[i][j++ + 4] = 1;
+				nbr[i][j++ + 7] = 1;
 			else
-				nbr[i][j++ + 4] = 0;
+				nbr[i][j++ + 7] = 0;
 		}
 		i++;
 	}
@@ -118,7 +118,7 @@ int	conformity(char **tab)
 	i = 0;
 	while (tab[i])
 	{
-		nbr[i] = (int *)ft_calloc(sizeof(int), 36);
+		nbr[i] = (int *)ft_calloc(sizeof(int), 39);
 		if (!nbr[i])
 			return (ft_freenbr(nbr) + ft_error(tab));
 		nbr[i][0] = ft_atoips(tab[i], &error, 0, 0);

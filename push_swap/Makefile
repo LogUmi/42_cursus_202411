@@ -10,7 +10,7 @@ SRCS = 	push_swap.c \
 		execute.c \
 		algo_50.c \
 		algo_radix.c \
-		algo_radix16.c \
+		algo_radix16.c 
 OBJS = $(SRCS:.c=.o)
 LDIR = libft
 LIBR = $(LDIR)/libft.a
@@ -30,8 +30,8 @@ $(LIBR):
 			[ -d $(LDIR) ] && $(MAKE) -C $(LDIR) all		
 			cp $(LIBR) .
 			mv $(notdir $(LIBR)) $(NAME)
-clean:	
-			rm -rf $(OBJS)
+clean:		
+			rm -rf	$(OBJS)
 			$(MAKE) -C $(LDIR) clean	
 
 fclean:		clean	

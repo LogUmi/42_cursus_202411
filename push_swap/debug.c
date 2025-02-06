@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 17:50:30 by lgerard           #+#    #+#             */
-/*   Updated: 2025/02/05 17:22:48 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/02/06 17:15:59 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,17 +49,17 @@ int	ft_debug(t_list **a, t_list **b)
 			i = lsta->content;
 			lsta = lsta->next;
 			//ft_printf("%p : ", lsta);
-			ft_printf("%05i %05i %05i %05i ... ", i[0], i[1], i[2], i[3]);
+			ft_printf("%05i %05i %05i %05i %05i %05i %05i ... ", i[0], i[1], i[2], i[3], i[4], i[5], i[6]);
 			k = 0;
 			while (k < 32)
-				ft_printf(" %i ", i[k++ + 4]);
+				ft_printf(" %i ", i[k++ + 7]);
 			ft_printf (" / ");
 		}
 		else
 		{
-			ft_printf("%5c %5c %5c %5c ... ", ' ', ' ', ' ', ' ');
+			ft_printf("%5c %5c %5c %5c %5c %5c %5c ... ", ' ', ' ', ' ', ' ', ' ', ' ', ' ');
 			k = 0;
-			while (k < 10)
+			while (k < 32)
 			{	
 				ft_printf("   ");
 				k++;
@@ -71,16 +71,16 @@ int	ft_debug(t_list **a, t_list **b)
 			j = lstb->content;
 			lstb = lstb->next;
 			//ft_printf("%p : ", lsta);
-			ft_printf("%05i %05i %05i %05i ... ", j[0], j[1], j[2], j[3]);
+			ft_printf("%05i %05i %05i %05i %05i %05i %05i ... ", j[0], j[1], j[2], j[3], j[4], j[5], j[6]);
 			k = 0;
 			while (k < 32)
-				ft_printf(" %i ", i[k++ + 4]);
+				ft_printf(" %i ", j[k++ + 7]);
 		}
 		else
-			ft_printf("%5c %5c %5c %5c ... ", ' ', ' ', ' ', ' ');
+			ft_printf("%5c %5c %5c %5c %5c %5c %5c ... ", ' ', ' ', ' ', ' ', ' ', ' ', ' ');
 		ft_printf("\n");
 	}
-		ft_printf("%26s%81s\n\n", "A", "B");
+		ft_printf("%44s%145s\n\n", "A", "B");
 		//get_key_press();
 	return (0);
 }
