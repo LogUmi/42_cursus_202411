@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 17:50:30 by lgerard           #+#    #+#             */
-/*   Updated: 2025/01/31 18:18:35 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/02/05 17:22:48 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ int	ft_debug(t_list **a, t_list **b)
 			//ft_printf("%p : ", lsta);
 			ft_printf("%05i %05i %05i %05i ... ", i[0], i[1], i[2], i[3]);
 			k = 0;
-			while (k < 10)
+			while (k < 32)
 				ft_printf(" %i ", i[k++ + 4]);
 			ft_printf (" / ");
 		}
@@ -73,14 +73,14 @@ int	ft_debug(t_list **a, t_list **b)
 			//ft_printf("%p : ", lsta);
 			ft_printf("%05i %05i %05i %05i ... ", j[0], j[1], j[2], j[3]);
 			k = 0;
-			while (k < 10)
+			while (k < 32)
 				ft_printf(" %i ", i[k++ + 4]);
 		}
 		else
 			ft_printf("%5c %5c %5c %5c ... ", ' ', ' ', ' ', ' ');
 		ft_printf("\n");
 	}
-		ft_printf("%26s%61s\n\n", "A", "B");
+		ft_printf("%26s%81s\n\n", "A", "B");
 		//get_key_press();
 	return (0);
 }
