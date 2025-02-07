@@ -1,4 +1,5 @@
 NAME = 	push_swap.a
+EXEC =	push_swap
 HDRS = 	push_swap.h
 SRCS = 	push_swap.c \
 		conformity.c \
@@ -20,7 +21,7 @@ all:		$(NAME)
 
 $(NAME):	$(OBJS)	$(LIBR)
 			$(AR) $(NAME) $(OBJS)
-			$(CC) $(FLAGS) push_swap.c $(NAME) -o push_swap	
+			$(CC) $(FLAGS) $(word 1, $(SRCS)) $(NAME) -o $(EXEC)	
 
 %.o:		%.c	
 			$(CC) $(FLAGS) -c $< -o $@ -I. -I$(LDIR)
@@ -35,7 +36,7 @@ clean:
 
 fclean:		clean	
 			rm -rf $(NAME)	
-			rm -rf push_swap
+			rm -rf $(EXEC)
 			$(MAKE) -C $(LDIR) fclean	
 
 re:			fclean all
