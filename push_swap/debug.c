@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/27 17:50:30 by lgerard           #+#    #+#             */
-/*   Updated: 2025/02/06 17:15:59 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/02/07 00:13:35 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	ft_debug(t_list **a, t_list **b)
 			ft_printf("%05i %05i %05i %05i %05i %05i %05i ... ", i[0], i[1], i[2], i[3], i[4], i[5], i[6]);
 			k = 0;
 			while (k < 32)
-				ft_printf(" %i ", i[k++ + 7]);
+				ft_printf(" %i", i[k++ + 7]);
 			ft_printf (" / ");
 		}
 		else
@@ -61,7 +61,7 @@ int	ft_debug(t_list **a, t_list **b)
 			k = 0;
 			while (k < 32)
 			{	
-				ft_printf("   ");
+				ft_printf("  ");
 				k++;
 			}
 			ft_printf (" / ");
@@ -74,13 +74,13 @@ int	ft_debug(t_list **a, t_list **b)
 			ft_printf("%05i %05i %05i %05i %05i %05i %05i ... ", j[0], j[1], j[2], j[3], j[4], j[5], j[6]);
 			k = 0;
 			while (k < 32)
-				ft_printf(" %i ", j[k++ + 7]);
+				ft_printf(" %i", j[k++ + 7]);
 		}
 		else
 			ft_printf("%5c %5c %5c %5c %5c %5c %5c ... ", ' ', ' ', ' ', ' ', ' ', ' ', ' ');
 		ft_printf("\n");
 	}
-		ft_printf("%44s%145s\n\n", "A", "B");
+		ft_printf("%44s%113s\n\n", "A", "B");
 		//get_key_press();
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   algo_radix.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 16:55:51 by lgerard           #+#    #+#             */
-/*   Updated: 2025/02/06 19:31:09 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/02/07 00:59:45 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,9 +59,9 @@ void	algo_radix_1(t_list **a, t_list **b, char * cmde, int j)
 					l[1][1] = ft_lstsize(*a) - i[2] + 1;
 			}
 		}
-		if (l[0][0] == l[1][0] && l[0][0] != 0)
+		if (l[0][0] != 0 && (l[0][0] == l[1][0] || l[1][0] == 0))
 		{
-			if (l[0][0] <= l[0][1])
+			if (l[0][0] <= l[0][1] || l[1][0] == 0)
 			{
 				while ((l[0][0]) > 1)
 				{
@@ -81,7 +81,7 @@ void	algo_radix_1(t_list **a, t_list **b, char * cmde, int j)
 			}
 			l[0][0] = -1;
 		}
-		else if (l[0][0] != l[1][0] && l[0][0] != 0)
+		else if (l[0][0] != l[1][0] && l[0][0] != 0 && l[1][0] != 0)
 		{
 			if (l[0][0] <= l[1][1])
 			{
@@ -140,7 +140,7 @@ void	algo_radix_0(t_list **a, t_list **b, char * cmde, int j)
 	}
 	excmde(a, b, cmde);
 	cmde[0] = 0;
-	ft_debug(a, b);
+	//ft_debug(a, b);
 	lst = *b;
 	while (lst != 0)
 	{
@@ -149,23 +149,21 @@ void	algo_radix_0(t_list **a, t_list **b, char * cmde, int j)
 	}
 	excmde(a, b, cmde);
 	cmde[0] = 0;
-	ft_debug(a, b);
+	//ft_debug(a, b);
 }
 
 void	algo_radix(t_list **a, t_list **b)
 {
-	int		i;
 	int		j;
 	char	*cmde;
 
-	i = 0;
 	j = 0;
 	cmde = calloc(sizeof(char), ft_lstsize(*a) * 4  + 1);
 	if (!cmde)
 		return ;
 	while (j <= algo_radix_test(ft_lstsize(*a),0))
 	{
-			algo_radix_1(a, b, cmde, j);
+			algo_radix_0(a, b, cmde, j);
 		j++;
 	}
 	free(cmde);
