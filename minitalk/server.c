@@ -3,20 +3,62 @@
 /*                                                        :::      ::::::::   */
 /*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 15:19:54 by lgerard           #+#    #+#             */
-/*   Updated: 2025/02/13 13:33:50 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/02/13 18:13:17 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-size_t	state2(int sig, int pid)
+void	state2_0(int *bit, char **str, int i, int sig)
 {
-	(void)sig;
-	(void)pid;
-	return (0);
+	if ((*bit) < CHAR_BIT)
+	{
+		if (sig == SIGUSR1)
+		{	
+			str[0][i] |= (1 << (*bit)++);
+			kill(pid, SIGUSR1);
+			write(1, "1 sent\n", 7);
+		}
+		else if (sig == SIGUSR2)
+		{
+			str[0][i] &= ~(1 << (*bit)++);
+			kill(pid, SIGUSR1);
+			write(1, "1 sent\n", 7);
+		}
+	}	
+}
+
+size_t	state2(int sig, int pid, int len)
+{
+	static char	*str = NULL;
+	static int		bit = 0;
+	static int		i = 0;
+	
+	if (str == NULL && bit == 0 && i == 0)
+	{
+		str = (char *)ft_calloc(sizeof(char), len);
+		if (!str)
+			{
+				kill(pid, SIGUSR2);
+				return (0);
+			}	
+	}	
+	state2_0(&bit, &str, i, sig);
+	if (bit == CHAR_BIT)
+	{
+		bit = 0;
+		len -= 1;
+		if (str[i] == 0)
+			{
+				ft_printf("%s/n", str);
+				free(str);					
+			}
+		i += 1;
+	}
+	return (len);
 }
 
 size_t	state1(int sig, int pid)
@@ -36,18 +78,16 @@ size_t	state1(int sig, int pid)
 			len |= (1 << bit++);
 			kill(pid, SIGUSR1);
 			write(1, "1 sent\n", 7);
-			//usleep(100);
 		}
 		else if (sig == SIGUSR2)
 		{
 			len &= ~(1 << bit++);
 			kill(pid, SIGUSR1);
 			write(1, "1 sent\n", 7);
-			//usleep(100);
 		}
 	}	
 	if ((sig == SIGUSR1 || sig == SIGUSR2) && bit == 32)
-		return (len);
+		return (len + 1);
 	ft_printf("bit = %d, len = %d\n", bit, len);
 	return (0);
 }
@@ -87,7 +127,7 @@ void	handler(int sig, siginfo_t *info, void *context)
 		}
 		else if (state == 2)
 		{
-			len = state2(sig, pid);
+			len = state2(sig, pid, len);
 			if (len == 0)
 				pid = 0;
 		}

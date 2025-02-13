@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 15:20:19 by lgerard           #+#    #+#             */
-/*   Updated: 2025/02/13 14:02:48 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/02/13 18:08:41 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,19 +23,45 @@ void	handler(int sig, siginfo_t *info, void *context)
 	else if (sig == SIGUSR2)
 		g_sig = 2;
 }
-int sendstr(int pid, int len, char *str, int i)
+
+int sendstr(int pid, char *str, int len, int i)
 {
-	(void)pid;
-	(void)len;
-	(void)str;
-	(void)i;
+	int	bit;
+	
+	while(i <= len)
+	{
+		bit = 0;
+		while (bit < CHAR_BIT)
+		{
+			g_sig = 0;
+			if (str[i] & 1 << bit)
+			{	
+				kill(pid, SIGUSR1);
+				write(1, "1 sent\n", 7);
+			}
+			else
+			{	
+				kill(pid, SIGUSR2);
+				write(1, "0 sent\n", 7);
+			}
+			while (g_sig == 0);
+			if (g_sig == 1)
+			{	
+				bit++;
+				write(1, "Ok\n", 3);
+			}
+			else
+				return (2);
+		}
+		i++;
+	}
 	return (0);
 }
 int	sendlen(int pid, int len, int bit, int i)
 {
+	(void)i;
 	while (bit < CHAR_BIT * (int)sizeof(int))
 	{
-		(void)i;
 		g_sig = 0;
 		if (len & 1 << bit)
 		{	
@@ -47,17 +73,12 @@ int	sendlen(int pid, int len, int bit, int i)
 			kill(pid, SIGUSR2);
 			write(1, "0 sent\n", 7);
 		}
-		pause();
-		//while (g_sig == 0);
-		usleep(15);
+		while (g_sig == 0);
 		if (g_sig == 1)
 		{	
 			bit++;
 			write(1, "Ok\n", 3);
 		}
-			/* if (g_sig == 0 && i == WAIT_LIMIT + 1)
-			return (1); */
-		//usleep(10);
 	}
 	return (0);
 }
@@ -65,7 +86,7 @@ int	sendlen(int pid, int len, int bit, int i)
 int	initiate(int pid, char *str, int i)
 {
 	kill(pid, SIGUSR1);
-	usleep(100);
+	//usleep(100);
 	while (g_sig == 0 || g_sig == 2);
 	/* if (i == WAIT_LIMIT + 1)
 		return (1); */
@@ -75,7 +96,7 @@ int	initiate(int pid, char *str, int i)
 	i = sendlen(pid, ft_strlen(str), 0, 0);
 	if (i != 0)
 		return (i);
-	i = sendstr(pid, ft_strlen(str), str, 0);
+	i = sendstr(pid, str, ft_strlen(str), 0);
 	if (i != 0)
 		return (i);
 	return (0);
@@ -98,10 +119,10 @@ int	main(int argc, char **argv)
 		sa.sa_flags = SA_SIGINFO;
 		sa.sa_sigaction = handler;
 		sigemptyset(&sa.sa_mask);
+		pid = ft_atoi(&argv[1][0]);
 		sigaction(SIGUSR1, &sa, NULL);
 		sigaction(SIGUSR2, &sa, NULL);
-		pid = ft_atoi(&argv[1][0]);
-		pid = initiate(pid, &argv[1][0], 0);
+		pid = initiate(pid, &argv[2][0], 0);
 		if (pid == 1)
 			ft_printf("Error abort\nLe serveur ne repond pas\n");
 		if (pid == 2)
