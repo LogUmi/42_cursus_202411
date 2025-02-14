@@ -62,10 +62,13 @@ AR =	ar -crs
 
 all:			$(NAME)
 
+$(DIROB):		
+				mkdir -p $(DIROB)
+
 $(NAME):		$(OBJS)
 				$(AR) $(NAME) $(OBJS)
 
-$(DIROB)%.o:	$(DIRSR)%.c $(HDRS)
+$(DIROB)%.o:	$(DIRSR)%.c $(HDRS) | $(DIROB)
 				$(CC) $(FLAGS) -c $< -o $@ -I$(DIRLI)
 
 clean:	

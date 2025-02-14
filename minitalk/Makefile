@@ -4,7 +4,8 @@ EXE2 =	client
 HDRS = 	minitalk.h
 SRCS = 	server.c \
 		client.c \
-		minitalk_utils.c
+		minitalk_utils.c \
+		server_0.c
 OBJS = $(SRCS:.c=.o)
 LDIR = libft
 LIBR = $(LDIR)/libft.a

@@ -3,28 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   server.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 15:19:54 by lgerard           #+#    #+#             */
-/*   Updated: 2025/02/13 18:13:17 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/02/14 14:19:35 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-void	state2_0(int *bit, char **str, int i, int sig)
+static volatile char *g_str;
+
+void	state2_0(int *bit, int i, int sig, int pid)
 {
 	if ((*bit) < CHAR_BIT)
 	{
 		if (sig == SIGUSR1)
 		{	
-			str[0][i] |= (1 << (*bit)++);
+			g_str[i] |= (1 << (*bit)++);
 			kill(pid, SIGUSR1);
 			write(1, "1 sent\n", 7);
 		}
 		else if (sig == SIGUSR2)
 		{
-			str[0][i] &= ~(1 << (*bit)++);
+			g_str[i] &= ~(1 << (*bit)++);
 			kill(pid, SIGUSR1);
 			write(1, "1 sent\n", 7);
 		}
@@ -33,71 +35,32 @@ void	state2_0(int *bit, char **str, int i, int sig)
 
 size_t	state2(int sig, int pid, int len)
 {
-	static char	*str = NULL;
 	static int		bit = 0;
 	static int		i = 0;
 	
-	if (str == NULL && bit == 0 && i == 0)
+	if (g_str == NULL && bit == 0 && i == 0)
 	{
-		str = (char *)ft_calloc(sizeof(char), len);
-		if (!str)
+		g_str = (char *)ft_calloc(sizeof(char), len);
+		if (!g_str)
 			{
 				kill(pid, SIGUSR2);
 				return (0);
 			}	
 	}	
-	state2_0(&bit, &str, i, sig);
+	state2_0(&bit, i, sig, pid);
 	if (bit == CHAR_BIT)
 	{
 		bit = 0;
 		len -= 1;
-		if (str[i] == 0)
+		if (g_str[i] == 0)
 			{
-				ft_printf("%s/n", str);
-				free(str);					
+				ft_printf("%s\n", g_str);
+				free((void *)g_str);
+				i = -1;			
 			}
 		i += 1;
 	}
 	return (len);
-}
-
-size_t	state1(int sig, int pid)
-{
-	static int	len = 0;
-	static int	bit = 0;
-
-	if (bit == 32 || bit == 0)
-	{
-		len = 0;
-		bit = 0;
-	}
-	if (bit < CHAR_BIT * (int)sizeof(int))
-	{
-		if (sig == SIGUSR1)
-		{	
-			len |= (1 << bit++);
-			kill(pid, SIGUSR1);
-			write(1, "1 sent\n", 7);
-		}
-		else if (sig == SIGUSR2)
-		{
-			len &= ~(1 << bit++);
-			kill(pid, SIGUSR1);
-			write(1, "1 sent\n", 7);
-		}
-	}	
-	if ((sig == SIGUSR1 || sig == SIGUSR2) && bit == 32)
-		return (len + 1);
-	ft_printf("bit = %d, len = %d\n", bit, len);
-	return (0);
-}
-
-int	state0(int sig, int npid, int *state)
-{
-	(*state) = 1;
-	kill(npid, SIGUSR1);
-	ft_printf("\n0Signal %d received from PID %d/%d \n", sig, npid, (*state));
-	return (npid);
 }
 
 void	handler(int sig, siginfo_t *info, void *context)
@@ -135,9 +98,20 @@ void	handler(int sig, siginfo_t *info, void *context)
 	ft_printf("pid = %d, npid = %d,state = %d, len = %d\n", pid, info->si_pid, state, len);
 }
 
+void	free_if_needed(int sig, siginfo_t *info, void *context)
+{
+	(void)sig;
+	(void)info;
+	(void)context;
+	if (g_str)
+		free((void *)g_str);
+	exit (0);
+}
+
 int	main(void)
 {
 	struct sigaction	sa;
+	struct sigaction	sb;
 
 	sa.sa_flags = SA_SIGINFO;
 	sa.sa_sigaction = handler;
@@ -145,6 +119,11 @@ int	main(void)
 	ft_printf ("Serveur PID: %d\n\nWaiting signal ...", getpid());
 	sigaction(SIGUSR1, &sa, NULL);
 	sigaction(SIGUSR2, &sa, NULL);
-	while (1);
+	sb.sa_flags = SA_SIGINFO;
+	sb.sa_sigaction = free_if_needed;
+	sigemptyset(&sb.sa_mask);
+	sigaction(SIGINT, &sb, NULL);
+	while (1)
+		pause();
 	return (0);
 }

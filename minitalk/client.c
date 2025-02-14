@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 15:20:19 by lgerard           #+#    #+#             */
-/*   Updated: 2025/02/13 18:08:41 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/02/14 13:37:05 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ int sendstr(int pid, char *str, int len, int i)
 				kill(pid, SIGUSR2);
 				write(1, "0 sent\n", 7);
 			}
+			pause();
+			usleep(100);
 			while (g_sig == 0);
 			if (g_sig == 1)
 			{	
@@ -73,6 +75,8 @@ int	sendlen(int pid, int len, int bit, int i)
 			kill(pid, SIGUSR2);
 			write(1, "0 sent\n", 7);
 		}
+		pause();
+		usleep(100);
 		while (g_sig == 0);
 		if (g_sig == 1)
 		{	
@@ -92,7 +96,7 @@ int	initiate(int pid, char *str, int i)
 		return (1); */
 	g_sig = 0;
 	ft_printf("Syncro envoyee et obtenue\n");
-	usleep(100);
+	usleep(20);
 	i = sendlen(pid, ft_strlen(str), 0, 0);
 	if (i != 0)
 		return (i);
