@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   client_0.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 15:48:02 by lgerard           #+#    #+#             */
-/*   Updated: 2025/02/16 17:04:55 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/02/16 19:11:01 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ size_t	waitfinal(size_t i)
 	}
 	else
 	{
-		//ft_printf("g_sign = %d i = %d\n", g_sig, i);
 		return (test_g_sig(g_sig, 2));
 	}
 }
@@ -48,15 +47,13 @@ size_t	send_bit(int bit, int pid, size_t i, size_t len)
 	{
 		if (kill(pid, SIGUSR1) != 0)
 			return (5);
-		write(1, "1 sent\n", 7);
 	}
 	else
 	{
 		if (kill(pid, SIGUSR2) != 0)
 			return (5);
-		write(1, "0 sent\n", 7);
 	}
-	usleep(SYNC_TIME/(len/len));
+	usleep(SYNC_TIME / (len / len));
 	while (g_sig == 0 && i < WAIT_LIMIT)
 		i++;
 	if (g_sig == 1)
@@ -66,7 +63,6 @@ size_t	send_bit(int bit, int pid, size_t i, size_t len)
 	}
 	else
 	{
-			//ft_printf("g_sign = %d i = %d\n", g_sig, i);
 		return (test_g_sig(g_sig, 1));
 	}
 }

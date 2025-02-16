@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   client_1.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 17:30:02 by lgerard           #+#    #+#             */
-/*   Updated: 2025/02/16 15:37:07 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/02/16 19:10:24 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,7 @@ int	test_g_sig(int sig, size_t i)
 		return (4);
 	return (6);
 }
+
 void	error_msg(size_t i)
 {
 	if (i == 1)

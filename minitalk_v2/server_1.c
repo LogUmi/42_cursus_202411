@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   server_1.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/15 15:42:50 by lgerard           #+#    #+#             */
-/*   Updated: 2025/02/16 14:48:25 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/02/16 19:13:14 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,20 +16,17 @@ static volatile char	*g_str = NULL;
 
 void	state2_0(int *bit, int i, int sig, int pid)
 {
-	//usleep(20);
 	if ((*bit) < CHAR_BIT)
 	{
 		if (sig == SIGUSR1)
 		{
 			g_str[i] |= (1 << (*bit)++);
 			kill(pid, SIGUSR1);
-			//write(1, "got 1 - 1 sent\n", 15);
 		}
 		else if (sig == SIGUSR2)
 		{
 			g_str[i] &= ~(1 << (*bit)++);
 			kill(pid, SIGUSR1);
-			//write(1, "got 0 - 1 sent\n", 15);
 		}
 	}
 }
@@ -67,10 +64,9 @@ void	handler_1(int *pid, int *state, size_t *len)
 {
 	if ((*len) != 0)
 	{
-		usleep(SYNC_TIME);
 		ft_printf("Data integrity: ");
-		if((unsigned int)(*len) == checksum((char *)g_str))
-		{	
+		if ((unsigned int)(*len) == checksum((char *)g_str))
+		{
 			kill((*pid), SIGUSR1);
 			ft_printf("Ok\nEnd of synchronisation\n%s\n", g_str);
 		}

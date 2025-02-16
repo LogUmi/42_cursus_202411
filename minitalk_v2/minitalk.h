@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minitalk.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 15:05:54 by lgerard           #+#    #+#             */
-/*   Updated: 2025/02/16 15:37:56 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/02/16 19:54:14 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 #  define WAIT_LIMIT 10000000000
 # endif
 # ifndef SYNC_TIME
-#  define SYNC_TIME 500
+#  define SYNC_TIME 300
 # endif
 
 int				test_pid(char *str);

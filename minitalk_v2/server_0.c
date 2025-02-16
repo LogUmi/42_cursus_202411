@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   server_0.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/14 13:58:21 by lgerard           #+#    #+#             */
-/*   Updated: 2025/02/16 13:52:47 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/02/16 19:13:29 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,11 @@ size_t	state1(int sig, int pid)
 		{
 			len |= (1 << bit++);
 			kill(pid, SIGUSR1);
-			//write(1, "got 1 - 1 sent\n", 15);
 		}
 		else if (sig == SIGUSR2)
 		{
 			len &= ~(1 << bit++);
 			kill(pid, SIGUSR1);
-			//write(1, "got 0 - 1 sent\n", 15);
 		}
 	}
 	if (bit >= (int)(CHAR_BIT * sizeof(size_t)))
@@ -67,13 +65,11 @@ unsigned int	state3(int sig, int pid)
 		{
 			check |= (1 << bit++);
 			kill(pid, SIGUSR1);
-			//write(1, "got 1 - 1 sent\n", 15);
 		}
 		else if (sig == SIGUSR2)
 		{
 			check &= ~(1 << bit++);
 			kill(pid, SIGUSR1);
-			//write(1, "got 0 - 1 sent\n", 15);
 		}
 	}
 	if ((sig == SIGUSR1 || sig == SIGUSR2) && bit == 32)
@@ -96,7 +92,7 @@ void	handler_0(int sig, int *pid, int *state, size_t *len)
 	{
 		(*len) = state2(sig, (*pid), (*len));
 		if ((*len) == 0)
-		{	
+		{
 			(*state) = 3;
 			ft_printf("receiving checksum ...\n");
 		}

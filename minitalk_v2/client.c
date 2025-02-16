@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 15:20:19 by lgerard           #+#    #+#             */
-/*   Updated: 2025/02/16 15:04:37 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/02/16 18:50:05 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(int argc, char **argv)
 		ft_printf("Error abort\n chaine vide ou PID pas un nombre\n");
 	else
 	{
-		sa.sa_flags = SA_SIGINFO;
+		sa.sa_flags = SA_SIGINFO | SA_RESTART;
 		sa.sa_sigaction = handlerc;
 		sigemptyset(&sa.sa_mask);
 		sigaction(SIGUSR1, &sa, NULL);
