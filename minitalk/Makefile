@@ -1,11 +1,12 @@
 NAME = 	minitalk.a
-EXE1 =	server
-EXE2 =	client
+EXE1 =	server.c
+EXE2 =	client.c
 HDRS = 	minitalk.h
-SRCS = 	server.c \
-		client.c \
-		minitalk_utils.c \
-		server_0.c
+SRCS = 	server_0.c \
+		server_1.c \
+		client_0.c \
+		client_1.c \
+		minitalk_utils.c
 OBJS = $(SRCS:.c=.o)
 LDIR = libft
 LIBR = $(LDIR)/libft.a
@@ -17,8 +18,8 @@ all:		$(NAME)
 
 $(NAME):	$(OBJS)	$(LIBR)
 			$(AR) $(NAME) $(OBJS)
-			$(CC) $(FLAGS) $(word 1, $(SRCS)) $(NAME) -o $(EXE1) -g
-			$(CC) $(FLAGS) $(word 2, $(SRCS)) $(NAME) -o $(EXE2) -g
+			$(CC) $(FLAGS) $(EXE1) $(NAME) -o $(EXE1:.c=) -g
+			$(CC) $(FLAGS) $(EXE2) $(NAME) -o $(EXE2:.c=) -g
 			
 %.o:		%.c	
 			$(CC) $(FLAGS) -c $< -o $@ -I. -I$(LDIR)
@@ -31,9 +32,10 @@ clean:
 			rm -rf	$(OBJS)
 			$(MAKE) -C $(LDIR) clean	
 
-fclean:		clean	
+fclean:		clean
 			rm -rf $(NAME)	
-			rm -rf $(EXE1)
+			rm -rf $(EXE1:.c=)
+			rm -rf $(EXE2:.c=)
 			$(MAKE) -C $(LDIR) fclean	
 
 re:			fclean all

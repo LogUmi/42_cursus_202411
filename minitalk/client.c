@@ -3,132 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   client.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/11 15:20:19 by lgerard           #+#    #+#             */
-/*   Updated: 2025/02/14 19:10:53 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/02/16 23:47:46 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minitalk.h"
 
-static volatile sig_atomic_t	g_sig = 0;
-
-static void	handlerc(int sig, siginfo_t *info, void *context)
-{
-	(void)context;
-	(void)info;
-	if (sig == SIGUSR1)
-		g_sig = 1;
-	else if (sig == SIGUSR2)
-		g_sig = 2;
-}
-
-int sendstr(int pid, char *str, int len, int i)
-{
-	int	bit;
-	int j;
-	
-	j = 0;
-	while(i <= len)
-	{
-		bit = 0;
-		while (bit < CHAR_BIT)
-		{
-			g_sig = 0;
-			if (str[j] & 1 << bit)
-			{	
-				kill(pid, SIGUSR1);
-			}
-			else
-			{	
-				kill(pid, SIGUSR2);
-			}
-			pause();
-			usleep(300);
-			i = 0;
-			while (g_sig == 0 && i++ < WAIT_LIMIT);
-			if (g_sig == 1)
-			{	
-				bit++;
-				ft_printf("Ok - i = %d\n", i);
-			}
-			else
-				return (test_g_sig(g_sig));
-		}
-		j++;
-	}
-	return (0);
-}
-int	sendlen(int pid, int len, int bit, int i)
-{
-
-	while (bit < CHAR_BIT * (int)sizeof(int))
-	{
-		g_sig = 0;
-		i =0;
-		if (len & 1 << bit)
-		{	
-			kill(pid, SIGUSR1);
-		}
-		else
-		{	
-			kill(pid, SIGUSR2);
-		}
-		pause();
-		usleep(300);
-		while (g_sig == 0 && i++ < WAIT_LIMIT);
-		if (g_sig == 1)
-		{	
-			bit++;
-			ft_printf("Ok - i = %d\n", i);
-		}
-			else test_g_sig(g_sig);
-	}
-	return (0);
-}
-
-int	initiate(int pid, char *str, int i)
-{
-	kill(pid, SIGUSR1);
-	while ((g_sig == 0 && i++ < WAIT_LIMIT)|| g_sig == 2);
-	if (i == WAIT_LIMIT + 1)
-		return (1);
-	if (g_sig == 2)
-		return (2);
-	g_sig = 0;
-	ft_printf("Syncronisation obtenue avec le serveur %d\n", i);
-	usleep(300);
-	i = sendlen(pid, ft_strlen(str), 0, 0);
-	if (i != 0)
-		return (i);
-	i = sendstr(pid, str, ft_strlen(str), 0);
-	if (i != 0)
-		return (i);
-	return (0);
-}
-
 int	main(int argc, char **argv)
 {
 	struct sigaction	sa;
-	int					pid;
+	unsigned int 		check;
 
 	if (argc != 3)
-	{
-		ft_printf("Error abort\nLe client doit avoir 2 arguments : \n");
-		ft_printf("./client <PID serveur> \"chaine a envoyer au serveur\"\n");
-	}
+		deb_error();
 	else if (test_pid(&argv[1][0]) == 0 && argv[2][0] == 0)
 		ft_printf("Error abort\n chaine vide ou PID pas un nombre\n");
 	else
 	{
-		sa.sa_flags = SA_SIGINFO;
+		sa.sa_flags = SA_SIGINFO | SA_RESTART;
 		sa.sa_sigaction = handlerc;
 		sigemptyset(&sa.sa_mask);
-		pid = ft_atoi(&argv[1][0]);
 		sigaction(SIGUSR1, &sa, NULL);
 		sigaction(SIGUSR2, &sa, NULL);
-		error_msg(initiate(pid, &argv[2][0], 0));
+		check = checksum(&argv[2][0]);
+		error_msg(initiate(ft_atoi(&argv[1][0]), &argv[2][0], 0, check));
+		sa.sa_handler = SIG_DFL;
+		sigemptyset(&sa.sa_mask);
+		sa.sa_flags = 0;
+		sigaction(SIGUSR1, &sa, NULL);
+		sigaction(SIGUSR2, &sa, NULL);
 	}
 	return (0);
 }
+/*
+ARG="0123456789t0123456789v0123456789t0123456789q0123456789c0123456789s0123456789s0123456789q0123456789q0123456789cent"
+ARG="En se réveillant un matin après des rêves agités, Gregor Samsa se retrouva, dans son lit, métamorphosé en un monstrueux insecte. Il était sur le dos, un dos aussi dur qu’une carapace, et, en relevant un peu la tête, il vit, bombé, brun, cloisonné par des arceaux plus rigides, son abdomen sur le haut duquel la couverture, prête à glisser tout à fait, ne tenait plus qu’à peine. Ses nombreuses pattes, lamentablement grêles par comparaison avec la corpulence qu’il avait par ailleurs, grouillaient désespérément sous ses yeux.« Qu’est-ce qui m’est arrivé ? » pensa-t-il. Ce n’était pas un rêve. Sa chambre, une vraie chambre humaine, juste un peu trop petite, était là tranquille entre les quatre murs qu’il connaissait bien. Au-dessus de la table où était déballée une collection d’échantillons de tissus - Samsa était représentant de commerce - on voyait accrochée l’image qu’il avait récemment découpée dans un magazine et mise dans un joli cadre doré. Elle représentait une dame munie d’une toque et d’un boa tous les deux en fourrure et qui, assise bien droite, tendait vers le spectateur un lourd manchon de fourrure où tout son avant-bras avait disparu. Le regard de Gregor se tourna ensuite vers la fenêtre, et le temps maussade - on entendait les gouttes de pluie frapper le rebord en zinc - le rendit tout mélancolique. « Et si je redormais un peu et oubliais toutes ces sottises ? » se dit-il ; mais c’était absolument irréalisable, car il avait l’habitude de dormir sur le côté droit et, dans l’état où il était à présent, il était incapable de se mettre dans cette position. En se réveillant un matin après des rêves agités, Gregor Samsa se retrouva, dans son lit, métamorphosé en un monstrueux insecte. Il était sur le dos, un dos aussi dur qu’une carapace, et, en relevant un peu la tête, il vit, bombé, brun, cloisonné par des arceaux plus rigides, son abdomen sur le haut duquel la couverture, prête à glisser tout à fait, ne tenait plus qu’à peine. Ses nombreuses pattes, lamentablement grêles par comparaison avec la corpulence qu’il avait par ailleurs, grouillaient désespérément sous ses yeux.« Qu’est-ce qui m’est arrivé ? » pensa-t-il. Ce n’était pas un rêve. Sa chambre, une vraie chambre humaine, juste un peu trop petite, était là tranquille entre les quatre murs qu’il connaissait bien. Au-dessus de la table où était déballée une collection d’échantillons de tissus - Samsa était représentant de commerce - on voyait accrochée l’image qu’il avait récemment découpée dans un magazine et mise dans un joli cadre doré. Elle représentait une dame munie d’une toque et d’un boa tous les deux en fourrure et qui, assise bien droite, tendait vers le spectateur un lourd manchon de fourrure où tout son avant-bras avait disparu. Le regard de Gregor se tourna ensuite vers la fenêtre, et le temps maussade - on entendait les gouttes de pluie frapper le rebord en zinc - le rendit tout mélancolique. « Et si je redormais un peu et oubliais toutes ces sottises ? » se dit-il ; mais c’était absolument irréalisable, car il avait l’habitude de dormir sur le côté droit et, dans l’état où il était à présent, il était incapable de se mettre dans cette position. En se réveillant un matin après des rêves agités, Gregor Samsa se retrouva, dans son lit, métamorphosé en un monstrueux insecte. Il était sur le dos, un dos aussi dur qu’une carapace, et, en relevant un peu la tête, il vit, bombé, brun, cloisonné par des arceaux plus rigides, son abdomen sur le haut duquel la couverture, prête à glisser tout à fait, ne tenait plus qu’à peine. Ses nombreuses pattes, lamentablement grêles par comparaison avec la corpulence qu’il avait par ailleurs, grouillaient désespérément sous ses yeux.« Qu’est-ce qui m’est arrivé ? » pensa-t-il. Ce n’était pas un rêve. Sa chambre, une vraie chambre humaine, juste un peu trop petite, était là tranquille entre les quatre murs qu’il connaissait bien. Au-dessus de la table où était déballée une collection d’échantillons de tissus - Samsa était représentant de commerce - on voyait accrochée l’image qu’il avait récemment découpée dans un magazine et mise dans un joli cadre doré. Elle représentait une dame munie d’une toque et d’un boa tous les deux en fourrure et qui, assise bien droite, tendait vers le spectateur un lourd manchon de fourrure où tout son avant-bras avait disparu. Le regard de Gregor se tourna ensuite vers la fenêtre, et le temps maussade - on entendait les gouttes de pluie frapper le rebord en zinc - le rendit tout mélancolique. « Et si je redormais un peu et oubliais toutes ces sottises ? » se dit-il ; mais c’était absolument irréalisable, car il avait l’habitude de dormir sur le côté droit et, dans l’état où il était à présent, il était incapable de se mettre dans cette position.En se réveillant un matin après des rêves agités, Gregor Samsa se retrouva, dans son lit, métamorphosé en un monstrueux insecte. Il était sur le dos, un dos aussi dur qu’une carapace, et, en relevant un peu la tête, il vit, bombé, brun, cloisonné par des arceaux plus rigides, son abdomen sur le haut duquel la couverture, prête à glisser tout à fait, ne tenait plus qu’à peine. Ses nombreuses pattes, lamentablement grêles par comparaison avec la corpulence qu’il avait par ailleurs, grouillaient désespérément sous ses yeux.« Qu’est-ce qui m’est arrivé ? » pensa-t-il. Ce n’était pas un rêve. Sa chambre, une vraie chambre humaine, juste un peu trop petite, était là tranquille entre les quatre murs qu’il connaissait bien. Au-dessus de la table où était déballée une collection d’échantillons de tissus - Samsa était représentant de commerce - on voyait accrochée l’image qu’il avait récemment découpée dans un magazine et mise dans un joli cadre doré. Elle représentait une dame munie d’une toque et d’un boa tous les deux en fourrure et qui, assise bien droite, tendait vers le spectateur un lourd manchon de fourrureFIN"
+*/
