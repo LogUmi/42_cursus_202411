@@ -5,42 +5,41 @@ SRCS = 	fdf.c
 OBJS = $(SRCS:.c=.o)
 LDIR = libft
 LIBR = $(LDIR)/libft.a
-MDIR = minilibx
-MNAME = libmlx.dylib
+MDIR = mlx_linux
+MNAME = libmlx.a
 MLIB = $(MDIR)/$(MNAME)
 FLAGS = -Wall -Werror -Wextra
-FLAGM = -L$(MDIR) -lmlx -framework OpenGL -framework AppKit
+FLAGM = -L$(MDIR) -l$(MDIR) -I$(MDIR) -lXext -lX11 -lm -lz
 CC = cc
 AR = ar -rcs
 
-all:		$(NAME)		
+all:		$(NAME) $(EXEC)
 
 $(NAME):	$(OBJS)	$(LIBR) $(MLIB)
-			$(AR) $(NAME) $(OBJS)
-			$(CC) $(FLAGS) $(word 1, $(SRCS)) $(NAME) $(FLAGM) -o $(EXEC)	
+			$(AR) $(NAME) $(OBJS)	
 
 %.o:		%.c	
-			$(CC) $(FLAGS) -c $< -o $@ -I. -I$(LDIR) -I$(MDIR)
+			$(CC) $(FLAGS) -I. -I$(LDIR) -I$(MDIR) -O3 -c $< -o $@ 
 			
 $(LIBR):		
 			[ -d $(LDIR) ] && $(MAKE) -C $(LDIR) all
 			cp $(LIBR) .
 			mv $(notdir $(LIBR)) $(NAME)
 
-$(MLIB):		
-			[ -d $(MDIR) ] && $(MAKE) -C $(MDIR) all -j1
-			cp $(MLIB) .
+$(MLIB):
+			[ -d $(MDIR) ] && $(MAKE) -C $(MDIR) all
+
+$(EXEC):	$(EXEC:=.C) $(HDRS)
+			$(CC) $(FLAGS) $(FLAGM) $(word 1, $(SRCS)) $(NAME) -o $(EXEC)
+
 clean:		
 			rm -rf	$(OBJS)
 			$(MAKE) -C $(LDIR) clean
 			$(MAKE) -C $(MDIR) clean
 
-fclean:		clean	
-			rm -rf $(NAME)	
-			rm -rf $(EXEC)
-			rm -rf $(MNAME)
+fclean:		clean
 			$(MAKE) -C $(LDIR) fclean
-			$(MAKE) -C $(MDIR) fclean
+			rm -rf $(NAME) $(EXEC)	
 
 re:			fclean all
 
