@@ -28,8 +28,9 @@ $(LIBR):
 			[ -d $(LDIR) ] && $(MAKE) -C $(LDIR) all		
 			cp $(LIBR) .
 			mv $(notdir $(LIBR)) $(NAME)
+
 clean:		
-			rm -rf	$(OBJS)
+			rm -rf	$(OBJS) $(EXE1:.c=.o) $(EXE2:.c=.o)
 			$(MAKE) -C $(LDIR) clean	
 
 fclean:		clean

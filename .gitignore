@@ -2,3 +2,4 @@
 Thumbs.db
 .vscode
 a.out*
+*.dSYM
