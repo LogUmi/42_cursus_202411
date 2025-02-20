@@ -3,24 +3,33 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 22:11:12 by lgerard           #+#    #+#             */
-/*   Updated: 2025/02/18 22:18:30 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/02/20 19:29:23 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int main()
+typedef struct	s_vars {
+	void	*mlx;
+	void	*win;
+}				t_vars;
+
+int	ft_close(int keycode, t_vars *vars)
 {
-    void *mlx;
-    void *win;
+	ft_printf("keycode : %d", keycode);
+	mlx_destroy_window(vars->mlx, vars->win);
+	return (0);
+}
 
-    mlx = mlx_init();
-    win = mlx_new_window(mlx, 800, 600, "MiniLibX MMS Test");
+int	main(void)
+{
+	t_vars	vars;
 
-    ft_printf("%p", win);
-    mlx_loop(mlx); // Attente d'événements
-    return (0);
+	vars.mlx = mlx_init();
+	vars.win = mlx_new_window(vars.mlx, 1920, 1080, "Hello world!");
+	mlx_hook(vars.win, 2, 1L<<0, close, &vars);
+	mlx_loop(vars.mlx);
 }

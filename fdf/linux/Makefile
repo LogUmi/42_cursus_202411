@@ -6,7 +6,7 @@ OBJS = $(SRCS:.c=.o)
 LDIR = libft
 LIBR = $(LDIR)/libft.a
 MDIR = mlx_linux
-MNAME = libmlx_linux.a
+MNAME = libmlx_Linux.a
 MLIB = $(MDIR)/$(MNAME)
 FLAGS = -Wall -Werror -Wextra
 FLAGM = -L$(MDIR) -lmlx -I$(MDIR) -lXext -lX11 -lm -lz
