@@ -6,16 +6,16 @@ OBJS = $(SRCS:.c=.o)
 LDIR = libft
 LIBR = $(LDIR)/libft.a
 MDIR = mlx_linux
-MNAME = libmlx.a
+MNAME = libmlx_linux.a
 MLIB = $(MDIR)/$(MNAME)
 FLAGS = -Wall -Werror -Wextra
-FLAGM = -L$(MDIR) -l$(MDIR) -I$(MDIR) -lXext -lX11 -lm -lz
+FLAGM = -L$(MDIR) -lmlx -I$(MDIR) -lXext -lX11 -lm -lz
 CC = cc
 AR = ar -rcs
 
 all:		$(NAME) $(EXEC)
 
-$(NAME):	$(OBJS)	$(LIBR) $(MLIB)
+$(NAME):	$(OBJS)	$(LIBR) $(MLIB) $(HDRS)
 			$(AR) $(NAME) $(OBJS)	
 
 %.o:		%.c	
@@ -29,13 +29,12 @@ $(LIBR):
 $(MLIB):
 			[ -d $(MDIR) ] && $(MAKE) -C $(MDIR) all
 
-$(EXEC):	$(EXEC:=.C) $(HDRS)
-			$(CC) $(FLAGS) $(FLAGM) $(word 1, $(SRCS)) $(NAME) -o $(EXEC)
+$(EXEC):	$(word 1, $(SRCS)) $(HDRS)
+			$(CC) $(FLAG) $(word 1, $(SRCS)) $(MLIB) $(NAME) -L. $(FLAGM) -o $(EXEC) -g
 
 clean:		
 			rm -rf	$(OBJS)
 			$(MAKE) -C $(LDIR) clean
-			$(MAKE) -C $(MDIR) clean
 
 fclean:		clean
 			$(MAKE) -C $(LDIR) fclean

@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/28 11:14:21 by lgerard           #+#    #+#             */
-/*   Updated: 2024/12/29 18:02:47 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/02/19 21:59:43 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <unistd.h>
 #include "libft.h"
 
-int static	ft_printspecs(const char *str, va_list *args, int *nd, int nchar)
+static int	ft_printspecs(const char *str, va_list *args, int *nd, int nchar)
 {
 	char	*d;
 	char	*h;
@@ -42,7 +42,7 @@ int static	ft_printspecs(const char *str, va_list *args, int *nd, int nchar)
 	return (nchar);
 }
 
-int static	ft_printselect(const char *str, va_list *args, int *len)
+static int	ft_printselect(const char *str, va_list *args, int *len)
 {
 	static int	nd = 0;
 	int			i;
