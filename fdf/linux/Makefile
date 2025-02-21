@@ -9,7 +9,7 @@ MDIR = mlx_linux
 MNAME = libmlx_Linux.a
 MLIB = $(MDIR)/$(MNAME)
 FLAGS = -Wall -Werror -Wextra
-FLAGM = -L$(MDIR) -lmlx -I$(MDIR) -lXext -lX11 -lm -lz
+FLAGM = -L$(MDIR) -l:$(MNAME) -I$(MDIR) -lXext -lX11 -lm -lz
 CC = cc
 AR = ar -rcs
 
