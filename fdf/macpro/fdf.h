@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fdf.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:22:35 by lgerard           #+#    #+#             */
-/*   Updated: 2025/02/20 15:42:58 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/02/22 14:49:04 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,16 @@
 # include <stdio.h>
 # include <unistd.h>
 # include "libft/includes/libft.h"
-# include "mlx_linux/mlx.h"
+# include "mlx/mlx.h"
+
+# define XK_ESCAPE                       53
+
+typedef struct	s_dmlx 
+{
+	void	*mlx;
+	void	*win;
+	void	*img;
+}				t_dmlx;
+
 
 #endif

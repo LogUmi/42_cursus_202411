@@ -9,7 +9,7 @@ MDIR = mlx
 MNAME = libmlx.a
 MLIB = $(MDIR)/$(MNAME)
 FLAGS = -Wall -Werror -Wextra
-FLAGM = -L$(MDIR) -lmlx -framework OpenGL -framework AppKit
+FLAGM = -L$(MDIR) -l$(MDIR) -framework OpenGL -framework AppKit
 CC = cc
 AR = ar -rcs
 
@@ -29,7 +29,7 @@ $(LIBR):
 $(MLIB):
 			[ -d $(MDIR) ] && $(MAKE) -C $(MDIR) all
 
-$(EXEC):	$(EXEC:=.C) $(HDRS)
+$(EXEC):	$(EXEC:=.c) $(HDRS)
 			$(CC) $(FLAGS) $(FLAGM) $(word 1, $(SRCS)) $(NAME) -o $(EXEC)
 
 clean:		
