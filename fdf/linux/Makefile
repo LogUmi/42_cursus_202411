@@ -1,7 +1,9 @@
 NAME = 	fdf.a
 EXEC =	fdf
 HDRS = 	fdf.h
-SRCS = 	fdf.c
+SRCS = 	fdf.c \
+		map_load.c \
+		init_tools.c
 OBJS = $(SRCS:.c=.o)
 LDIR = libft
 LIBR = $(LDIR)/libft.a
@@ -29,8 +31,8 @@ $(LIBR):
 $(MLIB):
 			[ -d $(MDIR) ] && $(MAKE) -C $(MDIR) all
 
-$(EXEC):	$(word 1, $(SRCS)) $(HDRS)
-			$(CC) $(FLAG) $(word 1, $(SRCS)) $(MLIB) $(NAME) -L. $(FLAGM) -o $(EXEC) -g
+$(EXEC):	$(SRCS) $(HDRS)
+			$(CC) $(FLAG) $(SRCS) $(MLIB) $(NAME) -L. $(FLAGM) -o $(EXEC) -g -lm
 
 clean:		
 			rm -rf	$(OBJS)
