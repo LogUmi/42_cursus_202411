@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 22:23:43 by lgerard           #+#    #+#             */
-/*   Updated: 2025/02/25 00:05:33 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/02/26 19:27:31 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	init_dmlx(t_dmlx *vars)
 	vars->crefy = 0;
 	vars->crefz = 0;
 }
+
 void	free_tabfdf(char **tab, t_dmlx *vars)
 {
 	int	i;
@@ -60,7 +61,6 @@ void	free_map(t_map **lst, t_dmlx *vars)
 		free(tlst);
 		tlst = slst;
 	}
-	//*lst = 0;
 	vars->map = NULL;
 }
 

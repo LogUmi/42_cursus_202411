@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 21:37:26 by lgerard           #+#    #+#             */
-/*   Updated: 2025/02/25 00:07:34 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/02/26 19:29:31 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ double	ft_atoifdf(char *str, double *error, int i, int flag)
 unsigned int	extract_color(char *s, char *b, int i, t_dmlx *vars)
 {
 	unsigned int	n;
-	int j;
+	int				j;
 
 	n = 0;
 	while (s[i] == '-' || s[i] == '+')
@@ -55,7 +55,7 @@ unsigned int	extract_color(char *s, char *b, int i, t_dmlx *vars)
 		return (error(vars, "File format color separator issue\n", 1));
 	i += 3;
 	while (s[i] != 0)
-	{	
+	{
 		j = 0;
 		while ((b[j] != s[i] || (j < 9 && s[i] != b[j] + 32)) && b[j] != 0)
 			j++;
@@ -96,7 +96,7 @@ int	take_line(char **tab, t_dmlx *vars, int count, double *line)
 {
 	double			i[3];
 	unsigned int	pcolor;
-	
+
 	i[0] = 0;
 	i[1] = 0;
 	while (tab[(int)i[0]])
@@ -129,7 +129,7 @@ void	map_load(t_dmlx *vars, char *filename, int count, double line)
 	if (fd == -1)
 		error(vars, "Failed to load file", 1);
 	while (line >= 0)
-	{	
+	{
 		str = get_next_lined(fd);
 		if (!str)
 			line = -1;

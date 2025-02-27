@@ -6,11 +6,13 @@
 /*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 22:11:12 by lgerard           #+#    #+#             */
-/*   Updated: 2025/02/24 22:50:06 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/02/27 04:47:10 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+void	print_struct(t_dmlx *vars);
 
 int	error(t_dmlx *vars, char *msg, int ret)
 {
@@ -46,25 +48,41 @@ static int	ft_key(int keycode, t_dmlx *vars)
 		return (0);
 }
 
+void	main_suite(t_dmlx *mlx)
+{
+	print_struct(mlx);
+	draw_lines(mlx,(t_map **)mlx->img);
+	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->img, 0, 0);
+	mlx_hook(mlx->win, 2, 1L << 0, ft_key, mlx);
+	mlx_hook(mlx->win, 17, 0, ft_close, mlx);
+	mlx_loop(mlx->mlx);
+}
+
 int	main(int argc, char **argv)
 {
-	t_dmlx	vars;
+	t_dmlx	mlx;
+	char	*s;
 
-	init_dmlx(&vars);
+	init_dmlx(&mlx);
 	if (argc != 2)
-		return (error(&vars, "Argument issue (only path/map_filename)", 1));
-	map_load(&vars, &argv[1][0], 0, 0);
-	vars.mlx = mlx_init();
-	if (!vars.mlx)
-		return (error(&vars, "mlx_init failed", 1));
-	if (mlx_get_screen_size(vars.mlx, &vars.swidth, &vars.sheight) != 0)
-		return (error(&vars, "mlx was unable to detect screen", 1));
-	ft_printf("Screen %dx%d detected\n", vars.swidth, vars.sheight);
-	vars.win = mlx_new_window(vars.mlx, 1000, 500, &argv[1][0]);
-	if (!vars.win)
-		return (error(&vars, "mlx_new_window failed", 1));
-	mlx_hook(vars.win, 2, 1L << 0, ft_key, &vars);
-	mlx_hook(vars.win, 17, 0, ft_close, &vars);
-	mlx_loop(vars.mlx);
+		return (error(&mlx, "Argument issue (only path/map_filename)", 1));
+	s = &argv[1][0];
+	map_load(&mlx, s, 0, 0);
+	mlx.mlx = mlx_init();
+	if (!mlx.mlx)
+		return (error(&mlx, "mlx_init failed", 1));
+	if (mlx_get_screen_size(mlx.mlx, &mlx.swidth, &mlx.sheight) != 0)
+		return (error(&mlx, "mlx was unable to detect screen", 1));
+	ft_printf("Screen %dx%d detected\n", mlx.swidth, mlx.sheight);
+	size_img(&mlx);
+	mlx.win = mlx_new_window(mlx.mlx, mlx.width, mlx.height, s);
+	if (!mlx.win)
+		return (error(&mlx, "mlx_new_window failed", 1));
+	printf ("Windows %dx%d opended\n", mlx.width, mlx.height);
+	mlx.img = mlx_new_image(mlx.mlx, mlx.width, mlx.height);
+	if (!mlx.img)
+		return (error(&mlx, "mlx_new_image failed", 1));
+	mlx.addr = mlx_get_data_addr(mlx.img, &mlx.bpp, &mlx.llen, &mlx.endian);
+	main_suite(&mlx);
 	return (0);
 }

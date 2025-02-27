@@ -3,7 +3,11 @@ EXEC =	fdf
 HDRS = 	fdf.h
 SRCS = 	fdf.c \
 		map_load.c \
-		init_tools.c
+		init_tools.c \
+		preparation.c \
+		drawing.c \
+		drawing_tools.c\
+		print_struct.c
 OBJS = $(SRCS:.c=.o)
 LDIR = libft
 LIBR = $(LDIR)/libft.a
