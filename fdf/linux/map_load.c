@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 21:37:26 by lgerard           #+#    #+#             */
-/*   Updated: 2025/02/26 19:29:31 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/02/28 01:13:34 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,11 +57,14 @@ unsigned int	extract_color(char *s, char *b, int i, t_dmlx *vars)
 	while (s[i] != 0)
 	{
 		j = 0;
-		while ((b[j] != s[i] || (j < 9 && s[i] != b[j] + 32)) && b[j] != 0)
+		while ((b[j] != s[i] && (j < 9 && s[i] != b[j] + 32)) && b[j] != 0)
 			j++;
 		if (j == 16)
+		{	
+			printf("ou x %f ligne %f\n", vars->aaxex, vars->aaxey);
 			return (error(vars, "File format color hexadecimal issue\n", 1));
-		n *= 16;
+		}
+			n *= 16;
 		n += j;
 		i++;
 	}
@@ -72,13 +75,14 @@ void	record_point(t_dmlx *vars, double *i, unsigned int pcolor, double line)
 {
 	t_map	*map;
 
-	map = ft_newpoint(i[0], line, i[1], pcolor);
+	map = ft_newpoint(i, line, vars, pcolor);
 	if (!map)
 		error(vars, "Recording map issue\n", 1);
-	if (i[0] == 0 && line == 0)
-		vars->map = (void *)map;
-	ft_mapadd_back((t_map **)vars->map, map);
-	if (map->x < vars->xmin)
+	if (*(vars->map) == NULL)
+		*(vars->map) = map;
+	else
+		ft_mapadd_back(vars->map, map);
+	 if (map->x < vars->xmin)
 		vars->xmin = map->x;
 	if (map->y < vars->ymin)
 		vars->ymin = map->y;
@@ -105,7 +109,9 @@ int	take_line(char **tab, t_dmlx *vars, int count, double *line)
 		i[1] = ft_atoifdf(tab[(int)i[0]], &i[2], 0, 0);
 		if (i[2] != 44 && i[2] != 0 && i[2] != '\n')
 			return (error(vars, "File format issue", 1));
-		if (i[2] == 44)
+		vars->aaxex = i[0];
+		vars->aaxey = (*line);
+			if (i[2] == 44)
 			pcolor = extract_color(tab[(int)i[0]], "0123456789ABCDEF", 0, vars);
 		else
 			pcolor = DEF_COLOR;
@@ -143,6 +149,7 @@ void	map_load(t_dmlx *vars, char *filename, int count, double line)
 			count = take_line(tab, vars, count, &line);
 			free_tabfdf(tab, vars);
 		}
+		printf("ligne %f lue\n", line);
 	}
 	ft_printf("Map loaded succesfully\n");
 	close(fd);

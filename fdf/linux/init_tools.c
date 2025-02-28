@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 22:23:43 by lgerard           #+#    #+#             */
-/*   Updated: 2025/02/26 19:27:31 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/02/27 20:04:45 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,25 +61,33 @@ void	free_map(t_map **lst, t_dmlx *vars)
 		free(tlst);
 		tlst = slst;
 	}
+	free(vars->map);
 	vars->map = NULL;
 }
 
-t_map	*ft_newpoint(double x, double y, double z, unsigned int color)
+t_map	*ft_newpoint(double *i, double y, t_dmlx *vars, unsigned int color)
 {
 	t_map	*nc;
 
 	nc = malloc(sizeof(t_map));
 	if (nc == 0)
 		return (0);
-	nc->x = x;
+	nc->x = i[0];
 	nc->y = y;
-	nc->z = z;
+	nc->z = i[1];
 	nc->color = color;
 	nc->previous = 0;
 	nc->next = 0;
 	nc->side = 0;
 	nc->down = 0;
 	nc->pos = 0;
+	if (vars->map == NULL)
+	{
+		vars->map = malloc(sizeof(t_map *));
+		if (!vars->map)
+			error(vars, "Memory allocation failed\n", 1);
+		*(vars->map) = NULL; 
+	}
 	return (nc);
 }
 

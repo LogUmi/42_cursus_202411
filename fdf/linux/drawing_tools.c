@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 02:59:48 by lgerard           #+#    #+#             */
-/*   Updated: 2025/02/27 04:55:13 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/02/27 17:10:58 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,23 +16,35 @@ double		direction(double a, double b)
 {
 	if (a < b)
     	return (1);
-	else
+	if (a > b)
     	return (-1);
+	return (0);
 }
 
-void	cpy_line(t_map *a, t_map *b, t_line *l)
+void	cpy_line(t_dmlx *mlx,t_map *a, t_map *b, t_line *l)
 {
-			l->x1 = a->x;
-			l->y1 = a->y;
-			l->c1 = a->color;
-			l->x2 = b->x;
-			l->y2 = b->y;
-			l->c2 = b->color;
-			if(fabs(l->x2 - l->x1) > fabs(l->y2 - l->y1))
-				l->npoint = fabs(l->x2 - l->x1) + 1;
-			else
-				l->npoint = fabs(l->y2 - l->y1) + 1;
-			l->num = 0;
+	double	varx;
+	double 	vary;
+
+	//varx = (a->x - a->y) * cos(0.523599);
+	//vary = (a->x + a->y) * sin(0.523599) - a->z;
+	varx = a->x;
+	vary = a->y;
+	l->x1 = varx * mlx->magn + mlx->crefx;
+	l->y1 = vary * mlx->magn + mlx->crefy;
+	l->c1 = a->color;
+	/* varx = (b->x - b->y) * cos(0.523599);
+	vary = (b->x + b->y) * sin(0.523599) - a->z; */
+	varx = b->x;
+	vary = b->y;
+	l->x2 = varx * mlx->magn + mlx->crefx;
+	l->y2 = vary * mlx->magn + mlx->crefy;
+	l->c2 = b->color;
+	if(abs(l->x2 - l->x1) > abs(l->y2 - l->y1))
+		l->npoint = abs(l->x2 - l->x1) + 1;
+	else
+		l->npoint = abs(l->y2 - l->y1) + 1;
+	l->num = 0;
 }
 
 int intercolor(int color1, int color2, double n)
