@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 22:11:12 by lgerard           #+#    #+#             */
-/*   Updated: 2025/02/27 22:58:18 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/03/01 11:39:50 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		return (error(&mlx, "Argument issue (only path/map_filename)", 1));
 	s = &argv[1][0];
-	map_load(&mlx, s, 0, 0);
+	map_get(&mlx, s);
 	mlx.mlx = mlx_init();
 	if (!mlx.mlx)
 		return (error(&mlx, "mlx_init failed", 1));
@@ -78,7 +78,7 @@ int	main(int argc, char **argv)
 	mlx.win = mlx_new_window(mlx.mlx, mlx.width, mlx.height, s);
 	if (!mlx.win)
 		return (error(&mlx, "mlx_new_window failed", 1));
-	printf ("Windows %dx%d opended\n", mlx.width, mlx.height);
+	ft_printf ("Windows %dx%d opended\n", mlx.width, mlx.height);
 	mlx.img = mlx_new_image(mlx.mlx, mlx.width, mlx.height);
 	if (!mlx.img)
 		return (error(&mlx, "mlx_new_image failed", 1));

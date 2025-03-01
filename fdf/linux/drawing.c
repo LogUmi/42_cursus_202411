@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 22:30:37 by lgerard           #+#    #+#             */
-/*   Updated: 2025/02/27 23:02:49 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/03/01 18:32:33 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	put_pixel(t_dmlx *mlx, t_line *l)
 	unsigned int		color;
 	
 	ofst = (unsigned long long)(l->y1 * mlx->llen + (l->x1 * (mlx->bpp / 8)));
-    color = intercolor(l->c1, l->c2, (double)(l->num / l->npoint));
+    color = intercolor(l->c1, l->c2, (double)l->num / (double)l->npoint);
 	l->num++;
 	if (l->x1 < 0 || l->y1 < 0 || l->x1 >= mlx->width || l->y1 >= mlx->height)
         return;

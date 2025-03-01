@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 22:23:43 by lgerard           #+#    #+#             */
-/*   Updated: 2025/02/27 20:04:45 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/03/01 16:09:22 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,17 @@ void	init_dmlx(t_dmlx *vars)
 	vars->ymax = 0;
 	vars->zmin = 0;
 	vars->zmax = 0;
-	vars->aaxex = 0;
-	vars->aaxey = 0;
-	vars->aaxez = 0;
+	vars->color = 0;
+	vars->lowdefcol = 0;
+	vars->topdefcol = 0;
+	vars->zangle = 0;
+	vars->zfact = 0;
 	vars->crefx = 0;
 	vars->crefy = 0;
-	vars->crefz = 0;
+	vars->addr = NULL;
+	vars->bpp = 0;
+	vars->llen = 0;
+	vars->endian = 0;
 }
 
 void	free_tabfdf(char **tab, t_dmlx *vars)
@@ -76,11 +81,9 @@ t_map	*ft_newpoint(double *i, double y, t_dmlx *vars, unsigned int color)
 	nc->y = y;
 	nc->z = i[1];
 	nc->color = color;
-	nc->previous = 0;
 	nc->next = 0;
 	nc->side = 0;
 	nc->down = 0;
-	nc->pos = 0;
 	if (vars->map == NULL)
 	{
 		vars->map = malloc(sizeof(t_map *));
@@ -106,6 +109,5 @@ void	ft_mapadd_back(t_map **lst, t_map *new)
 	while (tlst->next != 0)
 		tlst = tlst->next;
 	tlst->next = new;
-	new->previous = tlst;
 	return ;
 }

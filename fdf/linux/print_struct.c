@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/25 20:51:34 by lgerard           #+#    #+#             */
-/*   Updated: 2025/02/27 04:41:36 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/03/01 16:01:45 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,8 @@ void print_t_map(t_map **map)
 	printf("**map %p, *map %p\n", map, lst);
 	while (lst)
 	{
-		printf("%p, x %f, y %f, z %f, color %X, pos %d, previous %p, next %p, side %p, down %p\n"
-		, lst, lst->x, lst->y, lst->z, lst->color, lst->pos, lst->previous, lst->next, lst->side, lst->down);
+		printf("%p, x %f, y %f, z %f, color %X, next %p, side %p, down %p\n"
+		, lst, lst->x, lst->y, lst->z, lst->color, lst->next, lst->side, lst->down);
 		lst =lst->next;
 	}
 }
@@ -42,11 +42,11 @@ void	print_struct(t_dmlx *vars)
 	printf ("\n\nStructure t_dmlx *vars\n\n");
 	printf("*mlx %p, *win %p, *img %p, *map %p, *tab %p\n", vars->mlx, vars->win,
 			vars->img, vars->map, vars->tab);
-	printf("swidth %d, sheight %d, width %d, height %d, magn %f\nxmin %f, xmax %f, ymin %f, ymax %f, zmin %f, zmax %f, maxdiag %f\n"
-			, vars->swidth, vars->sheight, vars->width, vars->height, vars->magn, vars->xmin, vars->xmax, vars->ymin
+	printf("swidth %d, sheight %d, width %d, height %d, magn %f, iangle %f, zangle %f, zfact %f\nxmin %f, xmax %f, ymin %f, ymax %f, zmin %f, zmax %f, maxdiag %f\n"
+			, vars->swidth, vars->sheight, vars->width, vars->height, vars->magn, vars->iangle, vars->zangle, vars->zfact, vars->xmin, vars->xmax, vars->ymin
 			,vars->ymax, vars->zmin, vars->zmax, vars->maxdiag);
-	printf("aaxex %f, aaxey %f, aaxez %f, crefx %f, crefy %f, crefz %f\n"
-			, vars->aaxex, vars->aaxey, vars->aaxez, vars->crefx, vars->crefy, vars->crefz);		
+	printf("color %i, lowdefcol %X, topdefcol %X, crefx %f, crefy %f\n"
+			, vars->color, vars->lowdefcol, vars->topdefcol, vars->crefx, vars->crefy);		
 	printf("*addr %p, bpp %i, llen %i, endian %i\n", vars->addr, vars->bpp, vars->llen, vars->endian);
 	print_t_map((t_map**)vars->map);
 	print_display(vars->mlx);

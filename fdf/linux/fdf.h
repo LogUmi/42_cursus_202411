@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:22:35 by lgerard           #+#    #+#             */
-/*   Updated: 2025/02/27 20:07:21 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/03/01 18:39:31 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@
 # include "mlx_linux/mlx_int.h"
 
 # define XK_ESCAPE 0xff1b
-# define DEF_COLOR 0x0000FF00
+# define DEF_COLOR 0x00AAAAAA
+# define DEF_TOPCOLOR 0x00E03DB2
 
 typedef struct s_map
 {
@@ -31,8 +32,6 @@ typedef struct s_map
 	double			y;
 	double			z;
 	unsigned int	color;
-	int				pos;
-	void			*previous;
 	void			*next;
 	void			*side;
 	void			*down;
@@ -40,34 +39,36 @@ typedef struct s_map
 
 typedef struct s_dmlx
 {
-	void	*mlx;
-	void	*win;
-	void	*img;
-	t_map	**map;
-	void	*tab;
-	int		swidth;
-	int		sheight;
-	int		width;
-	int		height;
-	double	magn;
-	double	xmin;
-	double	xmax;
-	double	ymin;
-	double	ymax;
-	double	zmin;
-	double	zmax;
-	double	maxdiag;
-	double	aaxex;
-	double	aaxey;
-	double	aaxez;
-	double	crefx;
-	double	crefy;
-	double	crefz;
-	char	*addr;
-	int		bpp;
-	int		llen;
-	int		endian;
-}			t_dmlx;
+	void			*mlx;
+	void			*win;
+	void			*img;
+	t_map			**map;
+	void			*tab;
+	int				swidth;
+	int				sheight;
+	int				width;
+	int				height;
+	double			magn;
+	double			xmin;
+	double			xmax;
+	double			ymin;
+	double			ymax;
+	double			zmin;
+	double			zmax;
+	double			maxdiag;
+	int				color;
+	unsigned int	lowdefcol;
+	unsigned int	topdefcol;
+	double			iangle;
+	double			zangle;
+	double			zfact;
+	double			crefx;
+	double			crefy;
+	char			*addr;
+	int				bpp;
+	int				llen;
+	int				endian;
+}					t_dmlx;
 
 typedef struct s_line
 {
@@ -93,6 +94,8 @@ double	direction(double a, double b);
 int		intercolor(int color1, int color2, double t);
 void	cpy_line(t_dmlx *mlx, t_map *a, t_map *b, t_line *line);
 void	draw_lines(t_dmlx *mlx, t_map **map);
+void	map_get(t_dmlx *mlx, char *filename);
+void	set_map(t_map **map, t_map *a, t_map *b);
 
 
 void print_t_map(t_map **map);

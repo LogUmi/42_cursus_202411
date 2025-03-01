@@ -6,38 +6,37 @@
 /*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 13:11:55 by lgerard           #+#    #+#             */
-/*   Updated: 2025/02/28 00:31:36 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/03/01 17:15:17 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 #include <assert.h>
 
-void	set_isometric(t_map **map, double new_x, double new_y, t_dmlx *vars)
+void	set_isometric(t_map **map, double new_x, double new_y, t_dmlx *mlx)
 {
 	t_map	*a;
+	double	xz;
+	double	yz;
 
 	a = *map;
 	while (a)
 	{
-		new_x = (a->x - a->y) * cos(0.733038);
-		new_y = (a->x + a->y) * sin(0.733038) - a->z / 12;
-		//new_x = (a->x - a->y) * sqrt(2) /2;
-		//new_y = a->z * sqrt(2) / 3 - (a->x + a->y) / sqrt(6) 0.523599;
+		xz = a->x * cos(mlx->zangle) - a->y * sin(mlx->zangle);
+		yz = a->y * cos(mlx->zangle) + a->x * sin(mlx->zangle);
+		new_x = (xz - yz) * cos(mlx->iangle);
+		new_y = (xz + yz) * sin(mlx->iangle);
+		new_y -= a->z * cos(mlx->iangle) / mlx->zfact;
 		a->x = new_x;
 		a->y = new_y;
-		if (a->x < vars->xmin)
-			vars->xmin = a->x;
-		if (a->y < vars->ymin)
-		vars->ymin = a->y;
-			if (a->z < vars->zmin)
-		vars->zmin = a->z;
-			if (a->x > vars->xmax)
-		vars->xmax = a->x;
-			if (a->y > vars->ymax)
-		vars->ymax = a->y;
-			if (a->z > vars->zmax)
-		vars->zmax = a->z;
+		if (a->x < mlx->xmin)
+			mlx->xmin = a->x;
+		if (a->y < mlx->ymin)
+			mlx->ymin = a->y;
+		if (a->x > mlx->xmax)
+			mlx->xmax = a->x;
+		if (a->y > mlx->ymax)
+			mlx->ymax = a->y;
 		a = a->next;
 	}
 }
@@ -81,50 +80,43 @@ void	set_map(t_map **map, t_map *a, t_map *b)
 	}
 }
 
-void	get_magn(t_dmlx *vars)
+void	get_magn(t_dmlx *mlx, double dx, double dy)
 {
 	int	little;
-	int	div;
+	double	div;
 
-	if (vars->swidth < vars->sheight)
-		little = vars->swidth;
+	if (mlx->swidth < mlx->sheight)
+		little = mlx->swidth;
 	else
-		little = vars->sheight;
-	div = (double)little / vars->maxdiag;
+		little = mlx->sheight;
+	div = (double)little / mlx->maxdiag;
 	if (div >= 1)
-		vars->magn = floor(div * 0.75);
+		mlx->magn = floor(div * 0.9);
 	else
-		vars->magn = div - 0.1;
-	vars->height = (vars->maxdiag * vars->magn);
-	vars->width = (vars->maxdiag * vars->magn);
-	vars->crefx = (((vars->width - vars->xmax * vars->magn)/1.35));
-	vars->crefy = (((vars->height - vars->ymax * vars->magn)/1.8));
+		mlx->magn = div - 0.1;
+	mlx->height = (mlx->maxdiag * mlx->magn);
+	mlx->width = (mlx->maxdiag * mlx->magn);
+	mlx->crefx = (((mlx->width - mlx->magn * dx)/2) - mlx->xmin * mlx->magn);
+	printf("crefx %f, dx, %f, width %i, vars->xmin %f, vars->xmax %f \n", mlx->crefx, dx, mlx->width, mlx->xmin, mlx->xmax);
+	mlx->crefy = (((mlx->height - mlx->magn * dy)/2) - mlx->ymin * mlx->magn);
+	printf("crefy %f, dy, %f, height %i, vars->ymin %f, vars->ymax %f \n", mlx->crefy, dy, mlx->height, mlx->ymin, mlx->ymax);
+	/* vars->crefx = (((vars->width - vars->xmax * vars->magn)/1.35));
+	vars->crefy = (((vars->height - vars->ymax * vars->magn)/1.8)); */
 }
 void	size_img(t_dmlx *vars)
 {
-	double	zdiag;
-	double	zuse;
+	double	c[2];
 
-	zdiag = 0;
-	zuse = 0;
+	c[0] = 0;
+	c[1] = 0;
 	vars->xmin = 0;
-	vars->ymin = 0;
 	vars->xmax = 0;
-	vars->xmin = 0;
-	vars->zmin = 0;
-	vars->zmax = 0;
-	set_map(vars->map, 0, 0);
+	vars->ymin = 0;
+	vars->ymax = 0;
+	//set_map(vars->map, 0, 0);
 	set_isometric(vars->map, 0, 0, vars);
-	vars->maxdiag = ceil(sqrt(pow(fabs(vars->xmax - vars->xmin), 2) + pow(fabs(vars->ymax -vars->ymin), 2)));
-	if (vars->zmax < 0)
-		zuse = (vars->zmin * -1) + vars->zmax;
-	else
-		zuse = vars->zmax - vars->zmin;
-	zdiag = ceil(sqrt(pow(vars->xmax, 2) + pow(zuse, 2)));
-	if (zdiag > vars->maxdiag)
-		vars->maxdiag = zdiag;
-	zdiag = ceil(sqrt(pow(vars->ymax, 2) + pow(zuse, 2)));
-	if (zdiag > vars->maxdiag)
-		vars->maxdiag = zdiag;
-	get_magn(vars);
+	c[0] = fabs(vars->xmax - vars->xmin);
+	c[1] = fabs(vars->ymax - vars->ymin);
+	vars->maxdiag = ceil(sqrt(c[0] * c[0] + c[1] * c[1]));
+	get_magn(vars, c[0], c[1]);
 }
