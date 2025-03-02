@@ -6,25 +6,62 @@
 /*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 00:56:33 by lgerard           #+#    #+#             */
-/*   Updated: 2025/03/02 03:28:26 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/03/02 22:47:33 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
+
+void	reset_cmds(t_dmlx *mlx)
+{
+	mlx->px = 0;
+	mlx->py = 0;
+	mlx->pm = 1;
+}
+
+void	magn_change(t_dmlx *mlx, int way)
+{
+	if (way == 0)
+		mlx->pm *= 1.1;
+	else
+		mlx->pm /= 1.1;
+}
+
+void	move_cmds(t_dmlx *mlx, int way)
+{
+	if (way == 0)
+		mlx->py += mlx->crefy / 10;
+	if (way == 1)
+		mlx->py -= mlx->crefy / 10;
+	if (way == 2)
+		mlx->px -= mlx->crefx / 10;
+	if (way == 3)
+		mlx->px += mlx->crefx / 10;
+}
 
 int	pre_featuring_0(t_dmlx *mlx, char *f, int *i, int len)
 {
 	if (ft_strnstr(f, "pyra.fdf", len) != 0)
 	{
 		mlx->lowdefcol = 0x00492200;
-		mlx->optdefcol = mlx->lowdefcol;
-		mlx->topdefcol = 0x00FFFF85;
+		mlx->topdefcol = 0x00FFFFB5;
 		(*i)++;
 	}
-	if (ft_strnstr(f, "plat.fdf", len) != 0)
+	if (ft_strnstr(f, "100-6", len) != 0 || ft_strnstr(f, "50-4", len))
 	{
-		mlx->zangle = 0;
+		mlx->lowdefcol = 0x00404070;
 		(*i)++;
+	}
+	if (ft_strnstr(f, "pylone.fdf", len) != 0)
+	{
+		mlx->lowdefcol = 0x00404070;
+		(*i)++;
+	}
+	if (ft_strnstr(f, "mars.fdf", len) != 0)
+	{
+		mlx->lowdefcol = 0x00440000;
+		mlx->topdefcol = 0x00FF0000;
+		i++;
 	}
 	return ((*i));
 }
@@ -38,19 +75,15 @@ int	pre_featuring(t_dmlx *mlx, char *f, int i, int len)
 	mlx->zangle = 4.71238898;
 	mlx->yangle = 0;
 	mlx->zfact = 1;
-	if (ft_strnstr(f, "mars.fdf", len) != 0)
-	{
-		mlx->lowdefcol = 0x00600000;
-		mlx->topdefcol = 0x00FF0000;
-		i++;
-	}
 	if (ft_strnstr(f, "42.fdf", len) != 0)
 	{
+		mlx->lowdefcol = 0x00FFFFFF;
 		mlx->optdefcol = 0x00FFFF60;
+		mlx->topdefcol = 0x00E783E7;
 		mlx->c42 = 1;
 		mlx->iangle = 0.733038286;
 		mlx->zangle = 0;
-		mlx->zfact = 8;
+		mlx->zfact = 9;
 		i++;
 	}
 	pre_featuring_0(mlx, f, &i, len);

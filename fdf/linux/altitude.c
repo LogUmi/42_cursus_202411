@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 23:57:14 by lgerard           #+#    #+#             */
-/*   Updated: 2025/03/02 04:07:03 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/03/02 14:55:27 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_zpos	*ft_newzpos(double z, t_dmlx *mlx)
 		mlx->zpos = malloc(sizeof(t_zpos *));
 		if (!mlx->zpos)
 			error(mlx, "Memory allocation failed\n", 1);
-		*(mlx->zpos) = NULL; 
+		*(mlx->zpos) = NULL;
 	}
 	return (nc);
 }
@@ -92,7 +92,6 @@ int	zpos_sort(t_zpos **zpos, int i, double cpz)
 			lst = lst->next;
 	}
 	return (i);
-	
 }
 
 void	list_zpos(t_dmlx *mlx, double z)
@@ -107,7 +106,7 @@ void	list_zpos(t_dmlx *mlx, double z)
 		if (*(mlx->zpos) == NULL)
 			*(mlx->zpos) = zpos;
 	}
-	else 
+	else
 	{
 		if (z_inlist(mlx->zpos, z) == -1)
 		{

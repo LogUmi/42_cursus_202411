@@ -10,6 +10,7 @@ SRCS = 	fdf.c \
 		map_get.c \
 		altitude.c \
 		featuring.c \
+		key_management.c\
 		print_struct.c
 OBJS = $(SRCS:.c=.o)
 LDIR = libft

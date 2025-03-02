@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 22:11:12 by lgerard           #+#    #+#             */
-/*   Updated: 2025/03/02 02:58:14 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/03/02 22:51:38 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,10 @@ int	error(t_dmlx *vars, char *msg, int ret)
 		free_map(vars->map, vars);
 	if (vars->zpos != 0)
 		free_zpos(vars->zpos, vars);
-	if (vars->img != 0)
-		mlx_destroy_image(vars->mlx, vars->img);
+	if (vars->img1 != 0)
+		mlx_destroy_image(vars->mlx, vars->img1);
+	if (vars->img2 != 0)
+		mlx_destroy_image(vars->mlx, vars->img2);
 	if (vars->win != 0)
 		mlx_destroy_window(vars->mlx, vars->win);
 	if (vars->mlx != 0)
@@ -41,49 +43,49 @@ static int	ft_close(t_dmlx *vars)
 	return (error(vars, "Regular end of session on mouse command", 0));
 }
 
-static int	ft_key(int keycode, t_dmlx *vars)
+void	main_suite(t_dmlx *m)
 {
-	ft_printf("keycode : %d\n", keycode);
-	if (keycode == XK_ESCAPE)
-		return (error(vars, "Regular end of session on esc key press", 0));
-	else
-		return (0);
-}
-
-void	main_suite(t_dmlx *mlx)
-{
-	draw_lines(mlx,(t_map **)mlx->map);
-	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->img, 0, 0);
-	mlx_hook(mlx->win, 2, 1L << 0, ft_key, mlx);
-	mlx_hook(mlx->win, 17, 0, ft_close, mlx);
-	mlx_loop(mlx->mlx);
+	m->img2 = mlx_new_image(m->mlx, m->width, m->height);
+	if (!m->img2)
+		error(m, "mlx_new_image failed", 1);
+	m->addr2 = mlx_get_data_addr(m->img2, &m->bpp2, &m->llen2, &m->endian2);
+	swap_img(m, 0);
+	draw_lines(m, m->map);
+	mlx_put_image_to_window(m->mlx, m->win, m->img, 0, 0);
+	swap_img(m, 1);
+	ft_key_init(m);
+	mlx_hook(m->win, 2, 1L << 0, ft_key_in, m);
+	mlx_hook(m->win, 3, 1L << 1, ft_key_out, m);
+	mlx_loop_hook(m->mlx, ft_hook_loop, m);
+	mlx_hook(m->win, 17, 0, ft_close, m);
+	mlx_loop(m->mlx);
 }
 
 int	main(int argc, char **argv)
 {
-	t_dmlx	mlx;
+	t_dmlx	m;
 	char	*s;
 
-	init_dmlx(&mlx);
+	init_dmlx(&m);
 	if (argc != 2)
-		return (error(&mlx, "Argument issue (only path/map_filename)", 1));
+		return (error(&m, "Argument issue (only path/map_filename)", 1));
 	s = &argv[1][0];
-	map_get(&mlx, s);
-	mlx.mlx = mlx_init();
-	if (!mlx.mlx)
-		return (error(&mlx, "mlx_init failed", 1));
-	if (mlx_get_screen_size(mlx.mlx, &mlx.swidth, &mlx.sheight) != 0)
-		return (error(&mlx, "mlx was unable to detect screen", 1));
-	ft_printf("Screen %dx%d detected\n", mlx.swidth, mlx.sheight);
-	size_img(&mlx);
-	mlx.win = mlx_new_window(mlx.mlx, mlx.width, mlx.height, s);
-	if (!mlx.win)
-		return (error(&mlx, "mlx_new_window failed", 1));
-	ft_printf ("Windows %dx%d opended\n", mlx.width, mlx.height);
-	mlx.img = mlx_new_image(mlx.mlx, mlx.width, mlx.height);
-	if (!mlx.img)
-		return (error(&mlx, "mlx_new_image failed", 1));
-	mlx.addr = mlx_get_data_addr(mlx.img, &mlx.bpp, &mlx.llen, &mlx.endian);
-	main_suite(&mlx);
+	map_get(&m, s);
+	m.mlx = mlx_init();
+	if (!m.mlx)
+		return (error(&m, "mlx_init failed", 1));
+	if (mlx_get_screen_size(m.mlx, &m.swidth, &m.sheight) != 0)
+		return (error(&m, "mlx was unable to detect screen", 1));
+	ft_printf("Screen %dx%d detected\n", m.swidth, m.sheight);
+	size_img(&m);
+	m.win = mlx_new_window(m.mlx, m.width, m.height, s);
+	if (!m.win)
+		return (error(&m, "mlx_new_window failed", 1));
+	ft_printf ("Windows %dx%d opended\n", m.width, m.height);
+	m.img1 = mlx_new_image(m.mlx, m.width, m.height);
+	if (!m.img1)
+		return (error(&m, "mlx_new_image failed", 1));
+	m.addr1 = mlx_get_data_addr(m.img1, &m.bpp1, &m.llen1, &m.endian1);
+	main_suite(&m);
 	return (0);
 }

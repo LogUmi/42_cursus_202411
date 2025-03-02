@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 22:23:43 by lgerard           #+#    #+#             */
-/*   Updated: 2025/03/01 23:56:31 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/03/02 15:45:33 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,10 @@ void	init_dmlx(t_dmlx *vars)
 	vars->zmin = 0;
 	vars->zmax = 0;
 	vars->color = 0;
-	vars->lowdefcol = 0;
-	vars->topdefcol = 0;
+	vars->px = 0;
+	vars->py = 0;
 	vars->zangle = 0;
-	vars->zfact = 0;
+	vars->pm = 1;
 	vars->crefx = 0;
 	vars->crefy = 0;
 	vars->addr = NULL;
@@ -90,7 +90,7 @@ t_map	*ft_newpoint(double *i, double y, t_dmlx *vars, unsigned int color)
 		vars->map = malloc(sizeof(t_map *));
 		if (!vars->map)
 			error(vars, "Memory allocation failed\n", 1);
-		*(vars->map) = NULL; 
+		*(vars->map) = NULL;
 	}
 	return (nc);
 }

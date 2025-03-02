@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 13:11:55 by lgerard           #+#    #+#             */
-/*   Updated: 2025/03/02 03:39:09 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/03/02 15:24:26 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,19 +18,15 @@ void	set_isometric(t_map **map, double new_x, double new_y, t_dmlx *mlx)
 	t_map	*a;
 	double	xz;
 	double	yz;
-	double	xy;
-	double	zy;
-	
+
 	a = *map;
 	while (a)
 	{
 		xz = a->x * cos(mlx->zangle) - a->y * sin(mlx->zangle);
 		yz = a->y * cos(mlx->zangle) + a->x * sin(mlx->zangle);
-		zy = a->z * cos(mlx->yangle) - xz * sin(mlx->yangle);
-		xy = xz * cos(mlx->yangle) + a->z * sin(mlx->yangle);
-		new_x = (xy - yz) * cos(mlx->iangle);
-		new_y = (xy + yz) * sin(mlx->iangle);
-		new_y -= zy / mlx->zfact;
+		new_x = (xz - yz) * cos(mlx->iangle);
+		new_y = (xz + yz) * sin(mlx->iangle);
+		new_y -= a->z * cos(mlx->iangle) / mlx->zfact;
 		a->x = new_x;
 		a->y = new_y;
 		if (a->x < mlx->xmin)
@@ -86,7 +82,7 @@ void	set_map(t_map **map, t_map *a, t_map *b)
 
 void	get_magn(t_dmlx *mlx, double dx, double dy)
 {
-	int	little;
+	int		little;
 	double	div;
 
 	if (mlx->swidth < mlx->sheight)
@@ -100,9 +96,10 @@ void	get_magn(t_dmlx *mlx, double dx, double dy)
 		mlx->magn = div - 0.1;
 	mlx->height = (mlx->maxdiag * mlx->magn);
 	mlx->width = (mlx->maxdiag * mlx->magn);
-	mlx->crefx = (((mlx->width - mlx->magn * dx)/2) - mlx->xmin * mlx->magn);
-	mlx->crefy = (((mlx->height - mlx->magn * dy)/2) - mlx->ymin * mlx->magn);
+	mlx->crefx = (((mlx->width - mlx->magn * dx) / 2) - mlx->xmin * mlx->magn);
+	mlx->crefy = (((mlx->height - mlx->magn * dy) / 2) - mlx->ymin * mlx->magn);
 }
+
 void	size_img(t_dmlx *vars)
 {
 	double	c[2];
