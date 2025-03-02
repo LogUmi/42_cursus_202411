@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/18 22:11:12 by lgerard           #+#    #+#             */
-/*   Updated: 2025/03/01 11:39:50 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/03/02 02:58:14 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int	error(t_dmlx *vars, char *msg, int ret)
 		free_tabfdf((char **)vars->tab, vars);
 	if (vars->map != 0)
 		free_map(vars->map, vars);
+	if (vars->zpos != 0)
+		free_zpos(vars->zpos, vars);
 	if (vars->img != 0)
 		mlx_destroy_image(vars->mlx, vars->img);
 	if (vars->win != 0)
@@ -50,7 +52,6 @@ static int	ft_key(int keycode, t_dmlx *vars)
 
 void	main_suite(t_dmlx *mlx)
 {
-	//print_struct(mlx);
 	draw_lines(mlx,(t_map **)mlx->map);
 	mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->img, 0, 0);
 	mlx_hook(mlx->win, 2, 1L << 0, ft_key, mlx);

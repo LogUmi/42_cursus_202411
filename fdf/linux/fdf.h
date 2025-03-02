@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:22:35 by lgerard           #+#    #+#             */
-/*   Updated: 2025/03/01 18:39:31 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/03/02 02:19:49 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@
 # include "mlx_linux/mlx_int.h"
 
 # define XK_ESCAPE 0xff1b
-# define DEF_COLOR 0x00AAAAAA
-# define DEF_TOPCOLOR 0x00E03DB2
+# define DEF_COLOR 0x00FFFFFF
+# define DEF_TOPCOLOR 0x00E783E7
 
 typedef struct s_map
 {
@@ -37,13 +37,22 @@ typedef struct s_map
 	void			*down;
 }					t_map;
 
+typedef struct s_zpos
+{
+	double	z;
+	int		pos;
+	void	*next;
+}			t_zpos;
+
 typedef struct s_dmlx
 {
 	void			*mlx;
 	void			*win;
 	void			*img;
 	t_map			**map;
+	t_zpos			**zpos;
 	void			*tab;
+	int				nz;
 	int				swidth;
 	int				sheight;
 	int				width;
@@ -58,9 +67,12 @@ typedef struct s_dmlx
 	double			maxdiag;
 	int				color;
 	unsigned int	lowdefcol;
+	unsigned int	optdefcol;
 	unsigned int	topdefcol;
 	double			iangle;
 	double			zangle;
+	double			yangle;
+	int				c42;
 	double			zfact;
 	double			crefx;
 	double			crefy;
@@ -96,6 +108,14 @@ void	cpy_line(t_dmlx *mlx, t_map *a, t_map *b, t_line *line);
 void	draw_lines(t_dmlx *mlx, t_map **map);
 void	map_get(t_dmlx *mlx, char *filename);
 void	set_map(t_map **map, t_map *a, t_map *b);
+t_zpos	*ft_newzpos(double z, t_dmlx *mlx);
+void	free_zpos(t_zpos **lst, t_dmlx *vars);
+void	zpos_add_back(t_zpos **lst, t_zpos *new);
+void	list_zpos(t_dmlx *mlx, double z);
+int		z_inlist(t_zpos **zpos, double z);
+int		pre_featuring_0(t_dmlx *mlx, char *f, int *i, int len);
+int		pre_featuring(t_dmlx *mlx, char *f, int i, int len);
+int		zpos_sort(t_zpos **zpos, int i, double cpz);
 
 
 void print_t_map(t_map **map);

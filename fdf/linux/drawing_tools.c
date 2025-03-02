@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/27 02:59:48 by lgerard           #+#    #+#             */
-/*   Updated: 2025/02/27 17:10:58 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/03/01 23:15:32 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,20 +26,22 @@ void	cpy_line(t_dmlx *mlx,t_map *a, t_map *b, t_line *l)
 	double	varx;
 	double 	vary;
 
-	//varx = (a->x - a->y) * cos(0.523599);
-	//vary = (a->x + a->y) * sin(0.523599) - a->z;
 	varx = a->x;
 	vary = a->y;
 	l->x1 = varx * mlx->magn + mlx->crefx;
 	l->y1 = vary * mlx->magn + mlx->crefy;
-	l->c1 = a->color;
-	/* varx = (b->x - b->y) * cos(0.523599);
-	vary = (b->x + b->y) * sin(0.523599) - a->z; */
+	if (a->color != b->color && a->z == 0 && mlx->c42 != 0)
+		l->c1 = mlx->optdefcol;
+	else
+		l->c1 = a->color;
 	varx = b->x;
 	vary = b->y;
 	l->x2 = varx * mlx->magn + mlx->crefx;
 	l->y2 = vary * mlx->magn + mlx->crefy;
-	l->c2 = b->color;
+	if (b->color != a->color && b->z == 0 && mlx->c42 != 0)
+		l->c2 = mlx->optdefcol;
+	else
+		l->c2 = b->color;
 	if(abs(l->x2 - l->x1) > abs(l->y2 - l->y1))
 		l->npoint = abs(l->x2 - l->x1) + 1;
 	else

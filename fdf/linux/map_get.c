@@ -6,34 +6,24 @@
 /*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/01 11:36:40 by lgerard           #+#    #+#             */
-/*   Updated: 2025/03/01 18:46:56 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/03/02 04:09:15 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
 
-int	pre_featuring(t_dmlx *mlx, char *filename, int i, int len)
+int	z_inlist(t_zpos **zpos, double z)
 {
-	
-	mlx->lowdefcol = DEF_COLOR;
-	mlx->topdefcol = DEF_TOPCOLOR;
-	mlx->iangle = 0.523598776;
-	mlx->zangle = 4.71238898;
-	mlx->zfact = 1;
-	if (ft_strnstr(filename, "mars.fdf", len) != 0)
+	t_zpos	*lst;
+
+	lst = *zpos;
+	while (lst)
 	{
-		mlx->lowdefcol = 0x00600000;
-		mlx->topdefcol = 0x00FF0000;
-		i++;
+		if (lst->z == z)
+			return (lst->pos);
+		lst = lst->next;
 	}
-	if (ft_strnstr(filename, "42.fdf", len) != 0)
-	{
-		mlx->iangle = 0.733038286;
-		mlx->zangle = 0;
-		mlx->zfact = 10;
-		i++;
-	}
-	return (i);
+	return (-1);
 }
 
 void	center_ref(t_dmlx *mlx, t_map **map, double xmid, double ymid)
@@ -47,14 +37,17 @@ void	center_ref(t_dmlx *mlx, t_map **map, double xmid, double ymid)
 	{
 		a->x -= xmid;
 		a->y -= ymid;
+		list_zpos(mlx, a->z);
 		a = a->next;
 	}
+	mlx->nz = zpos_sort(mlx->zpos, 0, 0);
+	if (mlx->nz > 1)
+		mlx->nz -=1;
 }
 
-void	set_zcolor(t_dmlx *mlx, t_map **map)
+void	set_zcolor(t_dmlx *mlx, t_map **map, int pos, int zlen)
 {
 	t_map			*a;
-	int 			zlen;
 	unsigned int	col1;
 	unsigned int	col2;
 	
@@ -62,15 +55,10 @@ void	set_zcolor(t_dmlx *mlx, t_map **map)
 	col1 = mlx->lowdefcol;
 	col2 = mlx->topdefcol;
 	printf("Applying this fdf colors defintion (no colors in map)\n");
-	zlen = fabs(mlx->zmax - mlx->zmin);
 	while (a)
 	{
-		if (a->z != mlx->zmin && a->z != mlx->zmax)
-			a->color = intercolor(col1, col2, a->z / zlen);
-		if (a->z == mlx->zmin)
-			a->color = col1;
-		if (a->z == mlx->zmax)		
-			a->color = col2;
+		pos = z_inlist(mlx->zpos, a->z);
+		a->color = intercolor(col1, col2, (double)pos / (double)zlen);
 		a = a->next;
 	}
 }
@@ -84,26 +72,14 @@ void	map_get(t_dmlx *mlx, char *filename)
 	ft_printf("Loading map ... ");
 	map_load(mlx, filename, 0, 0);
 	ft_printf("done\n");
+	print_t_map(mlx->map);
 	set_map(mlx->map, 0, 0);
+	print_t_map(mlx->map);
 	center_ref(mlx, mlx->map, 0, 0);
 	if (mlx->color == 0)
-		set_zcolor(mlx, mlx->map);
+		set_zcolor(mlx, mlx->map, 0, mlx->nz);
 	else
 		printf("Applying colors definition detected in map\n");
+	print_t_map(mlx->map);
+	free_zpos(mlx->zpos, mlx);
 }
-/* 
-30°  = 0.523598776
-42°  = 0.733038286
-45°  = 0.785398163
-60°  = 1.047197551
-90°  = 1.570796327
-120° = 2.094395102
-150° = 2.617993878
-180° = 3.141592654
-210° = 3.665191429
-240° = 4.188790205
-270° = 4.71238898
-300° = 5.235987756
-330° = 5.759586532
-360° = 6.283185307
-*/

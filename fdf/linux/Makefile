@@ -8,6 +8,8 @@ SRCS = 	fdf.c \
 		drawing.c \
 		drawing_tools.c\
 		map_get.c \
+		altitude.c \
+		featuring.c \
 		print_struct.c
 OBJS = $(SRCS:.c=.o)
 LDIR = libft

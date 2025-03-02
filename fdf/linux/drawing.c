@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 22:30:37 by lgerard           #+#    #+#             */
-/*   Updated: 2025/03/01 18:32:33 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/03/02 03:09:54 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,8 @@ void	draw_line(t_dmlx *mlx, t_line *l)
 	dl[3] = direction(l->y1, l->y2);
 	dl[4] = dl[0] - dl[1];
 	dl[5] = 2 * dl[4];
-	//printf("x1 %d, y1 %d, x2 %d, y2 %d, c1 %u, c2 %u npoint %d, num %d\n", l->x1, l->y1, l->x2, l->y2, l->c1, l->c2, l->npoint, l->num);
 	while (l->x1 != l->x2 || l->y1 != l->y2)
     {
-		//printf("x1 %d, y1 %d, num %d, dx %d, dy %d, vx %d, vy %d, gap %d, flag %d\n", l->x1, l->y1,l->num, dl[0], dl[1], dl[2], dl[3], dl[4], dl[5]);
 		put_pixel(mlx, l);
 		if (dl[5] > -dl[1])
 		{

@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 22:23:43 by lgerard           #+#    #+#             */
-/*   Updated: 2025/03/01 16:09:22 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/03/01 23:56:31 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	init_dmlx(t_dmlx *vars)
 	vars->img = NULL;
 	vars->map = NULL;
 	vars->tab = NULL;
+	vars->zpos = NULL;
 	vars->swidth = 0;
 	vars->sheight = 0;
 	vars->xmin = 0;

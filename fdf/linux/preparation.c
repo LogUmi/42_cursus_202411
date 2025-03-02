@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 13:11:55 by lgerard           #+#    #+#             */
-/*   Updated: 2025/03/01 17:15:17 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/03/02 03:39:09 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,15 +18,19 @@ void	set_isometric(t_map **map, double new_x, double new_y, t_dmlx *mlx)
 	t_map	*a;
 	double	xz;
 	double	yz;
-
+	double	xy;
+	double	zy;
+	
 	a = *map;
 	while (a)
 	{
 		xz = a->x * cos(mlx->zangle) - a->y * sin(mlx->zangle);
 		yz = a->y * cos(mlx->zangle) + a->x * sin(mlx->zangle);
-		new_x = (xz - yz) * cos(mlx->iangle);
-		new_y = (xz + yz) * sin(mlx->iangle);
-		new_y -= a->z * cos(mlx->iangle) / mlx->zfact;
+		zy = a->z * cos(mlx->yangle) - xz * sin(mlx->yangle);
+		xy = xz * cos(mlx->yangle) + a->z * sin(mlx->yangle);
+		new_x = (xy - yz) * cos(mlx->iangle);
+		new_y = (xy + yz) * sin(mlx->iangle);
+		new_y -= zy / mlx->zfact;
 		a->x = new_x;
 		a->y = new_y;
 		if (a->x < mlx->xmin)
@@ -97,11 +101,7 @@ void	get_magn(t_dmlx *mlx, double dx, double dy)
 	mlx->height = (mlx->maxdiag * mlx->magn);
 	mlx->width = (mlx->maxdiag * mlx->magn);
 	mlx->crefx = (((mlx->width - mlx->magn * dx)/2) - mlx->xmin * mlx->magn);
-	printf("crefx %f, dx, %f, width %i, vars->xmin %f, vars->xmax %f \n", mlx->crefx, dx, mlx->width, mlx->xmin, mlx->xmax);
 	mlx->crefy = (((mlx->height - mlx->magn * dy)/2) - mlx->ymin * mlx->magn);
-	printf("crefy %f, dy, %f, height %i, vars->ymin %f, vars->ymax %f \n", mlx->crefy, dy, mlx->height, mlx->ymin, mlx->ymax);
-	/* vars->crefx = (((vars->width - vars->xmax * vars->magn)/1.35));
-	vars->crefy = (((vars->height - vars->ymax * vars->magn)/1.8)); */
 }
 void	size_img(t_dmlx *vars)
 {
@@ -113,7 +113,7 @@ void	size_img(t_dmlx *vars)
 	vars->xmax = 0;
 	vars->ymin = 0;
 	vars->ymax = 0;
-	//set_map(vars->map, 0, 0);
+	set_map(vars->map, 0, 0);
 	set_isometric(vars->map, 0, 0, vars);
 	c[0] = fabs(vars->xmax - vars->xmin);
 	c[1] = fabs(vars->ymax - vars->ymin);
