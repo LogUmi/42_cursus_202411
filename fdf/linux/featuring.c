@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   featuring.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/02 00:56:33 by lgerard           #+#    #+#             */
-/*   Updated: 2025/03/02 22:47:33 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/03/03 13:50:39 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,21 @@ void	reset_cmds(t_dmlx *mlx)
 void	magn_change(t_dmlx *mlx, int way)
 {
 	if (way == 0)
-		mlx->pm *= 1.1;
+		mlx->pm *= 1.05;
 	else
-		mlx->pm /= 1.1;
+		mlx->pm /= 1.05;
 }
 
 void	move_cmds(t_dmlx *mlx, int way)
 {
 	if (way == 0)
-		mlx->py += mlx->crefy / 10;
+		mlx->py += mlx->crefy / 50;
 	if (way == 1)
-		mlx->py -= mlx->crefy / 10;
+		mlx->py -= mlx->crefy / 50;
 	if (way == 2)
-		mlx->px -= mlx->crefx / 10;
+		mlx->px -= mlx->crefx / 50;
 	if (way == 3)
-		mlx->px += mlx->crefx / 10;
+		mlx->px += mlx->crefx / 50;
 }
 
 int	pre_featuring_0(t_dmlx *mlx, char *f, int *i, int len)

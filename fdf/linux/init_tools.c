@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_tools.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/22 22:23:43 by lgerard           #+#    #+#             */
-/*   Updated: 2025/03/02 15:45:33 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/03/03 17:42:07 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ void	init_dmlx(t_dmlx *vars)
 	vars->mlx = NULL;
 	vars->win = NULL;
 	vars->img = NULL;
+	vars->img1 = NULL;
+	vars->img2 = NULL;
 	vars->map = NULL;
 	vars->tab = NULL;
 	vars->zpos = NULL;
@@ -36,9 +38,7 @@ void	init_dmlx(t_dmlx *vars)
 	vars->crefx = 0;
 	vars->crefy = 0;
 	vars->addr = NULL;
-	vars->bpp = 0;
-	vars->llen = 0;
-	vars->endian = 0;
+	vars->nmap = 0;
 }
 
 void	free_tabfdf(char **tab, t_dmlx *vars)

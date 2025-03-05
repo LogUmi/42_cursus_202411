@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   preparation.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/26 13:11:55 by lgerard           #+#    #+#             */
-/*   Updated: 2025/03/02 15:24:26 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/03/03 13:55:58 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include <assert.h>
 
 void	set_isometric(t_map **map, double new_x, double new_y, t_dmlx *mlx)
 {
