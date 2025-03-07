@@ -1,0 +1,110 @@
+🔥 Fonctionnalités à implémenter dans Minishell
+Voici les principales fonctionnalités à prendre en compte :
+
+1️⃣ Lecture et exécution de commandes
+L’utilisateur entre une commande (ex: ls -l).
+Minishell doit l’interpréter et l’exécuter.
+Utilisation de fork() et execve() pour lancer les programmes externes.
+2️⃣ Gestion des chemins (PATH)
+Minishell doit rechercher les exécutables dans les répertoires listés dans la variable d’environnement $PATH.
+Exemple : ls → /bin/ls.
+3️⃣ Commandes intégrées (builtins)
+Minishell doit implémenter certaines commandes internes sans utiliser execve() :
+
+echo (avec -n)
+cd (changement de répertoire)
+pwd (affichage du répertoire courant)
+export (ajouter/modifier une variable d’environnement)
+unset (supprimer une variable d’environnement)
+env (afficher les variables d’environnement)
+exit (quitter le shell)
+4️⃣ Gestion des opérateurs (|, >, <)
+| : Exécuter une commande et envoyer la sortie comme entrée de la suivante (pipe).
+> : Rediriger la sortie vers un fichier (écrasement).
+>> : Rediriger la sortie vers un fichier (ajout en fin).
+< : Lire l’entrée d’un fichier.
+5️⃣ Gestion des signaux (CTRL+C, CTRL+D, CTRL+\)
+CTRL+C : Interrompt le processus en cours (SIGINT).
+CTRL+D : Ferme le shell si aucune commande n’est en cours.
+CTRL+\ : Ignoré ou agit selon les besoins.
+6️⃣ Gestion des variables d’environnement
+Utilisation des variables comme $HOME, $USER, etc.
+Expansion des variables dans les commandes (echo $HOME doit afficher /home/user).
+7️⃣ Gestion des guillemets (", ')
+' (simple quote) : Tout est littéral, pas d’expansion.
+" (double quote) : Expansion des variables et interprétation des métacaractères.
+⚙️ Quelques fonctions système utiles
+Fonction	Rôle
+fork()	Créer un nouveau processus.
+execve()	Exécuter un programme externe.
+wait() / waitpid()	Attendre la fin d'un processus fils.
+pipe()	Créer un canal de communication entre deux processus.
+dup2()	Rediriger l’entrée/sortie standard.
+signal() / sigaction()	Gérer les signaux (SIGINT, SIGQUIT, etc.).
+getenv() / setenv() / unsetenv()	Gérer les variables d’environnement.
+🏗 Architecture typique d'un Minishell
+📂 Organisation des fichiers
+less
+Copier
+Modifier
+minishell/
+│── src/
+│   ├── main.c         (Boucle principale)
+│   ├── parser.c       (Analyse des commandes)
+│   ├── executor.c     (Exécution des commandes)
+│   ├── builtins.c     (Commandes internes)
+│   ├── signals.c      (Gestion des signaux)
+│   ├── redirections.c (Gestion des `>` et `<`)
+│   ├── pipes.c        (Gestion des pipes `|`)
+│── include/
+│   ├── minishell.h    (Définitions et prototypes)
+│── Makefile
+│── README.md
+✅ Exemple de boucle principale (simplifiée)
+c
+Copier
+Modifier
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+
+#define BUFFER_SIZE 1024
+
+int main(void) {
+    char input[BUFFER_SIZE];
+
+    while (1) {
+        printf("minishell> ");
+        if (fgets(input, BUFFER_SIZE, stdin) == NULL) {
+            printf("\nBye!\n");
+            break;
+        }
+
+        input[strcspn(input, "\n")] = 0;  // Supprime le '\n'
+
+        if (strcmp(input, "exit") == 0)
+            break;
+
+        system(input); // ⚠️ Remplacer par `execve()` plus tard
+    }
+
+    return 0;
+}
+🛑 Ce code utilise system(), qui est interdit dans un vrai Minishell. On utilisera execve() à la place !
+
+🎯 Difficultés rencontrées dans Minishell
+Gestion des pipes (|) : Rediriger la sortie d’un processus dans l’entrée d’un autre.
+Expansion des variables ($HOME, $?) : Interpréter correctement les variables.
+Redirections (> <) : Bien gérer les fichiers en entrée/sortie.
+Gestion des signaux : Empêcher CTRL+C de fermer le shell tout en interrompant les commandes exécutées.
+🎩 Différences entre Minishell et Bash
+Fonctionnalité	Minishell	Bash
+Exécution de commandes	✅	✅
+Commandes internes (cd, echo, ...)	✅	✅
+Pipes (`	`)	✅
+Redirections (>, <)	✅	✅
+Variables d’environnement	✅	✅
+Gestion avancée (&&, `		, ;`)
+Historique des commandes	❌	✅
+Expansions avancées (*, {})	❌	✅
