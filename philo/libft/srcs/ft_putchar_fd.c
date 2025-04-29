@@ -1,40 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/07 17:00:30 by lgerard           #+#    #+#             */
-/*   Updated: 2025/03/10 17:13:43 by lgerard          ###   ########.fr       */
+/*   Created: 2024/11/22 11:44:47 by lgerard           #+#    #+#             */
+/*   Updated: 2024/11/22 12:06:02 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include <unistd.h>
+
+void	ft_putchar_fd(char c, int fd)
+{
+	if (fd > -1)
+		write(fd, &c, 1);
+	return ;
+}
+/* 
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+
+static void	ft_print(char *s1)
+{
+	int	i = 0;
+	
+	while (s1[i] !=0)
+		ft_putchar_fd(s1[i++], 1);
+		
+	write(1, "\n", 1);
+}
 
 int	main(void)
 {
-	char	*input;
-	int		i;
-	
-	i = 0;
-	set_signals();
-	while (i == 0)
-	{
-		input = readline("minishell> ");
-		if (!input)
-			i = 1;
-		else
-		{
-			if (*input)
-				add_history(input);
-			if (ft_strnstr(input, "exit", ft_strlen(input)) != 0)
-				i = 1;
-			free(input);
-		}	
-	}
-	/* if(input)
-		free(input); */
-	unset_signals();
+	ft_print("bonjour");
+	ft_print(" Salut a toi !");
+	ft_print("");
 	return (0);
-}
+} */

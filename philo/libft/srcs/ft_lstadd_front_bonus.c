@@ -1,40 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ft_lstadd_front_bonus.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/07 17:00:30 by lgerard           #+#    #+#             */
-/*   Updated: 2025/03/10 17:13:43 by lgerard          ###   ########.fr       */
+/*   Created: 2024/11/27 11:44:12 by lgerard           #+#    #+#             */
+/*   Updated: 2024/11/27 19:24:46 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int	main(void)
+void	ft_lstadd_front(t_list **lst, t_list *new)
 {
-	char	*input;
-	int		i;
-	
-	i = 0;
-	set_signals();
-	while (i == 0)
-	{
-		input = readline("minishell> ");
-		if (!input)
-			i = 1;
-		else
-		{
-			if (*input)
-				add_history(input);
-			if (ft_strnstr(input, "exit", ft_strlen(input)) != 0)
-				i = 1;
-			free(input);
-		}	
-	}
-	/* if(input)
-		free(input); */
-	unset_signals();
-	return (0);
+	if (lst == 0 || new == 0)
+		return ;
+	new->next = *lst;
+	*lst = new;
 }

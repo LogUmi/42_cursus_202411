@@ -1,40 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   ft_lstdelone_bonus.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/07 17:00:30 by lgerard           #+#    #+#             */
-/*   Updated: 2025/03/10 17:13:43 by lgerard          ###   ########.fr       */
+/*   Created: 2024/11/27 14:04:54 by lgerard           #+#    #+#             */
+/*   Updated: 2024/11/27 19:25:40 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int	main(void)
+void	ft_lstdelone(t_list *lst, void (*del)(void *))
 {
-	char	*input;
-	int		i;
-	
-	i = 0;
-	set_signals();
-	while (i == 0)
+	if (lst != 0)
 	{
-		input = readline("minishell> ");
-		if (!input)
-			i = 1;
-		else
-		{
-			if (*input)
-				add_history(input);
-			if (ft_strnstr(input, "exit", ft_strlen(input)) != 0)
-				i = 1;
-			free(input);
-		}	
+		del(lst->content);
+		free(lst);
 	}
-	/* if(input)
-		free(input); */
-	unset_signals();
-	return (0);
+	return ;
 }

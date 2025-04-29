@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/14 16:22:35 by lgerard           #+#    #+#             */
-/*   Updated: 2025/03/07 17:52:35 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/03/11 17:28:29 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,4 +44,5 @@ typedef struct s_tab
 void	set_signals(void);
 void	unset_signals(void);
 void	ctrl_c(int sig, siginfo_t *info, void *context);
+int		get_cmde(t_tab *t)
 #endif
