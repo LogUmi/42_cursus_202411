@@ -18,42 +18,44 @@ NAME = 	philo.a
 EXEC =	philo
 HDRS = 	philo.h
 OBJDIR = obj/
-SRCS = 	philo.c 
+SRCS = 	philo.c  \
+		utils.c
 
 OBJS = $(patsubst %.c, $(OBJDIR)/%.o, $(SRCS))
-LDIR = libft
-LIBR = $(LDIR)/libft.a
+#LDIR = libft
+#LIBR = $(LDIR)/libft.a
 FLAGS = -Wall -Werror -Wextra
 CC = cc
 AR = ar -rcs
 
 all:		$(NAME) $(EXEC)
 
-$(NAME):	$(OBJS)	$(LIBR) $(HDRS)
+$(NAME):	$(OBJS)	$(HDRS) #$(LIBR)
 			$(AR) $(NAME) $(OBJS)	
 
 # Compilation des fichiers .o dans obj/
 $(OBJDIR)/%.o: %.c | $(OBJDIR)
-	$(CC) $(FLAGS) $(READLINE_PART) -I. -I$(LDIR) -c $< -o $@
+	$(CC) $(FLAGS) -I. -c $< -o $@ 
+#-I$(LDIR)
 
 # Création du dossier obj/ si nécessaire
 $(OBJDIR):
 	mkdir -p $(OBJDIR)
 			
-$(LIBR):		
-			[ -d $(LDIR) ] && $(MAKE) -C $(LDIR) all
-			cp $(LIBR) .
-			mv $(notdir $(LIBR)) $(NAME)
+#$(LIBR):		
+#			[ -d $(LDIR) ] && $(MAKE) -C $(LDIR) all
+#			cp $(LIBR) .
+#			mv $(notdir $(LIBR)) $(NAME)
 
 $(EXEC):	$(SRCS) $(HDRS)
 			$(CC) $(FLAGS) $(SRCS) $(NAME) -I. -o $(EXEC) -g
 
 clean:		
 			rm -rf	$(OBJS)
-			$(MAKE) -C $(LDIR) clean
+#			$(MAKE) -C $(LDIR) clean
 
 fclean:		clean
-			$(MAKE) -C $(LDIR) fclean
+#			$(MAKE) -C $(LDIR) fclean
 			rm -rf $(NAME) $(EXEC)	
 
 re:			fclean all
