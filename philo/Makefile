@@ -19,7 +19,9 @@ EXEC =	philo
 HDRS = 	philo.h
 OBJDIR = obj/
 SRCS = 	philo.c  \
-		utils.c
+		utils.c \
+		init.c \
+		liberation.c
 
 OBJS = $(patsubst %.c, $(OBJDIR)/%.o, $(SRCS))
 #LDIR = libft

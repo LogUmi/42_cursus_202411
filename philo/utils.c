@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 16:35:35 by lgerard           #+#    #+#             */
-/*   Updated: 2025/04/30 17:42:14 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/05/01 14:39:42 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_atoi(const char *nptr)
 {
-	int	i;
+	int		i;
 	long	val;
 	long	sign;
 
@@ -36,7 +36,15 @@ int	ft_atoi(const char *nptr)
 		i++;
 	}
 	val = val * sign;
-	if (!(val >= INT_MIN && val <=INT_MAX))
+	if (!(val >= INT_MIN && val <= INT_MAX))
 		return (-1);
 	return (val);
+}
+
+long long	get_time_ms(void)
+{
+	struct timeval	time;
+
+	gettimeofday(&time, NULL);
+	return ((time.tv_sec * 1000LL) + (time.tv_usec / 1000));
 }
