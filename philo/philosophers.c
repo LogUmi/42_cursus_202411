@@ -6,9 +6,13 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 11:34:54 by lgerard           #+#    #+#             */
-/*   Updated: 2025/05/01 11:35:12 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/05/02 18:02:32 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+void	philosopher(t_tab *t)
+{
+	
+}

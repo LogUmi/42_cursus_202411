@@ -21,7 +21,8 @@ OBJDIR = obj/
 SRCS = 	philo.c  \
 		utils.c \
 		init.c \
-		liberation.c
+		liberation.c \
+		simulation.c
 
 OBJS = $(patsubst %.c, $(OBJDIR)/%.o, $(SRCS))
 #LDIR = libft

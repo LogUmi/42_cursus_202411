@@ -6,24 +6,26 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 14:30:34 by lgerard           #+#    #+#             */
-/*   Updated: 2025/05/01 15:39:26 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/05/02 15:50:30 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static int	start_sim(t_sup *s)
+static int	check_values(t_sup *s)
 {
-	if (s->par[0] == 0 || s->par[4] == 0)
+	if (s->par[0] == 0 || s->par[0] > (N_PHILO - 1))
 	{
-		printf("End of simulation/n");
-		return ;
+		printf("Wrong number of philosophers (must be between 1 up to ");
+		printf("%i/n", N_PHILO);
+		return (1);
 	}
-	if (s->par[1] == 0)
+	if (s->par[4] == 0)
 	{
-		printf ("Philsopher 1 died/n");
-		return ;
+		printf("number_of_times_each_philosopher_must_eat must be > 0\n");
+		return (1);
 	}
+	return (0);
 }
 
 static int	ispdigit(char *s)
@@ -75,7 +77,10 @@ int	main(int argc, char **argv)
 		return (error_arg());
 	if (argc == 5)
 		s.par[4] = -1;
-		
+	if (check_values(&s) != 0)
+		return (error_arg());
+	if (init_sup(&s, 0) != 0)
+		return (1);
 	return (start_sim(&s));
 }
 /* 

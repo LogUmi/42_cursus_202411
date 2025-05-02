@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 14:41:04 by lgerard           #+#    #+#             */
-/*   Updated: 2025/05/01 15:46:33 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/05/02 18:17:02 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ typedef struct s_tab
 	int				id;
 	int				*par;
 	long long		*start_ms;
-	long long		*last_meal_ms;
+	long long		*last_meal;
 	int				*nmeal;
 	int				*gomeal;
 	int				*rfork;
@@ -70,7 +70,10 @@ typedef struct s_tab
 	pthread_mutex_t *mut_write;
 }					t_tab;
 
-int	init_sup(t_sup *s, int i);
-int	ft_atoi(const char *nptr);
+int		destroy_mut(t_sup *s);
+int		init_sup(t_sup *s, int i);
+int		ft_atoi(const char *nptr);
+int		start_sim(t_sup *s);
+void	supervisor(t_sup *s)
 
 #endif
