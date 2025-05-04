@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 15:09:17 by lgerard           #+#    #+#             */
-/*   Updated: 2025/05/02 17:41:51 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/05/04 10:44:30 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,21 @@ int	destroy_mut(t_sup *s)
 		pthread_mutex_destroy(&s->mut_end);
 	if (s->imut_write == 1)
 		pthread_mutex_destroy(&s->mut_write);
+	if (s->imut_start == 1)
+		pthread_mutex_destroy(&s->mut_start);
 	return (0);
+}
+
+int	release_all(t_sup *s, int j, int err)
+{
+	int	i;
+
+	if (j != -1)
+		i = j - 1;
+	else
+		i = s->par[0];
+	while (i > 0 && s->ids[i] != NULL)
+		free(s->ids[i--]);
+	destroy_mut(s);
+	return (err);
 }

@@ -6,58 +6,96 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 15:18:33 by lgerard           #+#    #+#             */
-/*   Updated: 2025/05/02 18:33:22 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/05/04 13:04:05 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	start_sim(t_sup *s)
+static int  philo_tab(t_sup *s, int i)
 {
-    int i;
+    t_tab      *t;
 
-	i = 0;
-	 if (pthread_create(&s->threads[i], NULL, philosopher_thread, (void *)s) != 0)
-        {
-            perror("Failed to create thread");
-            return 1;  // Retourne une erreur si la création du thread échoue
-        }
+	t = malloc(sizeof(t_tab));
+	if (!t)
+		return (1);
+	s->ids[i] = t;
+	t->id = i;
+	t->par = s->par;
+	t->start_ms = &s->start_ms;
+	t->lastmeal = &s->lastmeal[i];
+	t->nmeal = &s->nmeal[i];
+	t->gomeal = &s->gomeal[i];
+	t->rfork = &s->forks[i]; 
+	t->lfork = &s->forks[(i % (N_PHILO - 1)) + 1];
+	t->end = &s->end;
+	t->mut_rf = &s->mut_f[i];
+	t->mut_lf = &s->mut_f[(i % (N_PHILO - 1)) + 1];
+    t->mut_lastmeal = &s->mut_lastmeal[i];
+	t->mut_nmeal = &s->mut_nmeal[i];
+	t->mut_gomeal = &s->mut_gomeal[i];
+	t->mut_start = &s->mut_start;
+	t->mut_end = &s->mut_end;
+	t->mut_write = &s->mut_write;
+	return (0);
+}
 
-	
-    while (i < N_PHILO)
+static int	failed_thread(t_sup *s, int i)
+{
+	pthread_mutex_lock(&s->mut_end);
+	s->end = 1;
+	pthread_mutex_unlock(&s->mut_end);
+	printf("Failed to create thread philosopher\n");
+	while (i < (s->par[0] + 1 && s->threads[i]) != 0)
     {
-        tab.id = i;  
-        tab.par = s->par;
-        tab.last_meal = &s->lastmeal[i];
-        tab.nmeal = &s->nmeal[i];
-        tab.gomeal = &s->gomeal[i];
-        tab.rfork = &s->forks[i]; 
-        tab.lfork = &s->forks[(i % (N_PHILO - 1)) + 1];
-        tab.end = &s->end;
-        tab.mut_rf = &s->mut_f[i];
-        tab.mut_lf = &s->mut_f[(i % (N_PHILO - 1)) + 1];
-        tab.mut_lastmeal = &s->mut_lastmeal[i];
-        tab.mut_nmeal = &s->mut_nmeal[i];
-        tab.mut_gomeal = &s->mut_gomeal[i];
-        tab.mut_end = &s->mut_end;
-        tab.mut_write = &s->mut_write;
-
-        // Création du thread pour chaque philosophe
-        if (pthread_create(&s->threads[i], NULL, philosopher_thread, (void *)&tab) != 0)
-        {
-            perror("Failed to create thread");
-            return 1;  // Retourne une erreur si la création du thread échoue
-        }
+        if (pthread_join(s->threads[i], NULL) != 0)
+            printf("Failed to join thread %i\n", i);
+		i++;
     }
+	return (release_all(s, -1, 1));
+}
 
-    // Attente de la fin de tous les threads
-    for (i = 0; i < N_PHILO; i++)
+static int	start_sim_0(t_sup *s, int i)
+{
+	pthread_mutex_lock(&s->mut_start);
+	s->start_ms = get_time_ms();
+	pthread_mutex_unlock(&s->mut_start);
+	while (i < s->par[0] + 1)
     {
         if (pthread_join(s->threads[i], NULL) != 0)
         {
-            perror("Failed to join thread");
-            return 1;  // Retourne une erreur si le join échoue
+            printf("Failed to join thread %i\n", i);
+            return (release_all(s, -1, 1));
         }
+		i++;
     }
-	return (destroy_mut(s));
+	return (release_all(s, -1, 0));
 }
+
+int	start_sim(t_sup *s, int i)
+{
+	while (i < (s->par[0] + 1))
+	{
+		if (philo_tab(s, i) != 0)
+		{
+			printf ("Philosopher memory allocation issue\n");
+			return (release_all(s, i, 1));
+		}
+		i++;
+	}
+	i = 0;
+	if (pthread_create(&s->threads[i], NULL, supervisor, (void *)s) != 0)
+        {
+            printf("Failed to create thread supervisor\n");
+            return (release_all(s, -1, 1)); 
+        }
+    i++;
+    while (i < (s->par[0] + 1))
+    {
+        if (pthread_create(&s->threads[i], NULL, phil, (void *)s->ids[i]) != 0)
+            return (failed_thread(s, 0));
+		i++;
+    }
+	return (start_sim_0(s, 0));
+}
+

@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 14:30:34 by lgerard           #+#    #+#             */
-/*   Updated: 2025/05/02 15:50:30 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/05/04 09:39:46 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int	main(int argc, char **argv)
 		return (error_arg());
 	if (init_sup(&s, 0) != 0)
 		return (1);
-	return (start_sim(&s));
+	return (start_sim(&s, 1));
 }
 /* 
 number_of_philosophers

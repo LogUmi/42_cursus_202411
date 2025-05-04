@@ -1,16 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   test.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 16:35:35 by lgerard           #+#    #+#             */
-/*   Updated: 2025/05/04 12:53:37 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/05/04 12:51:34 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include <limits.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <pthread.h>
+#include <sys/time.h>
+#include <unistd.h>
 
 int	ft_atoi(const char *nptr)
 {
@@ -77,4 +82,17 @@ int	get_msgs(char *s, int i, int id, char *msg)
 		s[i++] = msg[j++];
 	s[i] = 0;
 	return (i);
+}
+int	main(void)
+{
+	char	s[100];
+	int		i;
+
+	i = 0;
+	i = get_msgs(&s[0], 0, 71, "Hey coucou hein\n");
+	write (1, &s[0], i);
+	usleep(2000);
+	i = get_msgs(&s[0], 0, 27, "Hey hey recoucou\n");
+	write (1, &s[0], i);
+	return (0);
 }
