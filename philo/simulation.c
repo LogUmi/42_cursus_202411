@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 15:18:33 by lgerard           #+#    #+#             */
-/*   Updated: 2025/05/04 13:04:05 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/05/05 16:58:06 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ static int  philo_tab(t_sup *s, int i)
 	t->nmeal = &s->nmeal[i];
 	t->gomeal = &s->gomeal[i];
 	t->rfork = &s->forks[i]; 
-	t->lfork = &s->forks[(i % (N_PHILO - 1)) + 1];
+	t->lfork = &s->forks[(i % (s->par[0] - 1)) + 1];
 	t->end = &s->end;
 	t->mut_rf = &s->mut_f[i];
-	t->mut_lf = &s->mut_f[(i % (N_PHILO - 1)) + 1];
+	t->mut_lf = &s->mut_f[(i % (s->par[0] - 1)) + 1];
     t->mut_lastmeal = &s->mut_lastmeal[i];
 	t->mut_nmeal = &s->mut_nmeal[i];
 	t->mut_gomeal = &s->mut_gomeal[i];

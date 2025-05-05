@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 14:39:55 by lgerard           #+#    #+#             */
-/*   Updated: 2025/05/04 10:43:40 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/05/05 18:23:48 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	init_sup(t_sup *s, int i)
 		s->lastmeal[i++] = 0;
 	i = 0;
 	while (i < N_PHILO)
-		s->nmeal[i++] = 0;
+		s->nmeal[i++] = s->par[4];
 	i = 0;
 	while (i < N_PHILO)
 		s->gomeal[i++] = 0;
