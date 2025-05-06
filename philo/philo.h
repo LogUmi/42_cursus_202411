@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 14:41:04 by lgerard           #+#    #+#             */
-/*   Updated: 2025/05/06 12:55:39 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/05/06 17:24:30 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ long long	get_time_ms(void);
 void		*phil(void *arg);
 int			release_all(t_sup *s, int j, int err);
 void		release_forks( t_tab *t);
-int			start_sim(t_sup *s, int i);
+int			start_sim(t_sup *s, int i, int p);
 void		*supervisor(void *arg);
 void		take_forks(t_tab *t);
 

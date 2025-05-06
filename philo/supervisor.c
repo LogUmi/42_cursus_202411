@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 11:35:17 by lgerard           #+#    #+#             */
-/*   Updated: 2025/05/06 13:38:24 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/05/06 17:34:44 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,19 +37,14 @@ void	*supervisor(void *arg)
 	t_sup	*s;
 	int		i;
 	int		j;
-	int		k;
 
 	s = (t_sup *)arg;
 	j = 0;
-	k = 0;
 	while(is_start(s, NULL) == -1 && is_end(s, NULL) == 0)
 		usleep(200);
-	//get_smsg(s, 0, "is started\n", 0);
 	while (is_end(s, NULL) != 1)
 	{
-		get_smsg(s, 0, "begin of loop\n", 0);
 		usleep(9000);
-		k++;
 		i = 1;
 		j = 0;
 		while (i < (s->par[0] + 1))
@@ -58,11 +53,9 @@ void	*supervisor(void *arg)
 			if ((get_time_ms() - is_lastmeal(s, i)) > s->par[1])
 				return (died_philo(s, i));
 			i++;
-			//get_smsg(s, 0, "position in loop\n", 0);
 		}
-		if (j == 0 || k > 100)
-			return (nmeal_reach(s, k));
-		//get_smsg(s, 0, "end of loop\n", 0);
+		if (j == 0)
+			return (nmeal_reach(s, 0));
 	}
 	return (NULL);
 }
