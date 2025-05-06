@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 10:58:44 by lgerard           #+#    #+#             */
-/*   Updated: 2025/05/05 16:04:59 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/05/06 12:53:34 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,62 +52,24 @@ int	is_end(t_sup *s, t_tab *t)
 	return (i);
 }
 
-int	is_gomeal(t_sup *s, t_tab *t)
+int	is_nmeal(t_sup *s, int id)
 {
 	int	i;
 
 	i = -1;
-	if (t)
-	{
-		pthread_mutex_lock(t->mut_gomeal);
-		i = (*t->gomeal);
-		pthread_mutex_unlock(t->mut_gomeal);
-	}
-	else if (s)
-	{
-		pthread_mutex_lock(&s->mut_gomeal);
-		i = s->gomeal;
-		pthread_mutex_unlock(&s->mut_gomeal);
-	}
+	pthread_mutex_lock(&s->mut_nmeal[id]);
+	i = s->nmeal[id];
+	pthread_mutex_unlock(&s->mut_nmeal[id]);
 	return (i);
 }
 
-int	is_nmeal(t_sup *s, t_tab *t)
-{
-	int	i;
-
-	i = -1;
-	if (t)
-	{
-		pthread_mutex_lock(t->mut_nmeal);
-		i = (*t->nmeal);
-		pthread_mutex_unlock(t->mut_nmeal);
-	}
-	else if (s)
-	{
-		pthread_mutex_lock(&s->mut_nmeal);
-		i = s->nmeal;
-		pthread_mutex_unlock(&s->mut_nmeal);
-	}
-	return (i);
-}
-
-long long	is_lastmeal(t_sup *s, t_tab *t)
+long long	is_lastmeal(t_sup *s, int id)
 {
 	long long	i;
 
 	i = -1;
-	if (t)
-	{
-		pthread_mutex_lock(t->mut_lastmeal);
-		i = (*t->lastmeal);
-		pthread_mutex_unlock(t->mut_lastmeal);
-	}
-	else if (s)
-	{
-		pthread_mutex_lock(&s->mut_lastmeal);
-		i = s->lastmeal;
-		pthread_mutex_unlock(&s->mut_lastmeal);
-	}
+	pthread_mutex_lock(&s->mut_lastmeal[id]);
+	i = s->lastmeal[id];
+	pthread_mutex_unlock(&s->mut_lastmeal[id]);
 	return (i);
 }

@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 16:35:35 by lgerard           #+#    #+#             */
-/*   Updated: 2025/05/04 12:53:37 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/05/06 12:35:33 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,17 +64,42 @@ static int	ins_num(char *s, long long n, int i)
 	return (j + 1);
 }
 
-int	get_msgs(char *s, int i, int id, char *msg)
+long long	get_pmsg(t_tab *t, char *msg, int i, int j)
 {
-	int	j;
+	long long	k;
+	char		c[100];
+
+	k = get_time_ms();
+	i += ins_num(&c[0], k, 0);
+	c[i++] = 32;
+	i += ins_num(&c[0], (long long)t->id, i);
+	c[i++] = 32;
+	while (msg[j])
+		c[i++] = msg[j++];
+	c[i] = 0;
+	pthread_mutex_lock(t->mut_write);
+	write(1, &c[0], i);
+	pthread_mutex_unlock(t->mut_write);
+	return (k);
+}
+
+long long	get_smsg(t_sup *s, int id, char *msg, int i)
+{
+	long long	k;
+	char		c[100];
+	int			j;
 
 	j = 0;
-	i += ins_num(s, get_time_ms(), 0);
-	s[i++] = 32;
-	i += ins_num(s, (long long)id, i);
-	s[i++] = 32;
+	k = get_time_ms();
+	i += ins_num(&c[0], k, 0);
+	c[i++] = 32;
+	i += ins_num(&c[0], (long long)id, i);
+	c[i++] = 32;
 	while (msg[j])
-		s[i++] = msg[j++];
-	s[i] = 0;
-	return (i);
+		c[i++] = msg[j++];
+	c[i] = 0;
+	pthread_mutex_lock(&s->mut_write);
+	write(1, &c[0], i);
+	pthread_mutex_unlock(&s->mut_write);
+	return (k);
 }

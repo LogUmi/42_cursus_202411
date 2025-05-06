@@ -25,7 +25,8 @@ SRCS = 	philo.c  \
 		simulation.c \
 		philosophers.c \
 		supervisor.c \
-		var_mutex.c
+		var_mutex.c \
+		var_mutex_0.c
 
 OBJS = $(patsubst %.c, $(OBJDIR)/%.o, $(SRCS))
 #LDIR = libft

@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 15:18:33 by lgerard           #+#    #+#             */
-/*   Updated: 2025/05/05 16:58:06 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/05/06 12:58:58 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,20 @@ static int	failed_thread(t_sup *s, int i)
 
 static int	start_sim_0(t_sup *s, int i)
 {
+	long long	k;
+
+	k = get_time_ms();
+	while (i < s->par[0] + 1)
+	{
+		pthread_mutex_lock(&s->mut_lastmeal[i]);
+		s->lastmeal[i] = k;
+		pthread_mutex_unlock(&s->mut_lastmeal[i]);
+		i++;
+	}
 	pthread_mutex_lock(&s->mut_start);
-	s->start_ms = get_time_ms();
+	s->start_ms = k;
 	pthread_mutex_unlock(&s->mut_start);
+	i = 0;
 	while (i < s->par[0] + 1)
     {
         if (pthread_join(s->threads[i], NULL) != 0)

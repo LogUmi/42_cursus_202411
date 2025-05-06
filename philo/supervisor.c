@@ -6,24 +6,63 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 11:35:17 by lgerard           #+#    #+#             */
-/*   Updated: 2025/05/04 13:12:31 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/05/06 13:38:24 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+static void	*died_philo(t_sup *s, int i)
+{
+	pthread_mutex_lock(&s->mut_end);
+		s->end = 1;
+	pthread_mutex_unlock(&s->mut_end);
+	get_smsg(s, i, "died\n", 0);
+	return (NULL);
+}
+static void	*nmeal_reach(t_sup *s, int k)
+{
+	pthread_mutex_lock(&s->mut_end);
+		s->end = 1;
+	pthread_mutex_unlock(&s->mut_end);
+	if (k > 100)
+	{
+		get_smsg(s, 0, "safe mode exit\n", 0);
+	}
+	return (NULL);
+}
+
 void	*supervisor(void *arg)
 {
 	t_sup	*s;
-	char	c[100];
 	int		i;
+	int		j;
+	int		k;
 
 	s = (t_sup *)arg;
+	j = 0;
+	k = 0;
 	while(is_start(s, NULL) == -1 && is_end(s, NULL) == 0)
 		usleep(200);
-	i = get_msgs(&c[0], 0, 0, "is started\n");
-	pthread_mutex_lock(&s->mut_write);
-	write(1, &c[0], i);
-	pthread_mutex_unlock(&s->mut_write);
+	//get_smsg(s, 0, "is started\n", 0);
+	while (is_end(s, NULL) != 1)
+	{
+		get_smsg(s, 0, "begin of loop\n", 0);
+		usleep(9000);
+		k++;
+		i = 1;
+		j = 0;
+		while (i < (s->par[0] + 1))
+		{
+			j += is_nmeal(s, i);
+			if ((get_time_ms() - is_lastmeal(s, i)) > s->par[1])
+				return (died_philo(s, i));
+			i++;
+			//get_smsg(s, 0, "position in loop\n", 0);
+		}
+		if (j == 0 || k > 100)
+			return (nmeal_reach(s, k));
+		//get_smsg(s, 0, "end of loop\n", 0);
+	}
 	return (NULL);
 }

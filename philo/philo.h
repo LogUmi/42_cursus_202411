@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 14:41:04 by lgerard           #+#    #+#             */
-/*   Updated: 2025/05/05 18:13:15 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/05/06 12:55:39 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,18 +75,18 @@ typedef struct s_sup
 int			destroy_mut(t_sup *s);
 int			init_sup(t_sup *s, int i);
 int			is_end(t_sup *s, t_tab *t);
-int			is_forks_id(t_sup *s, int id);
-int			is_gomeal(t_sup *s, t_tab *t);
-long long	is_lastmeal(t_sup *s, t_tab *t);
-int			is_nmeal(t_sup *s, t_tab *t);
+long long	is_lastmeal(t_sup *s, int id);
+int			is_nmeal(t_sup *s, int id);
 long long	is_start(t_sup *s, t_tab *t);
 int			ft_atoi(const char *nptr);
-int			get_msgs(char *s, int i, int id, char *msg);
+long long	get_pmsg(t_tab *t, char *msg, int i, int j);
+long long	get_smsg(t_sup *s, int id, char *msg, int i);
 long long	get_time_ms(void);
 void		*phil(void *arg);
 int			release_all(t_sup *s, int j, int err);
+void		release_forks( t_tab *t);
 int			start_sim(t_sup *s, int i);
 void		*supervisor(void *arg);
-int			take_forks(t_tab *t, int i, int j);
+void		take_forks(t_tab *t);
 
 #endif
