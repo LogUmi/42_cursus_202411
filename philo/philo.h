@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 14:41:04 by lgerard           #+#    #+#             */
-/*   Updated: 2025/05/06 17:24:30 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/05/07 17:40:23 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ typedef struct s_tab
 	pthread_mutex_t *mut_lf;
 	pthread_mutex_t *mut_lastmeal;
 	pthread_mutex_t *mut_nmeal;
-	pthread_mutex_t *mut_gomeal;
 	pthread_mutex_t *mut_start;
 	pthread_mutex_t *mut_end;
 	pthread_mutex_t *mut_write;
@@ -53,7 +52,6 @@ typedef struct s_sup
 	long long		start_ms;
 	long long		lastmeal[N_PHILO];
 	int				nmeal[N_PHILO];
-	int				gomeal[N_PHILO];
 	int				forks[N_PHILO];
 	int				end;
 	pthread_mutex_t mut_f[N_PHILO];
@@ -62,8 +60,6 @@ typedef struct s_sup
 	int				imut_lastmeal[N_PHILO];
 	pthread_mutex_t mut_nmeal[N_PHILO];
 	int				imut_nmeal[N_PHILO];
-	pthread_mutex_t mut_gomeal[N_PHILO];
-	int				imut_gomeal[N_PHILO];
 	pthread_mutex_t mut_start;
 	int				imut_start;
 	pthread_mutex_t mut_end;
@@ -84,9 +80,7 @@ long long	get_smsg(t_sup *s, int id, char *msg, int i);
 long long	get_time_ms(void);
 void		*phil(void *arg);
 int			release_all(t_sup *s, int j, int err);
-void		release_forks( t_tab *t);
-int			start_sim(t_sup *s, int i, int p);
+void		release_end(t_tab *t, int way);
+int			start_sim(t_sup *s, int i);
 void		*supervisor(void *arg);
-void		take_forks(t_tab *t);
-
 #endif

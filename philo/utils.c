@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 16:35:35 by lgerard           #+#    #+#             */
-/*   Updated: 2025/05/06 12:35:33 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/05/07 19:10:38 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,10 +67,12 @@ static int	ins_num(char *s, long long n, int i)
 long long	get_pmsg(t_tab *t, char *msg, int i, int j)
 {
 	long long	k;
+	long long	l;
 	char		c[100];
 
 	k = get_time_ms();
-	i += ins_num(&c[0], k, 0);
+	l = k - (*t->start_ms);
+	i += ins_num(&c[0], l, 0);
 	c[i++] = 32;
 	i += ins_num(&c[0], (long long)t->id, i);
 	c[i++] = 32;
@@ -86,12 +88,14 @@ long long	get_pmsg(t_tab *t, char *msg, int i, int j)
 long long	get_smsg(t_sup *s, int id, char *msg, int i)
 {
 	long long	k;
+	long long	l;
 	char		c[100];
 	int			j;
 
 	j = 0;
 	k = get_time_ms();
-	i += ins_num(&c[0], k, 0);
+	l = k - s->start_ms;
+	i += ins_num(&c[0], l, 0);
 	c[i++] = 32;
 	i += ins_num(&c[0], (long long)id, i);
 	c[i++] = 32;

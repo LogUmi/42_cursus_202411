@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 15:09:17 by lgerard           #+#    #+#             */
-/*   Updated: 2025/05/04 10:44:30 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/05/07 17:34:22 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,6 @@ int	destroy_mut(t_sup *s)
 	i = 0;
 	while (i < N_PHILO && s->imut_nmeal[i] == 1)
 		pthread_mutex_destroy(&s->mut_nmeal[i++]);
-	i = 0;
-	while (i < N_PHILO && s->imut_gomeal[i] == 1)
-		pthread_mutex_destroy(&s->mut_gomeal[i++]);
 	if (s->imut_end == 1)
 		pthread_mutex_destroy(&s->mut_end);
 	if (s->imut_write == 1)

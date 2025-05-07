@@ -6,13 +6,13 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 15:18:33 by lgerard           #+#    #+#             */
-/*   Updated: 2025/05/06 17:28:02 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/05/07 17:33:21 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static int  philo_tab(t_sup *s, int i, int p)
+static int  philo_tab(t_sup *s, int i)
 {
     t_tab      *t;
 
@@ -25,15 +25,13 @@ static int  philo_tab(t_sup *s, int i, int p)
 	t->start_ms = &s->start_ms;
 	t->lastmeal = &s->lastmeal[i];
 	t->nmeal = &s->nmeal[i];
-	t->gomeal = &s->gomeal[i];
 	t->rfork = &s->forks[i]; 
-	t->lfork = &s->forks[(i % (s->par[0] - 1 + p)) + 1];
+	t->lfork = &s->forks[(i % (s->par[0])) + 1];
 	t->end = &s->end;
 	t->mut_rf = &s->mut_f[i];
-	t->mut_lf = &s->mut_f[(i % (s->par[0] - 1 + p)) + 1];
+	t->mut_lf = &s->mut_f[(i % (s->par[0])) + 1];
     t->mut_lastmeal = &s->mut_lastmeal[i];
 	t->mut_nmeal = &s->mut_nmeal[i];
-	t->mut_gomeal = &s->mut_gomeal[i];
 	t->mut_start = &s->mut_start;
 	t->mut_end = &s->mut_end;
 	t->mut_write = &s->mut_write;
@@ -83,13 +81,11 @@ static int	start_sim_0(t_sup *s, int i)
 	return (release_all(s, -1, 0));
 }
 
-int	start_sim(t_sup *s, int i, int p)
+int	start_sim(t_sup *s, int i)
 {
-	if (s->par[0] == 1)
-		p = 1;
 	while (i < (s->par[0] + 1))
 	{
-		if (philo_tab(s, i, p) != 0)
+		if (philo_tab(s, i) != 0)
 		{
 			printf ("Philosopher memory allocation issue\n");
 			return (release_all(s, i, 1));

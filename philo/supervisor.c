@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 11:35:17 by lgerard           #+#    #+#             */
-/*   Updated: 2025/05/07 11:47:32 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/05/07 17:35:24 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static void	*died_philo(t_sup *s, int i)
 	get_smsg(s, i, "died\n", 0);
 	return (NULL);
 }
+
 static void	*nmeal_reach(t_sup *s, int k)
 {
 	pthread_mutex_lock(&s->mut_end);
