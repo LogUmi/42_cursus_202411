@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 11:35:17 by lgerard           #+#    #+#             */
-/*   Updated: 2025/05/07 11:47:32 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/05/07 09:01:06 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,10 +41,10 @@ void	*supervisor(void *arg)
 	s = (t_sup *)arg;
 	j = 0;
 	while(is_start(s, NULL) == -1 && is_end(s, NULL) == 0)
-		usleep(200);
+		usleep(1000);
 	while (is_end(s, NULL) != 1)
 	{
-		usleep(5000);
+		usleep(8000);
 		i = 1;
 		j = 0;
 		while (i < (s->par[0] + 1))
