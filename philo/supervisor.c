@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 11:35:17 by lgerard           #+#    #+#             */
-/*   Updated: 2025/05/07 17:35:24 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/05/08 11:26:14 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,21 +15,20 @@
 static void	*died_philo(t_sup *s, int i)
 {
 	pthread_mutex_lock(&s->mut_end);
-		s->end = 1;
+	s->end = 1;
 	pthread_mutex_unlock(&s->mut_end);
-	get_smsg(s, i, "died\n", 0);
+	usleep(1000);
+	get_smsg(s, i, "died - End of simulation\n", 0);
 	return (NULL);
 }
 
-static void	*nmeal_reach(t_sup *s, int k)
+static void	*nmeal_reach(t_sup *s)
 {
 	pthread_mutex_lock(&s->mut_end);
-		s->end = 1;
+	s->end = 1;
 	pthread_mutex_unlock(&s->mut_end);
-	if (k > 100)
-	{
-		get_smsg(s, 0, "safe mode exit\n", 0);
-	}
+	usleep(1000);
+	get_smsg(s, s->par[4], "meal(s) taken for all - End of simulation\n", 0);
 	return (NULL);
 }
 
@@ -41,22 +40,22 @@ void	*supervisor(void *arg)
 
 	s = (t_sup *)arg;
 	j = 0;
-	while(is_start(s, NULL) == -1 && is_end(s, NULL) == 0)
+	while (is_start(s, NULL) == -1 && is_end(s, NULL) == 0)
 		usleep(200);
-	while (is_end(s, NULL) != 1)
+	while (1)
 	{
 		usleep(5000);
 		i = 1;
 		j = 0;
 		while (i < (s->par[0] + 1))
 		{
-			j += is_nmeal(s, i);
+			j = j + is_nmeal(s, i);
 			if ((get_time_ms() - is_lastmeal(s, i)) > s->par[1])
 				return (died_philo(s, i));
 			i++;
 		}
 		if (j == 0)
-			return (nmeal_reach(s, 0));
+			return (nmeal_reach(s));
 	}
 	return (NULL);
 }

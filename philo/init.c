@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 14:39:55 by lgerard           #+#    #+#             */
-/*   Updated: 2025/05/07 17:42:30 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/05/08 10:07:27 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int	init_mut_tab(pthread_mutex_t mut[], int *imut, t_sup *s)
 static int	init_mut_one(pthread_mutex_t *mut, int *imut, t_sup *s)
 {
 	if (pthread_mutex_init(mut, NULL) == 0)
-			(*imut) = 1;
+		(*imut) = 1;
 	else
 	{
 		destroy_mut(s);
@@ -59,9 +59,9 @@ static int	init_sup_0(t_sup *s, int i)
 	if (init_mut_one(&s->mut_end, &s->imut_end, s) != 0)
 		return (1);
 	if (init_mut_one(&s->mut_write, &s->imut_write, s) != 0)
-		return(1);
+		return (1);
 	if (init_mut_one(&s->mut_start, &s->imut_start, s) != 0)
-		return(1);
+		return (1);
 	return (0);
 }
 
@@ -92,4 +92,3 @@ int	init_sup(t_sup *s, int i)
 	s->imut_write = 0;
 	return (init_sup_0(s, 0));
 }
-	

@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 10:58:44 by lgerard           #+#    #+#             */
-/*   Updated: 2025/05/07 17:39:25 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/05/08 11:46:29 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,21 +74,3 @@ long long	is_lastmeal(t_sup *s, int id)
 	return (i);
 }
 
-void	release_end(t_tab *t, int way)
-{
-	if (way == 0)
-		pthread_mutex_unlock(t->mut_rf);
-	else if (way == 1)
-	{
-		pthread_mutex_unlock(t->mut_rf);
-		pthread_mutex_unlock(t->mut_lf);
-	}
-	else if (way == 2)
-		pthread_mutex_unlock(t->mut_lf);
-	else if (way == 3)
-	{
-		pthread_mutex_unlock(t->mut_lf);
-		pthread_mutex_unlock(t->mut_rf);
-	}
-	return ;
-}

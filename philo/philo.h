@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 14:41:04 by lgerard           #+#    #+#             */
-/*   Updated: 2025/05/07 17:40:23 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/05/08 12:53:50 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,13 +35,13 @@ typedef struct s_tab
 	int				*rfork;
 	int				*lfork;
 	int				*end;
-	pthread_mutex_t *mut_rf;
-	pthread_mutex_t *mut_lf;
-	pthread_mutex_t *mut_lastmeal;
-	pthread_mutex_t *mut_nmeal;
-	pthread_mutex_t *mut_start;
-	pthread_mutex_t *mut_end;
-	pthread_mutex_t *mut_write;
+	pthread_mutex_t	*mut_rf;
+	pthread_mutex_t	*mut_lf;
+	pthread_mutex_t	*mut_lastmeal;
+	pthread_mutex_t	*mut_nmeal;
+	pthread_mutex_t	*mut_start;
+	pthread_mutex_t	*mut_end;
+	pthread_mutex_t	*mut_write;
 }					t_tab;
 
 typedef struct s_sup
@@ -54,17 +54,17 @@ typedef struct s_sup
 	int				nmeal[N_PHILO];
 	int				forks[N_PHILO];
 	int				end;
-	pthread_mutex_t mut_f[N_PHILO];
+	pthread_mutex_t	mut_f[N_PHILO];
 	int				imut_f[N_PHILO];
-	pthread_mutex_t mut_lastmeal[N_PHILO];
+	pthread_mutex_t	mut_lastmeal[N_PHILO];
 	int				imut_lastmeal[N_PHILO];
-	pthread_mutex_t mut_nmeal[N_PHILO];
+	pthread_mutex_t	mut_nmeal[N_PHILO];
 	int				imut_nmeal[N_PHILO];
-	pthread_mutex_t mut_start;
+	pthread_mutex_t	mut_start;
 	int				imut_start;
-	pthread_mutex_t mut_end;
+	pthread_mutex_t	mut_end;
 	int				imut_end;
-	pthread_mutex_t mut_write;
+	pthread_mutex_t	mut_write;
 	int				imut_write;
 }					t_sup;
 
@@ -78,9 +78,11 @@ int			ft_atoi(const char *nptr);
 long long	get_pmsg(t_tab *t, char *msg, int i, int j);
 long long	get_smsg(t_sup *s, int id, char *msg, int i);
 long long	get_time_ms(void);
+int			go_think(t_tab *t, int state);
 void		*phil(void *arg);
 int			release_all(t_sup *s, int j, int err);
-void		release_end(t_tab *t, int way);
+int			release_end(t_tab *t, int way);
 int			start_sim(t_sup *s, int i);
 void		*supervisor(void *arg);
+int			take_forks(t_tab *t, int state);
 #endif

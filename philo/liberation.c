@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 15:09:17 by lgerard           #+#    #+#             */
-/*   Updated: 2025/05/07 17:34:22 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/05/08 10:08:09 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	destroy_mut(t_sup *s)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < N_PHILO && s->imut_f[i] == 1)
