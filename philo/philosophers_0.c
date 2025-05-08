@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/08 11:40:17 by lgerard           #+#    #+#             */
-/*   Updated: 2025/05/08 13:51:52 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/05/08 14:26:50 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,28 @@ int	take_forks(t_tab *t, int state)
 	return (state);
 }
 
-int	go_think(t_tab *t, int state)
+int	go_think_or_take(t_tab *t, int state)
 {
-	get_pmsg(t, "is thinking\n", 0, 0);
+	int	i;
+	int	j;
+	
+	i = 0;
+	j = 0;
+	if (state == 0)
+	{
+		i = -1;
+		j = -1;
+	}
+	state = 1;
 	while (state == 1 && is_end(NULL, t) == 0)
 	{
-		usleep(200);
+		if (i == 0)
+			get_pmsg(t, "is thinking\n", 0, 0);
+		if (j == 0)
+			usleep(1000);	
 		state = take_forks(t, 1);
+		i = 1;
+		j = 0;
 	}
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 14:41:04 by lgerard           #+#    #+#             */
-/*   Updated: 2025/05/08 12:53:50 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/05/08 14:11:58 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ int			ft_atoi(const char *nptr);
 long long	get_pmsg(t_tab *t, char *msg, int i, int j);
 long long	get_smsg(t_sup *s, int id, char *msg, int i);
 long long	get_time_ms(void);
-int			go_think(t_tab *t, int state);
+int			go_think_or_take(t_tab *t, int state);
 void		*phil(void *arg);
 int			release_all(t_sup *s, int j, int err);
 int			release_end(t_tab *t, int way);
