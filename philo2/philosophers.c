@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 11:34:54 by lgerard           #+#    #+#             */
-/*   Updated: 2025/05/09 13:15:37 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/05/09 12:46:21 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,7 @@ static void	go_eat(t_tab *t)
 	(*t->lastmeal) = k;// + t->par[2];
 	pthread_mutex_unlock(t->mut_lastmeal);
 	usleep(t->par[2] * 1000);
-	pthread_mutex_lock(t->mut_rf);
-	pthread_mutex_lock(t->mut_lf);
-	(*t->rfork) = 0;
-	(*t->lfork) = 0;
-	pthread_mutex_unlock(t->mut_rf);
-	pthread_mutex_unlock(t->mut_lf);
+	release_forks(t);
 	pthread_mutex_lock(t->mut_nmeal);
 	if ((*t->nmeal) > 0)
 		(*t->nmeal)--;
@@ -51,7 +46,6 @@ static int	def_state(t_tab *t)
 {
 	if ((t->id % 2) == 0)
 	{
-		//usleep(1000);
 		return (1);
 	}
 	return (0);

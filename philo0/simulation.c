@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   simulation.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/02 15:18:33 by lgerard           #+#    #+#             */
-/*   Updated: 2025/05/08 10:46:37 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/05/09 13:14:41 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ static int	failed_thread(t_sup *s, int i)
 	s->end = 1;
 	pthread_mutex_unlock(&s->mut_end);
 	printf("Failed to create thread philosopher\n");
-	while (i < (s->par[0] + 1 && s->threads[i]) != 0)
+	while (i < (s->par[0] + 1) && s->threads[i] != 0)
 	{
 		if (pthread_join(s->threads[i], NULL) != 0)
 			printf("Failed to join thread %i\n", i);

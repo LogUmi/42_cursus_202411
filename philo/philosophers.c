@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 11:34:54 by lgerard           #+#    #+#             */
-/*   Updated: 2025/05/08 14:24:03 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/05/09 13:14:12 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ static void	go_eat(t_tab *t)
 	(*t->lastmeal) = k;// + t->par[2];
 	pthread_mutex_unlock(t->mut_lastmeal);
 	usleep(t->par[2] * 1000);
-	pthread_mutex_unlock(t->mut_rf);
-	pthread_mutex_unlock(t->mut_lf);
+	pthread_mutex_lock(t->mut_rf);
+	pthread_mutex_lock(t->mut_lf);
 	(*t->rfork) = 0;
 	(*t->lfork) = 0;
 	pthread_mutex_unlock(t->mut_rf);
