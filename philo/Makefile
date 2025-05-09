@@ -24,7 +24,6 @@ SRCS = 	philo.c  \
 		liberation.c \
 		simulation.c \
 		philosophers.c \
-		philosophers_0.c\
 		supervisor.c \
 		var_mutex.c
 

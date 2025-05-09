@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 11:35:17 by lgerard           #+#    #+#             */
-/*   Updated: 2025/05/08 11:22:07 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/05/09 16:17:28 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	*died_philo(t_sup *s, int i)
 	s->end = 1;
 	pthread_mutex_unlock(&s->mut_end);
 	usleep(1000);
-	get_smsg(s, i, "died - End of simulation\n", 0);
+	get_smsg(s, i, "died\n", 0);
 	return (NULL);
 }
 
@@ -28,7 +28,7 @@ static void	*nmeal_reach(t_sup *s)
 	s->end = 1;
 	pthread_mutex_unlock(&s->mut_end);
 	usleep(1000);
-	get_smsg(s, s->par[4], "meal(s) taken for all - End of simulation\n", 0);
+	get_smsg(s, s->par[4], "meal(s) taken for all\n", 0);
 	return (NULL);
 }
 
@@ -44,7 +44,7 @@ void	*supervisor(void *arg)
 		usleep(200);
 	while (1)
 	{
-		usleep(2000);
+		usleep(6000);
 		i = 1;
 		j = 0;
 		while (i < (s->par[0] + 1))

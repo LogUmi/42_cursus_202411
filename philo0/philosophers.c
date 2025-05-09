@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/01 11:34:54 by lgerard           #+#    #+#             */
-/*   Updated: 2025/05/08 11:09:57 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/05/09 16:11:53 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	go_eat(t_tab *t)
 
 	k = get_pmsg(t, "is eating\n", 0, 0);
 	pthread_mutex_lock(t->mut_lastmeal);
-	(*t->lastmeal) = k + t->par[2];
+	(*t->lastmeal) = k;
 	pthread_mutex_unlock(t->mut_lastmeal);
 	usleep(t->par[2] * 1000);
 	if ((t->id % 2) == 0)

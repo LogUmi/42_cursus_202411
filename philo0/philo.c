@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/30 14:30:34 by lgerard           #+#    #+#             */
-/*   Updated: 2025/05/07 17:13:32 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/05/09 19:21:45 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static int	check_values(t_sup *s)
 	if (s->par[0] == 0 || s->par[0] > (N_PHILO - 1))
 	{
 		printf("Wrong number of philosophers (must be between 1 up to ");
-		printf("%i/n", N_PHILO);
+		printf("%i/n", N_PHILO - 1);
 		return (1);
 	}
 	if (s->par[4] == 0)
