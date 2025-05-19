@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/14 17:10:08 by lgerard           #+#    #+#             */
-/*   Updated: 2024/11/14 18:28:23 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/03/13 16:38:26 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 		j++;
 	}
 	ns[i] = 0;
+	free((char *)s1);
 	return (ns);
 }
 /* #include <stdio.h>

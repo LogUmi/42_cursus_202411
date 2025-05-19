@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
+/*   input_errors.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/27 13:30:51 by lgerard           #+#    #+#             */
-/*   Updated: 2024/11/27 20:01:14 by lgerard          ###   ########.fr       */
+/*   Created: 2025/05/15 14:58:17 by cgregoir          #+#    #+#             */
+/*   Updated: 2025/05/16 16:25:14 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "minishell.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+void	cmd_nf(char *argv)
 {
-	t_list	*tlst;
+	ft_printf("minishell: ");
+	ft_putstr_fd(argv, 2);
+	ft_putstr_fd(": command not found\n", 2);
+}
 
-	if (!lst || !new)
-		return ;
-	tlst = *lst;
-	if (*lst == 0)
-	{
-		*lst = new;
-		return ;
-	}
-	while (tlst->next != 0)
-		tlst = tlst->next;
-	tlst->next = new;
+void	file_error(char *file)
+{
+	ft_putstr_fd(file, 2);
+	ft_putstr_fd(": ", 2);
+	ft_putendl_fd(strerror(errno), 2);
+}
+
+void	synthax_error(void)
+{
+	ft_putstr_fd("minishell: synthax error", 2);
 	return ;
 }

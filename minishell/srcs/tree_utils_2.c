@@ -1,31 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
+/*   tree_utils_2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/27 13:30:51 by lgerard           #+#    #+#             */
-/*   Updated: 2024/11/27 20:01:14 by lgerard          ###   ########.fr       */
+/*   Created: 2025/05/15 10:49:04 by lgerard           #+#    #+#             */
+/*   Updated: 2025/05/15 10:49:06 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/libft.h"
+#include "minishell.h"
 
-void	ft_lstadd_back(t_list **lst, t_list *new)
+t_bin	*last_leaf(t_bin **tr)
 {
-	t_list	*tlst;
+	t_bin	*lf;
 
-	if (!lst || !new)
-		return ;
-	tlst = *lst;
-	if (*lst == 0)
-	{
-		*lst = new;
-		return ;
-	}
-	while (tlst->next != 0)
-		tlst = tlst->next;
-	tlst->next = new;
-	return ;
+	lf = *tr;
+	while (lf->dad != NULL)
+		lf = lf->dad;
+	return (lf);
+}
+
+void	tree_free_left(t_bin *leave)
+{
+	if (leave->left != 0)
+		tree_free_left(leave->left);
+	leave->dad->left = NULL;
+	leave->dad = NULL;
+	if (leave->right != 0)
+		tree_free_right(leave->right);
+	magic_split_free(leave->val, -1);
+	free(leave);
 }

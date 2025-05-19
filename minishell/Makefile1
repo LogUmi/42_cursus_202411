@@ -18,9 +18,9 @@ endif
 NAME = 	minishell.a
 EXEC =	minishell
 HDRS = 	minishell.h
-OBJDIR = objs
+OBJDIR = objs/
 SRCDIR = srcs/
-FILEC =	minishell.c \
+FILEC=	minishell.c \
 		set_shlvl.c \
 		input_utils.c \
 		signals.c \
@@ -46,7 +46,7 @@ FILEC =	minishell.c \
 		builtin_echo.c \
 		input_errors.c \
 		init_env.c \
-		main_loop.c	\
+		//main_loop.c \
 		linklist_utils.c \
 		expand_2.c \
 		history.c \
@@ -67,10 +67,10 @@ FILEC =	minishell.c \
 		exec_com_3.c \
 		exec_com_4.c
 
-OBJS = $(patsubst %.c, $(OBJDIR)/%.o, $(FILEC))
-SRCS = $(addprefix	$(SRCDIR),	$(FILEC))
-LDIR = libft
-LIBR = $(LDIR)/libft.a
+SRCS =	$(addprefix	$(SRCDIR),	$(FILEC))
+OBJS =	$(addprefix	$(OBJDIR),	$(FILEC:.c=.o))
+LDIR = 	libft
+LIBR = 	$(LDIR)/libft.a
 FLAGS = -fPIC -Wall -Werror -Wextra
 CC = cc
 AR = ar -rcs
@@ -80,14 +80,14 @@ all:		$(OBJDIR)	$(NAME)	$(EXEC)
 $(NAME):	$(OBJS)	$(LIBR) $(HDRS)
 			$(AR) $(NAME) $(OBJS)	
 
-# Compilation des fichiers .o dans obj/
-$(OBJDIR)/%.o: $(SRCDIR)/%.c | $(OBJDIR)
-	$(CC) $(FLAGS) $(READLINE_PART) -I. -I$(LDIR) -c $< -o $@
-
-# Création du dossier obj/ si nécessaire
+# Création du dossier objs/ si nécessaire
 $(OBJDIR):
-	mkdir -p $(OBJDIR)
-			
+			mkdir -p $(OBJDIR)
+
+# Compilation des fichiers .o dans obj/
+$(OBJDIR)/%.o:	$(SRCDIR)/%.c	|	$(OBJDIR)
+			$(CC) $(FLAGS) $(READLINE_PART) -I. -I$(LDIR) -c $< -o $@
+
 $(LIBR):		
 			[ -d $(LDIR) ] && $(MAKE) -C $(LDIR) all
 			cp $(LIBR) .

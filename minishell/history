@@ -1,0 +1,737 @@
+ls
+export | wc
+ls
+exit
+echo "coucou" |grep c
+echo "coucou" | ls
+echo | ls
+cat Makefile | grep q
+export | grep HOME
+export | grep HOME
+export | grep HOME
+export | grep HOME
+export | grep HOME
+export | grep HOME
+export
+env
+cd | grep e
+export VAR=42 | grep 42
+echo "coucou" | ls
+make fclean
+git add .
+export | grep HOME
+exit
+export | HOME
+export | grep HOME
+exit
+export | grep HOME
+exit
+export | grep HOME
+env
+env | grep SHELL
+exit
+export
+env | grep SHELL
+exit
+export
+env | grep SHELL
+exit
+env | grep SHELL
+exit
+env | grep SHELL
+export | grep HOME
+./minishell
+exit 123468
+echo $?
+exit
+grep hi <./test_files/infile
+ls
+cd minishell_tester/
+/bin/ls
+/bin/cat Makefile 
+echo bonjour
+echo $HOME
+echo -n $HOME
+echo $HOME
+exit 1 2
+exit 1
+/bin/ls 
+echo $?
+/bin/ls ehrbb
+$? + $?
+$?
+$?
+exit
+$?
+exit
+$?
+$? + $?
+exit
+$? + $?
+$? + $?
+$? + $?
+exit
+$? + $?
+$? + $?
+$? + $?
+exit
+$? + $?
+$? + $?
+$? + $?
+exit
+cat
+cat
+cat
+cat
+cat 
+echo "cat lol.c | cat lol.c"
+echo '$USER'
+env
+unset
+exit
+unset HOME
+env
+unset USER PWD
+env
+export
+exit
+export
+unset OLDPWD HOME
+export
+env
+export
+unset HOME
+export
+env
+unset PWD
+env
+export
+exit
+unset PWD
+env
+export
+exit
+unset HOME
+unset PWD
+env
+exit
+export | grep HOME
+exit
+exit
+ls | wc
+env | wc
+export | wc
+export | grep HOME
+exit
+ls | wc
+ls
+export | grep HOME
+exit
+ls
+cat output
+<output grep OBJDIR 
+exit
+ls
+export
+export | grep HOME
+exit
+ls
+export | grep HOME
+env | grep HOME
+env
+exit
+export | grep HOME
+exit
+ls
+ls | grep bui
+env | grep PWD
+exit
+ls | wc
+exit
+export | grep HOME
+export
+ls | wc
+exit
+export
+ls | wc
+ls | wc
+export | grep HOME
+exit
+export
+ls
+ls | wc
+ls | wc | rev
+export | grep PWD
+export | grep PWD | wc
+export | grep PWD | wc | rev
+export | grep PWD | rev
+export | grep PWD | rev | wc
+ls
+cat output
+rev <output | grep RI 
+rev <output | grep RI | wc
+rev <output | grep RI | wc | rev
+cat | cat | ls
+<<
+<< drm
+exit
+export
+export | grep HOME
+export | grep HOME | rev
+export | grep HOME | rev | wc
+cat Makefile | rev | grep RI | wc
+exit
+cat Makefile | rev | grep RI | wc
+exit
+cat Makefile | rev | grep RI | wc
+export | grep HOME
+exit
+<output grep IR | wc | rev
+<output grep IR | wc | rev | grep 913
+<output grep IR | wc | rev | grep 913
+<output grep IR | wc | rev
+<output grep IR | wc
+<output >outfile1 grep IR | rev | wc -l
+cat outfile1 
+exir
+exit
+echo $SHLVL
+./minishell
+echo $SHLVL
+exit
+exit
+echo 1 2 3\4
+unset PATH
+ls
+env
+export
+export | grep PATH
+env | grep PATH
+cat
+echo bonjour | |
+echo bonjour ||
+echo bonjour |;
+echo -n -n -nnnn -nnnnm
+cat /dev/random | head -n 1 | cat -e
+env
+export
+env
+ls
+unset PATH
+ls
+exit
+unset PATH
+ls
+cat Makefile 
+cat Makefile 
+cat Makefile 
+exit
+ls
+unset PATH
+ls
+cd
+env
+export
+/bin/ls
+ls
+exit
+/bin/sff
+ls
+unset PATH
+ls
+exit
+export
+ls
+unset PATH
+ls
+ls
+exit
+ls
+unset PATH
+ls
+exit
+lds
+ls
+unset PATH
+ls
+ls
+export PATH=/bin/
+ls
+exit
+export
+unset PATH
+env
+export
+ls
+/bin/ls
+export PATH=/bin
+ls
+export
+env
+ls
+exit
+ls
+unset PATH
+ls
+exit
+unset PATH
+ls
+ls
+ls
+ls
+unset PATH
+ls
+exit
+ls
+unset PATH
+cat
+grep e
+exit
+unset PATH
+ls
+exit
+ls | grep er | wc
+ls | grep er | wc | rev
+ls | grep er
+ls | grep er | grep he | wc
+cat | cat | ls
+exit
+export | grep HOME
+exit
+echo $
+echo "$"
+exit
+export | grep HOME
+export |grep HOME
+make
+export |grep HOME
+export |grep HOME
+cat | cat | ls
+cat
+exit
+cat Makefile | grep q | wc | rev
+export | grep HOME
+cat | cat | ls
+cat Makefile | grep q | grep e | wc
+export | grep HOME
+export | grep HOME | wc
+cat Makefile | grep q | grep c | wc
+cat Makefile | grep q | grep c | wc
+cat Makefile | grep q | grep c | wc | ls
+cat | cat | ls
+cat Makefile | grep q | grep c | wc | ls
+cat Makefile | grep q | grep c | wc
+cat | cat | ls
+cat | cat | ls
+stty -a
+exit
+cat Makefile | grep q | grep c | wc
+cat | cat | ls
+cat | cat | ls
+cat | cat | ls
+cat | cat | ls
+cat | cat | ls
+cat | cat | ls
+ls
+unset PATH
+ls
+ls
+exit
+cat | cat | ls
+cat Makefile | grep q | grep c | wc
+exit
+cd
+echo $?
+lds
+echo $?
+ls
+export grep SHLVL
+export | grep SHLVL
+unset env
+env
+./minishell
+ls
+export | grep SHLVL
+env
+exit
+exit
+export
+./minishell
+export
+env
+exit
+exit
+export | grep SHLVL
+./minishell
+export | grep SHLVL
+./minishell
+env
+./minishell
+env
+exit
+exit
+exit
+export | grep SHLVL
+exit
+export | grep SHLVL
+./minishell
+export | grep SHLVL
+exit
+exit
+export | grep SHLVL
+exit
+export | grep SHLVL
+./minishell
+export | grep SHLVL
+exit
+exit
+export
+./minishell
+export
+export | grep SHLVL
+./minishell
+export | grep SHLVL
+exit
+export | grep SHLVL
+exit
+export | grep SHLVL
+exit
+export | grep SHLVL
+./minishell
+export | grep SHLVL
+export
+exit
+exit
+exit
+export
+exit
+export
+export | grep SHLVL
+./minishell
+export | grep SHLVL
+exit
+exit
+export
+./minishell
+export
+./minishell
+export
+exit
+export
+exit
+export
+exit
+export | grep SSH | grep AGENT | wc | rev
+exit
+export | grep SSH | grep AGENT | wc | rev
+export
+exit
+unset SHLVL
+./minishell
+export
+env
+unset SHLVL
+env
+export
+./minishell
+export
+exit
+exit
+unset SHLVL
+export
+./minishell
+exit
+exit
+export
+unset SHLVL
+./minishell
+export
+exit
+export
+exit
+unset SHLVL
+./minishell
+export
+./minishell
+export
+exit
+export
+exit
+exit
+export | grep HOME
+exit
+export | grep HOME
+ls
+./minishell
+export
+exit
+export
+exit
+cat | cat | ls
+cat | cat | ls
+echo hello | cat | cat | ls
+cat | cat | ls
+cat | cat | ls
+cat | cat | ls
+exit
+cat | cat | ls
+cat | cat | ls
+cat Makefile | grep q
+cat Makefile | grep q
+cat Makefile | grep q
+cat Makefile | grep q
+cat | cat | ls
+cat | cat | cat |ls
+echo $?
+cat | cat | cat |ls
+echo $?
+cat | cat | cat |ls
+echo $?
+cat
+echo $?
+cat | cat | cat |ls
+cat
+cat Makefile | grep q
+cat
+cat
+cat | cat | ls
+cat | cat | ls
+cat | cat | ls
+cat | cat | ls
+ls
+cat | cat | ls
+ls
+ls
+ls
+cat | cat | ls
+cat | cat | ls
+cat log
+rm -rf log
+make
+cat log
+rm -rf log
+cat | cat | ls
+cat | cat | ls
+cat | cat | ls
+cat | cat | ls
+cat | cat | ls
+cat | cat | ls
+cat | cat | ls
+q
+cat | cat | ls
+cat Makefile | grep q | wc -l
+make
+cat Makefile | grep q | wc -l
+cat Makefile | grep q | grep e | wc 
+cat Makefile | grep q | wc -l
+cat Makefile | grep q | grep e | wc 
+cat | cat | ls
+cat | cat | ls
+cat | cat | ls
+cat | cat | ls
+cat | cat | ls
+cat | cat | ls
+cat | cat | ls
+cat | cat | ls
+cat | cat | ls
+cat | cat | ls
+exit
+cat | cat | ls
+cat | cat | ls
+cat | cat | ls
+cat log
+cat | cat | ls
+cat
+cat | cat | ls
+ls
+cat Makefile | grep q
+cat | cat | ls
+cat Makefile | grep q
+cat Makefile | grep q
+cat Makefile | grep q
+cat Makefile | grep q | grep e
+cat Makefile | grep q | grep e | wc -l
+cat | cat | ls
+cat Makefile | grep q | grep e | wc -l
+cat | cat | ls
+cat | cat | ls
+cat Makefile | grep q | grep e | wc -l
+cat Makefile | grep q | grep e | wc -l | wc
+cat Makefile | grep q | grep e | wc -l | wc
+cat | cat | ls
+cat | cat | ls
+cat | cat | ls
+cat | cat | ls
+cat Makefile | grep q
+cat | cat | ls
+cat | cat | lscat | cat | ls
+lscat | grep q
+cat | cat | cat | ls
+cat | cat | ls
+norminette
+exit
+cat | cat | ls
+cat Makefile | grep q | grep e | wc -l | wc
+cat Makefile | grep q | grep e | wc -l | wc
+cat | cat | ls
+unset PATH
+ls
+unset PATH
+ls
+unset PATH
+ls
+unset PATH
+ls
+unset PATH
+ls
+cat Makefile | grep q | grep e | wc -l | wc
+cat Makefile | grep q | grep e | wc -l | wc >> output55
+cat output55
+<Makefile cat | grep IR
+<Makefile cat | grep IR | grep OBJ 
+<Makefile cat | grep IR | grep OBJ | grep o
+<Makefile cat | grep IR | grep OBJ | grep o | grep obj | wc | rev >output56
+cat output56
+<Makefile cat | grep IR | grep OBJ | grep o | grep obj | wc | rev
+<< EOF cat
+<< EOF cat
+<<EOF cat
+<< EOF cat
+<< EOFF cat
+<< EOFF cat
+<< EOF cat
+<< EOF cat
+<< EOF cat | <<EOFF cat | ls
+<< EOF cat | <<EOFF cat | ls
+<< EOF cat | <<EOFF cat | ls
+<< EOF cat | <<EOFF cat | ls
+<< EOF cat | <<EOFF cat | ls
+<< EOF cat
+cat | cat | ls
+export
+exit
+export
+unset PATH SHLVL
+export
+ls
+exit
+unset PATH SHLVL
+export
+export | grep PATH
+export | /bin/grep PATH
+exit
+unset HOME SHLVL
+export
+export | grep HOME
+export | grep SHLVL
+unset SHLVL
+export | grep SHLVL
+exit
+unset HOME SHLVL
+unset HOME SHLVL
+unset HOME SHLVL
+export
+exit
+unset HOME SHLVL
+export
+export | grep HOME
+export | grep SHLVL
+env
+exit
+unset HOME SHLVL
+exit
+unset HOME PATH
+unset HOME PATH
+exit
+unset HOME
+unset SHLVL
+export
+unset PWD ZSH
+export
+exit
+unset HOME PWD
+export
+exit
+unset HOME SHLVL
+export
+export | grep HOME
+export | grep SHLVL
+exit
+export | grep HOME
+exit
+unset HOME PWD SHLVL
+export | grep HOME
+export | grep PWD
+export | grep SHLVL
+exit
+<< banane cat
+exit
+clear
+exit
+<Makefile cat | grep IR
+<Makefile cat | grep IR | grep OBJ
+<Makefile cat | grep IR | grep OBJ | grep o
+<Makefile cat | grep IR | grep OBJ | grep o | grep obj
+<Makefile cat | grep IR | grep OBJ | grep o | grep obj | rev
+<Makefile cat | grep IR | grep OBJ | grep o | grep obj | rev | wc
+<Makefile cat | grep IR | grep OBJ | grep o | grep obj | rev | wc | rev
+<Makefile cat | grep IR | grep OBJ | grep o | grep obj | rev | wc | rev >file100
+ls
+cat file100
+rm file100
+ls
+cat | cat | ls
+exit
+/bin/ls
+   
+ 
+ 
+   
+ 
+ 
+ 
+ 
+ 
+echo
+exit
+echo
+echo bonjour allo
+exit
+echo
+echo bonjour allo
+./minishell
+exit 1 2
+exit 10
+echo $?
+/bin/ls dfsgdg
+expr $? +$?
+expr $? + $?
+./minishell
+cat
+grep
+grep er
+echo '$USER'
+echo $USER
+echo "$USER"
+echo "cat lol.c | cat > lol.c"
+env
+cd .
+cd ..
+cd ..
+ls
+pwd
+cd ..
+ls
+pwd
+unset PATH
+export PATH=/Repo_perso:/bin
+ls
+cat Makefile >file100
+cat file100 
+ls >>file100
+cat file100 
+echo -n bounjour 
+echo -nnnn bounjour 
+echo bounjour -n
+echo bounjour
+exit

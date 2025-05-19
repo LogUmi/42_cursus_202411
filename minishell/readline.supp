@@ -1,0 +1,5 @@
+{
+	Suppress_All_Errors_in_readline
+	Memcheck:Leak
+	fun:readline
+}

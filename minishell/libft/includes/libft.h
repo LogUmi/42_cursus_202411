@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/05 15:17:27 by lgerard           #+#    #+#             */
-/*   Updated: 2025/01/06 18:46:25 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/03/26 20:30:01 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include <stdarg.h>
 
 # ifndef GNL_BUFFER_SIZE
-#  define GNL_BUFFER_SIZE 1024
+#  define GNL_BUFFER_SIZE 20000
 # endif
 # if GNL_BUFFER_SIZE < 0
 #  undef GNL_BUFFER_SIZE
@@ -93,6 +93,7 @@ size_t	ft_strlen(const char *str);
 int		ft_strlenf(const char *str);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
+int		ft_strcmp(const char *s1, const char *s2);
 char	*ft_strncpygnl(char *src, char *dst, int n, int way);
 char	*ft_strrchr(const char *s, int c);
 char	*ft_strnstr(const char *big, const char *little, size_t len);

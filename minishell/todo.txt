@@ -1,0 +1,2 @@
+crash si seulement un ou plusieurs espaces en entree
+verifier la correction de path
