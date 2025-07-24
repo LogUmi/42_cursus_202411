@@ -3,7 +3,7 @@ OBJ = obj
 OBJDIR = obj/
 SRCDIR = src/
 FILEC =	megaphone.cpp
-OBJS = $(patsubst %.c, $(OBJDIR)/%.o, $(FILEC))
+OBJS = $(patsubst %.cpp, $(OBJDIR)/%.o, $(FILEC))
 SRCS = $(addprefix	$(SRCDIR),	$(FILEC))
 FLAGS = -Wall -Werror -Wextra -g -std=c++98
 CC = c++
@@ -15,7 +15,7 @@ $(NAME):	$(OBJS)
 			@echo "comgit pilation completed, exec $(NAME) ready."
 
 # Compilation des fichiers .o dans obj/
-$(OBJDIR)/%.o: $(SRCDIR)/%.c | $(OBJDIR)
+$(OBJDIR)/%.o: $(SRCDIR)/%.cpp | $(OBJDIR)
 	@$(CC) $(FLAGS) -c $< -o $@
 
 # Création du dossier obj/ si nécessaire
