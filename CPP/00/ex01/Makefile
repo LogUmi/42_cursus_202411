@@ -1,22 +1,24 @@
-NAME = megaphone
+NAME = phonebook
 OBJ = obj
 OBJDIR = obj/
 SRCDIR = src/
-FILEC =	megaphone.cpp
+FILEC =	main.cpp \
+		PhoneBook.cpp \
+		Contact.cpp
 OBJS = $(patsubst %.cpp, $(OBJDIR)/%.o, $(FILEC))
 SRCS = $(addprefix	$(SRCDIR),	$(FILEC))
 FLAGS = -Wall -Werror -Wextra -g -std=c++98
-CC = c++
+CXX = c++
 
 all:		init_dirs	$(NAME)
 
 $(NAME):	$(OBJS)
-			@$(CC) $(FLAGS) $(OBJS) -o $(NAME)
-			@echo "comgit pilation completed, exec $(NAME) ready."
+			@$(CXX) $(FLAGS) $(OBJS) -o $(NAME)
+			@echo "compilation completed, exec $(NAME) ready."
 
 # Compilation des fichiers .o dans obj/
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp | $(OBJDIR)
-	@$(CC) $(FLAGS) -c $< -o $@
+	@$(CXX) $(FLAGS) -c $< -o $@
 
 # Création du dossier obj/ si nécessaire
 init_dirs:
