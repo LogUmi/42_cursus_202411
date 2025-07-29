@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 11:50:09 by lgerard           #+#    #+#             */
-/*   Updated: 2025/07/29 13:33:09 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/07/29 18:35:04 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,11 @@ class PhoneBook
 		void	search(void);
 
 	private:
-		Contact	_record[8];
+		Contact	_record[MAX_RECORD];
 		int		_older;
 		int		_count;
 
-		void 	_add_record(int n);
+		void 	_add_record(int n, std::string* tab);
 };
 
 #endif

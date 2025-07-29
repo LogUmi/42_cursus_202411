@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 11:49:56 by lgerard           #+#    #+#             */
-/*   Updated: 2025/07/29 13:20:51 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/07/29 17:52:53 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(int argc, char **argv)
 	std::cout << "Welcome in My Awesome PhoneBook !" << std::endl;
 	while (true)
 	{
-		std::cout << "Please type a command ADD, SEARCH or EXIT : ";
+		std::cout << "Please type a command ADD, SEARCH or EXIT: ";
 		if (std::getline(std::cin, cmd))
 		{
 			if (cmd == "EXIT")
