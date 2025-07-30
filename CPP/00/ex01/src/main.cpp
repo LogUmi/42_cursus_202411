@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 11:49:56 by lgerard           #+#    #+#             */
-/*   Updated: 2025/07/30 18:00:45 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/07/30 20:45:48 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,38 @@
 
 int	is_name(std::string str)
 {
-	int	i = 0;
-	int j = 0;
+	std::string::size_type	i = 0;
+	int 					j = 0;
 	while (i < str.size())
 	{
-		if ((str [i] >= 'a' && str[i] <='z') || (str[i] >= 'A' && str[i] <= 'Z')
-			|| str[i] == ' ' || str[i] == '\'"'|| str[i] == '-')
+		if ((str [i] >= 'a' && str[i] <= 'z') || (str[i] >= 'A' && str[i] <= 'Z')
+			|| str[i] == ' ' || str[i] == '\''|| str[i] == '-')
+			j++;
+		i++;
+	}
+	return (str.size() - j);
+}
+
+int	is_printable(std::string str)
+{
+	std::string::size_type	i = 0;
+	int 					j = 0;
+	while (i < str.size())
+	{
+		if ((str [i] >= ' ' && str[i] <='~'))
+			j++;
+		i++;
+	}
+	return (str.size() - j);
+}
+
+int	is_digit(std::string str)
+{
+	std::string::size_type	i = 0;
+	int 					j = 0;
+	while (i < str.size())
+	{
+		if ((str [i] >= '0' && str[i] <='9'))
 			j++;
 		i++;
 	}
@@ -56,6 +82,30 @@ int	get_int(int *input, std::string str)
 		}
 	}
 	return (1);
+}
+
+std::string	int_to_string(int val)
+{
+	std::string	str;
+	int			neg = 1;
+	char		c;
+
+	if (val == 0)
+		return ("0");
+	if (val < 0)
+	{
+		neg = -1;
+		val = val * -1;
+	}
+	while (val > 0)
+	{
+		c = '0' + (val % 10);
+		str = c + str;
+		val = val / 10;
+	}
+	if (neg == -1)
+		str = '-' + str;
+	return (str);
 }
 
 int	get_str(std::string &input, std::string str)

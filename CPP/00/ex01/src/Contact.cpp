@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 11:49:15 by lgerard           #+#    #+#             */
-/*   Updated: 2025/07/30 12:50:21 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/07/30 21:02:44 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ Contact::Contact(void)
  _phone_number(""),
  _darkest_secret("")
 {
-	std::cout << "Contact constructor called." << std::endl;
+	//std::cout << "Contact constructor called." << std::endl;
 }
 
 Contact::~Contact(void)
 {
-	std::cout << "Contact destructor called." << std::endl;
+	//std::cout << "Contact destructor called." << std::endl;
 }
 
 std::string	Contact::_string_way(std::string str, int way) const
