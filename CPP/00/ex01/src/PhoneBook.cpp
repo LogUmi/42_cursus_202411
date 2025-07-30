@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 11:50:05 by lgerard           #+#    #+#             */
-/*   Updated: 2025/07/30 14:19:50 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/07/30 18:27:59 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ PhoneBook::~PhoneBook(void)
 	std::cout << "PhoneBook destructor called." << std::endl;
 }
 
-void PhoneBook::search(void)
+void PhoneBook::search(void) const
 {
 	int i = 0;
 
@@ -77,7 +77,6 @@ void PhoneBook::search(void)
 
 void PhoneBook::_add_record(int n, std::string *tab)
 {
-	std::cout << "PhoneBook _add_record called with n = " << n << " ." << std::endl;
 	this->_record[n].set_first_name(tab[0]);
 	this->_record[n].set_last_name(tab[1]);
 	this->_record[n].set_nickname(tab[2]);
@@ -86,10 +85,67 @@ void PhoneBook::_add_record(int n, std::string *tab)
 	return;
 }
 
+int	PhoneBook::_get_record(std::string *tab) const
+{
+	std::string	prompt0 = "[INPUT] Please type ";
+	std::string	prompt1 = "alphabetics (including ' ', '\'' and '-') as ";
+	std::string prompt2 = "first name: ";
+	
+	while (true)
+	{
+		if (get_str(tab[0], prompt0 + prompt1 + prompt2) == 0)
+		{
+			if (is_name(tab[0]) != 0)
+				std::cout << "[ERROR] Wrong character(s) in the string.";
+			else if (tab[0].size() > MAX_CHAR_NAMES)
+				std::cout << "[ERROR] More than " << MAX_CHAR_NAMES	<< " characters.";
+			else
+				break ;
+		}
+		else
+			return (1);
+	}
+	while (true)
+	{
+		if (get_str(tab[1], "[INPUT] Please type 32 alphabetics (including ' ', '\'' and '-') as last name: ") == 0)
+		{
+			if (is_name(tab[1]) != 0)
+				std::cout << "[ERROR] Wrong character(s) in the string.";
+			else if (tab[0].size() > MAX_CHAR_NAMES)
+				std::cout << "[ERROR] More than " << MAX_CHAR_NAMES	<< " characters.";
+			else
+				break ;
+		}
+		else
+			return (1);
+	}
+	while (true)
+	{
+		if (get_str(tab[2], "[INPUT] Please type 32 printablesalphabetics (including ' ', '\'' and '-') as first name: ") == 0)
+		{
+			if (is_name(tab[0]) != 0)
+				std::cout << "[ERROR] Wrong character(s) in the string.";
+			else if (tab[0].size() > MAX_CHAR_NAMES)
+				std::cout << "[ERROR] More than " << MAX_CHAR_NAMES	<< " characters.";
+			else
+				break ;
+		}
+		else
+			return (1);
+	}
+	
+			return (0);
+}
+
 void PhoneBook::add_request(void)
 {
 	std::string tab[5];
 	
+	if (PhoneBook::_get_record(tab) == 1)
+	{
+		std::cout << "[ERROR] Command ADD aborted - No index recorded" << std::endl;
+		return ;
+	}
 	if (this->_count == 0 && this->_older == -1)
 	{
 		this->_count++;

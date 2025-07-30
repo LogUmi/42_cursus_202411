@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 11:50:09 by lgerard           #+#    #+#             */
-/*   Updated: 2025/07/29 18:35:04 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/07/30 17:28:46 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,18 @@
 #  define MAX_RECORD 8
 # endif
 
+# ifndef MAX_CHAR_NAMES
+#  define MAX_CHAR_NAMES 32
+# endif
+
+# ifndef MAX_PHONE_NBR
+#  define MAX_PHONE_NBR 10
+# endif
+
+# ifndef MAX_CHAR_SECRET
+#  define MAX_CHAR_SECRET 256
+# endif
+
 class PhoneBook
 {
 	public:
@@ -27,7 +39,7 @@ class PhoneBook
 		~PhoneBook(void);
 
 		void	add_request(void);
-		void	search(void);
+		void	search(void) const;
 
 	private:
 		Contact	_record[MAX_RECORD];
@@ -35,6 +47,7 @@ class PhoneBook
 		int		_count;
 
 		void 	_add_record(int n, std::string* tab);
+		int		_get_record(std::string *tab) const;
 };
 
 #endif

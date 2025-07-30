@@ -3,16 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 11:49:56 by lgerard           #+#    #+#             */
-/*   Updated: 2025/07/30 14:37:49 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/07/30 18:00:45 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <string>
 #include "PhoneBook.hpp"
+
+int	is_name(std::string str)
+{
+	int	i = 0;
+	int j = 0;
+	while (i < str.size())
+	{
+		if ((str [i] >= 'a' && str[i] <='z') || (str[i] >= 'A' && str[i] <= 'Z')
+			|| str[i] == ' ' || str[i] == '\'"'|| str[i] == '-')
+			j++;
+		i++;
+	}
+	return (str.size() - j);
+}
 
 int	get_int(int *input, std::string str)
 {
