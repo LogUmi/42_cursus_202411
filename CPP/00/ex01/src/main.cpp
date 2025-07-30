@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 11:49:56 by lgerard           #+#    #+#             */
-/*   Updated: 2025/07/29 17:52:53 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/07/30 14:37:49 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,75 @@
 #include <string>
 #include "PhoneBook.hpp"
 
+int	get_int(int *input, std::string str)
+{
+	while (true)
+	{
+		std::cout << str;
+		if (std::cin >> (*input))
+		{
+			std::cin.ignore(1000, '\n');
+			return (0);
+		}	else if (std::cin.eof())
+		{
+			std::cout << "\n[ERROR] End of file reached (EOF)." << std::endl;
+			break;
+		}
+			else if (std::cin.fail())
+		{
+			std::cerr << "[ERROR] Logical error : failed to read (FAIL). May be wrong format." << std::endl;
+			std::cin.clear();
+			std::cin.ignore(1000, '\n');
+			continue;
+		}
+		else if (std::cin.bad())
+		{	
+			std::cerr << "\n[ERROR] Stream fatal error (BAD)!" << std::endl;
+			break;
+		}
+	}
+	return (1);
+}
+
+int	get_str(std::string &input, std::string str)
+{
+	while (true)
+	{
+		std::cout << str;
+		if (std::getline(std::cin, input))
+			return (0);
+		else if (std::cin.eof())
+		{
+			std::cout << "\n[ERROR] End of file reached (EOF)." << std::endl;
+			break;
+		}
+			else if (std::cin.fail())
+		{
+			std::cerr << "[ERROR] Logical error : failed to read (FAIL). May be wrong format." << std::endl;
+			std::cin.clear();
+			std::cin.ignore(1000, '\n');
+			continue;
+		}
+		else if (std::cin.bad())
+		{	
+			std::cerr << "\n[ERROR] Stream fatal error (BAD)!" << std::endl;
+			break;
+		}
+	}
+	return (1);
+}
+
 int	main(int argc, char **argv)
 {
 	PhoneBook	pb;
 	std::string	cmd;
 	
 	(void)argv;
-	if (argc > 1)
-		std::cout << "Arguments are ignored" << std::endl;
+	if (argc > 1)		std::cout << "Arguments are ignored buddy !" << std::endl;
 	std::cout << "Welcome in My Awesome PhoneBook !" << std::endl;
 	while (true)
 	{
-		std::cout << "Please type a command ADD, SEARCH or EXIT: ";
-		if (std::getline(std::cin, cmd))
+		if (get_str(cmd, "[INPUT] Please type a command ADD, SEARCH or EXIT: ") == 0)
 		{
 			if (cmd == "EXIT")
 				break;
@@ -35,22 +91,8 @@ int	main(int argc, char **argv)
 			else if (cmd == "SEARCH")
 				pb.search();
 		}
-		else if (std::cin.eof())
-		{
-			std::cout << "End of file reached (EOF)." << std::endl;
+		else
 			break;
-		}
-			else if (std::cin.fail())
-		{
-			std::cerr << "logical error : failed to read (FAIL)." << std::endl;
-			std::cin.clear();
-			std::cin.ignore(1000, '\n');
-		}
-		else if (std::cin.bad())
-		{	
-			std::cerr << "stream fatal error (BAD)!" << std::endl;
-			break;
-		}
 	}
 	std::cout << "See you later ... bye." << std::endl;
 	return (0);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Contact.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 11:49:15 by lgerard           #+#    #+#             */
-/*   Updated: 2025/07/29 18:17:26 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/07/30 12:50:21 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,29 +29,42 @@ Contact::~Contact(void)
 	std::cout << "Contact destructor called." << std::endl;
 }
 
-std::string	Contact::get_first_name(void) const
+std::string	Contact::_string_way(std::string str, int way) const
 {
-	return (this->_first_name);
+	int	i = str.size();
+
+	if (way != 0)
+		return (str);
+	if (i > 10)
+		return (str.substr(0, 9) + "."); 
+	else if (i < 10)
+		return (std::string(10 - str.size(), ' ') + str);
+	return (str);
 }
 
-std::string	Contact::get_last_name(void) const
+std::string	Contact::get_first_name(int way) const
 {
-	return (this->_last_name);
+	return (Contact::_string_way(this->_first_name, way));
 }
 
-std::string	Contact::get_nickname(void) const
+std::string	Contact::get_last_name(int way) const
 {
-	return (this->_nickname);
+	return (Contact::_string_way(_last_name, way));
 }
 
-std::string	Contact::get_phone_number(void) const
+std::string	Contact::get_nickname(int way) const
 {
-	return (this->_phone_number);
+	return (Contact::_string_way(this->_nickname, way));
 }
 
-std::string	Contact::get_darkest_secret(void) const
+std::string	Contact::get_phone_number(int way) const
 {
-	return (this->_darkest_secret);
+	return (Contact::_string_way(this->_phone_number, way));
+}
+
+std::string	Contact::get_darkest_secret(int way) const
+{
+	return (Contact::_string_way(this->_darkest_secret, way));
 }
 
 void	Contact::set_first_name(std::string str)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Contact.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 11:49:06 by lgerard           #+#    #+#             */
-/*   Updated: 2025/07/29 18:16:56 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/07/30 12:24:19 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ class Contact
 		Contact(void);
 		~Contact(void);
 
-		std::string	get_first_name(void) const;
-		std::string	get_last_name(void) const;
-		std::string	get_nickname(void) const;
-		std::string	get_phone_number(void) const;
-		std::string	get_darkest_secret(void) const;
+		std::string	get_first_name(int way) const;
+		std::string	get_last_name(int way) const;
+		std::string	get_nickname(int way) const;
+		std::string	get_phone_number(int way) const;
+		std::string	get_darkest_secret(int way) const;
 		void		set_first_name(std::string str);
 		void		set_last_name(std::string str);
 		void		set_nickname(std::string str);
@@ -38,6 +38,8 @@ class Contact
 		std::string	_nickname;
 		std::string	_phone_number;
 		std::string	_darkest_secret;
+
+		std::string	_string_way(std::string str, int way) const;
 };
 
 #endif
