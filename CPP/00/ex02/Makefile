@@ -1,9 +1,10 @@
-NAME = tests
+NAME = phonebook
 OBJ = obj
 OBJDIR = obj/
 SRCDIR = src/
-FILEC =	tests.cpp \
-		Account.cpp
+FILEC =	main.cpp \
+		PhoneBook.cpp \
+		Contact.cpp
 OBJS = $(patsubst %.cpp, $(OBJDIR)/%.o, $(FILEC))
 SRCS = $(addprefix	$(SRCDIR),	$(FILEC))
 FLAGS = -Wall -Werror -Wextra -g -std=c++98

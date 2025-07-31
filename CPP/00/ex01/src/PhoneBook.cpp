@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 11:50:05 by lgerard           #+#    #+#             */
-/*   Updated: 2025/07/30 21:02:18 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/07/31 12:44:18 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,17 @@
 #include "PhoneBook.hpp"
 #include "main.hpp"
 
-PhoneBook::PhoneBook(void) : _older(-1), _count(0)
+PhoneBook::PhoneBook( void ) : _older(-1), _count(0)
 {
 	//std::cout << "PhoneBook constructor called." << std::endl;
 }
 
-PhoneBook::~PhoneBook(void)
+PhoneBook::~PhoneBook( void )
 {
 	//std::cout << "PhoneBook destructor called." << std::endl;
 }
 
-void PhoneBook::search(void) const
+void PhoneBook::search( void ) const
 {
 	int i = 0;
 
@@ -75,7 +75,7 @@ void PhoneBook::search(void) const
 	return ;
 }
 
-void PhoneBook::_add_record(int n, std::string *tab)
+void PhoneBook::_add_record( int n, std::string *tab )
 {
 	this->_record[n].set_first_name(tab[0]);
 	this->_record[n].set_last_name(tab[1]);
@@ -85,9 +85,9 @@ void PhoneBook::_add_record(int n, std::string *tab)
 	return;
 }
 
-int	PhoneBook::_get_record(std::string *tab) const
+int	PhoneBook::_get_record( std::string *tab ) const
 {
-	std::string	prompt0 = "[INPUT] Please type ";
+	std::string	prompt0 = "[INPUT] Please type up to ";
 	std::string	prompt1 = int_to_string(MAX_CHAR_NAMES);
 	std::string	prompt2 = " alphabetics (including ' ', '\'' and '-') as ";
 	std::string prompt3 = "first name: ";
@@ -185,7 +185,7 @@ int	PhoneBook::_get_record(std::string *tab) const
 	return (0);
 }
 
-void PhoneBook::add_request(void)
+void PhoneBook::add_request( void )
 {
 	std::string tab[5];
 	

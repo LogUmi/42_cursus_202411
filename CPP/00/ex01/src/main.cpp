@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 11:49:56 by lgerard           #+#    #+#             */
-/*   Updated: 2025/07/30 20:45:48 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/07/31 12:49:53 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <string>
 #include "PhoneBook.hpp"
 
-int	is_name(std::string str)
+int	is_name( std::string str )
 {
 	std::string::size_type	i = 0;
 	int 					j = 0;
@@ -28,7 +28,7 @@ int	is_name(std::string str)
 	return (str.size() - j);
 }
 
-int	is_printable(std::string str)
+int	is_printable( std::string str )
 {
 	std::string::size_type	i = 0;
 	int 					j = 0;
@@ -41,7 +41,7 @@ int	is_printable(std::string str)
 	return (str.size() - j);
 }
 
-int	is_digit(std::string str)
+int	is_digit( std::string str )
 {
 	std::string::size_type	i = 0;
 	int 					j = 0;
@@ -54,7 +54,7 @@ int	is_digit(std::string str)
 	return (str.size() - j);
 }
 
-int	get_int(int *input, std::string str)
+int	get_int( int *input, std::string str )
 {
 	while (true)
 	{
@@ -84,7 +84,7 @@ int	get_int(int *input, std::string str)
 	return (1);
 }
 
-std::string	int_to_string(int val)
+std::string	int_to_string( int val )
 {
 	std::string	str;
 	int			neg = 1;
@@ -108,7 +108,7 @@ std::string	int_to_string(int val)
 	return (str);
 }
 
-int	get_str(std::string &input, std::string str)
+int	get_str( std::string &input, std::string str )
 {
 	while (true)
 	{
@@ -136,7 +136,7 @@ int	get_str(std::string &input, std::string str)
 	return (1);
 }
 
-int	main(int argc, char **argv)
+int	main( int argc, char **argv )
 {
 	PhoneBook	pb;
 	std::string	cmd;

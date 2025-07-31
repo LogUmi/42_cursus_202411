@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   PhoneBook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/29 11:50:09 by lgerard           #+#    #+#             */
-/*   Updated: 2025/07/30 17:28:46 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/07/31 12:43:55 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@
 # endif
 
 # ifndef MAX_PHONE_NBR
-#  define MAX_PHONE_NBR 10
+#  define MAX_PHONE_NBR 12
 # endif
 
 # ifndef MAX_CHAR_SECRET
@@ -35,19 +35,19 @@ class PhoneBook
 {
 	public:
 
-		PhoneBook(void);
-		~PhoneBook(void);
+		PhoneBook( void );
+		~PhoneBook( void );
 
-		void	add_request(void);
-		void	search(void) const;
+		void	add_request( void );
+		void	search( void ) const;
 
 	private:
 		Contact	_record[MAX_RECORD];
 		int		_older;
 		int		_count;
 
-		void 	_add_record(int n, std::string* tab);
-		int		_get_record(std::string *tab) const;
+		void 	_add_record( int n, std::string* tab );
+		int		_get_record( std::string *tab ) const;
 };
 
 #endif
