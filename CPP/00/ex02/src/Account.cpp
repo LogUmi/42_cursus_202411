@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Account.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 18:37:17 by lgerard           #+#    #+#             */
-/*   Updated: 2025/07/31 19:04:04 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/07/31 20:20:43 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ int	Account::_totalNbDeposits = 0;
 int	Account::_totalNbWithdrawals = 0;
 
 Account::Account( int initial_deposit ) 
-: 	_amount(initial_deposit),
-	_accountIndex(_nbAccounts),
+: 	_accountIndex(_nbAccounts),
+	_amount(initial_deposit),
 	_nbDeposits(0),
 	_nbWithdrawals(0)
 {	
@@ -48,8 +48,9 @@ void	Account::_displayTimestamp( void )
 	time( &stamp );
 	ts = localtime(&stamp);
 	std::cout 	<< "[" << ts->tm_year + 1900 << std::setfill('0') << std::setw(2) 
-				<< ts->tm_mon << std::setw(2) << ts->tm_mday << "-" << std::setw(2)
-				<< ts->tm_hour << std::setw(2) << ts->tm_min << std::setw(2) << ts->tm_sec << "] ";
+				<< ts->tm_mon << std::setw(2) << ts->tm_mday << "_" << std::setw(2)
+				<< ts->tm_hour << std::setw(2) << ts->tm_min << std::setw(2)
+				<< ts->tm_sec << "] ";
 	return ;
 }
 
@@ -91,7 +92,20 @@ bool	Account::makeWithdrawal( int withdrawal )
 {
 	if (withdrawal > 0)
 	{
-		
+		_displayTimestamp();
+		std::cout 	<< "index:" << this->_accountIndex << ";p_amount:" << this->_amount 
+					<< ";withdrawal:";
+		if (this->_amount >= withdrawal)
+		{
+			this->_amount -= withdrawal;
+			this->_totalAmount -= withdrawal;
+			this->_nbWithdrawals++;
+			_totalNbWithdrawals++;
+			std::cout 	<< withdrawal << ";amount:" << this->_amount
+					<< ";nb_withdrawals:" << this->_nbWithdrawals << std::endl;
+		}
+		else
+			std::cout 	<< "refused" << std::endl;
 	}
 	return (false);	
 }
