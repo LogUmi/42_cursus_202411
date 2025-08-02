@@ -1,9 +1,11 @@
-NAME = tests
+NAME = zombie
 OBJ = obj
 OBJDIR = obj/
 SRCDIR = src/
-FILEC =	tests.cpp \
-		Account.cpp
+FILEC =	main.cpp \
+		Zombie.cpp \
+		newZombie.cpp \
+		randomChump.cpp
 OBJS = $(patsubst %.cpp, $(OBJDIR)/%.o, $(FILEC))
 SRCS = $(addprefix	$(SRCDIR),	$(FILEC))
 FLAGS = -Wall -Werror -Wextra -g -std=c++98

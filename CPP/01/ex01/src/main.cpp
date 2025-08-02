@@ -1,20 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   newZombie.cpp                                      :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/31 21:46:09 by lgerard           #+#    #+#             */
-/*   Updated: 2025/08/02 21:12:13 by lgerard          ###   ########.fr       */
+/*   Created: 2025/07/31 21:46:04 by lgerard           #+#    #+#             */
+/*   Updated: 2025/08/02 22:57:25 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Zombie.hpp"
+#include <iostream>
 
- Zombie* newZombie( std::string name )
- {
-	Zombie	*new_zombie = new Zombie( name );
+Zombie* zombieHorde( int N, std::string name );
 
-	return (new_zombie);
- }
+int	main(void)
+{
+	int		N = 10;
+	int		i = 0;
+	Zombie	*new_zombie;
+	
+	new_zombie = zombieHorde( N, "Weirdo" );
+	for (i = 0; i < N; i++)
+		(new_zombie[i]).announce();
+	delete [] new_zombie;
+	return (0);
+}

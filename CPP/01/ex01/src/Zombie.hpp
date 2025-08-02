@@ -1,20 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   newZombie.cpp                                      :+:      :+:    :+:   */
+/*   Zombie.hpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/07/31 21:46:09 by lgerard           #+#    #+#             */
-/*   Updated: 2025/08/02 21:12:13 by lgerard          ###   ########.fr       */
+/*   Created: 2025/07/31 21:46:23 by lgerard           #+#    #+#             */
+/*   Updated: 2025/08/02 22:47:01 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Zombie.hpp"
+#ifndef ZOMBIE_HPP
+# define ZOMBIE_HPP
 
- Zombie* newZombie( std::string name )
- {
-	Zombie	*new_zombie = new Zombie( name );
+#include <string>
 
-	return (new_zombie);
- }
+class	Zombie
+{
+	public:
+		Zombie( void );
+		~Zombie( void );
+
+		void announce( void );
+		void init( std::string id );
+
+	private:
+		std::string name;
+};
+
+#endif
