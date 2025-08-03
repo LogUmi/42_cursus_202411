@@ -1,10 +1,8 @@
-NAME = zombieHorde
+NAME = sed
 OBJ = obj
 OBJDIR = obj/
 SRCDIR = src/
-FILEC =	main.cpp \
-		Zombie.cpp \
-		zombieHorde.cpp
+FILEC =	main.cpp 
 OBJS = $(patsubst %.cpp, $(OBJDIR)/%.o, $(FILEC))
 SRCS = $(addprefix	$(SRCDIR),	$(FILEC))
 FLAGS = -Wall -Werror -Wextra -g -std=c++98

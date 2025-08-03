@@ -1,10 +1,11 @@
-NAME = zombieHorde
+NAME = Unnecessary_violence
 OBJ = obj
 OBJDIR = obj/
 SRCDIR = src/
 FILEC =	main.cpp \
-		Zombie.cpp \
-		zombieHorde.cpp
+		HumanA.cpp \
+		HumanB.cpp \
+		Weapon.cpp
 OBJS = $(patsubst %.cpp, $(OBJDIR)/%.o, $(FILEC))
 SRCS = $(addprefix	$(SRCDIR),	$(FILEC))
 FLAGS = -Wall -Werror -Wextra -g -std=c++98
