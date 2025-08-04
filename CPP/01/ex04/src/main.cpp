@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 17:12:01 by lgerard           #+#    #+#             */
-/*   Updated: 2025/08/03 21:22:04 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/08/04 16:00:20 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,5 +90,3 @@ int	main( int argc, char** argv )
 	std::cout << "Operation done. file " << file << " saved." << std::endl;
 	return (0);
 }
-
-//		str = str.substr( 0, found) + s2 + str.substr(found + s1.size(), str.size());
