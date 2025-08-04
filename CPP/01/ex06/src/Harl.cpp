@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 21:46:18 by lgerard           #+#    #+#             */
-/*   Updated: 2025/08/04 22:09:01 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/08/04 23:41:07 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,11 @@
 
 Harl::Harl( void )
 {
-	table[0].name = "DEBUG";
-	table[0].function = &Harl::debug;
-	table[1].name = "INFO";
-	table[1].function = &Harl::info;
-	table[2].name = "WARNING";
-	table[2].function = &Harl::warning;
-	table[3].name = "ERROR";
-	table[3].function = &Harl::error;
-	std::cout << "Harl 2.0 booted and is ready." << std::endl;
+	table[0] = "DEBUG";
+	table[1] = "INFO";
+	table[2] = "WARNING";
+	table[3] = "ERROR";
+	std::cout << "Harl 2.0 booted and is ready and filtered." << std::endl;
 	return ;
 }
 Harl::~Harl( void )
@@ -70,15 +66,28 @@ void Harl::error( void )
 
 void	Harl::complain( std::string level )
 {
+	int	filter = 4;
 	for (int i = 0; i < 4; i++)
-	{
-		if (level == this->table[i].name)
+		if (level == this->table[i])
 		{
-			(this->*table[i].function)();
-			return ;
+			filter = i;
+			break;
 		}
+	switch (filter)
+	{
+		case 0:
+			Harl::debug();
+		case 1:
+			Harl::info();
+		case 2:
+			Harl::warning();
+		case 3:
+			Harl::error();
+			break ;
+		case 4:
+			std::cout 	<< "[ Probably complaining about insignificant problems ]"
+						<< std::endl;
+			break ;
 	}
-	std::cout 	<< "[ Probably complaining about insignificant problems ]"
-				<< std::endl;
 	return ;
 }

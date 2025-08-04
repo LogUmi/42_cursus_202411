@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 16:09:22 by lgerard           #+#    #+#             */
-/*   Updated: 2025/08/04 21:51:13 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/08/04 23:25:55 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,16 +21,10 @@ class	Harl
 		Harl( void );
 		~Harl( void );
 
-		void	complain(std::string level );
+		void	complain(std::string level);
 
 	private:
-		typedef 			void (Harl::*functions)();
-		struct 				s_dispatch
-		{
-			std::string		name;
-			functions		function;
-		};
-		s_dispatch	table[4];
+		std::string	table[4];
 
 		void	debug( void );
 		void	info( void );

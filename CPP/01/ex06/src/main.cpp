@@ -6,20 +6,22 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 21:46:04 by lgerard           #+#    #+#             */
-/*   Updated: 2025/08/04 22:01:18 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/08/04 23:42:19 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include <iostream>
 #include "Harl.hpp"
 
-int	main(void)
+int	main(int argc, char **argv)
 {
-	Harl	h2;
-
-	h2.complain("DEBUG");
-	h2.complain("INFO");
-	h2.complain("WARNING");
-	h2.complain("ERROR");
-	h2.complain("PROUT");
+	if (argc != 2)
+	{
+		std::cerr << "Error: only one level argument is required" << std::endl;
+		return (1);
+	}
+	std::string filter = argv[1];
+	Harl		h2f;
+	h2f.complain(filter);
 	return (0);
 }
