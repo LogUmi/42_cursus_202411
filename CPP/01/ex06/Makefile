@@ -1,4 +1,4 @@
-NAME = harl
+NAME = harlFilter
 OBJ = obj
 OBJDIR = obj/
 SRCDIR = src/
