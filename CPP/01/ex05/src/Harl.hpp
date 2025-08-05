@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 16:09:22 by lgerard           #+#    #+#             */
-/*   Updated: 2025/08/04 21:51:13 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/08/04 23:49:59 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ class	Harl
 			std::string		name;
 			functions		function;
 		};
-		s_dispatch	table[4];
+		static s_dispatch	table[4];
 
 		void	debug( void );
 		void	info( void );

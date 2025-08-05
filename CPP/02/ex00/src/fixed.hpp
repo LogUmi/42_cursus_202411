@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Harl.hpp                                           :+:      :+:    :+:   */
+/*   fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 16:09:22 by lgerard           #+#    #+#             */
-/*   Updated: 2025/08/04 23:50:28 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/08/05 12:30:27 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef HARL_HPP
-# define HARL_HPP
+#ifndef FXED_HPP
+# define FIXED_HPP
 
 #include <string>
 
-class	Harl
+class	Fixed
 {
 	public:
-		Harl( void );
-		~Harl( void );
+		Fixed( void );
+		~Fixed( void );
 
 		void	complain(std::string level);
 
