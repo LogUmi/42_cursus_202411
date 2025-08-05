@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Harl.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 21:46:18 by lgerard           #+#    #+#             */
-/*   Updated: 2025/08/05 18:55:43 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/08/05 21:57:58 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@
 
 Harl::Harl( void )
 {
-	table[0].name = "DEBUG";
-	table[0].function = &Harl::debug;
-	table[1].name = "INFO";
-	table[1].function = &Harl::info;
-	table[2].name = "WARNING";
-	table[2].function = &Harl::warning;
-	table[3].name = "ERROR";
-	table[3].function = &Harl::error;
+	Harl::table[0].name = "DEBUG";
+	Harl::table[0].function = &Harl::debug;
+	Harl::table[1].name = "INFO";
+	Harl::table[1].function = &Harl::info;
+	Harl::table[2].name = "WARNING";
+	Harl::table[2].function = &Harl::warning;
+	Harl::table[3].name = "ERROR";
+	Harl::table[3].function = &Harl::error;
 	std::cout << "Harl 2.0 booted and is ready." << std::endl;
 	return ;
 }

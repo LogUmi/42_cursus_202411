@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 21:46:18 by lgerard           #+#    #+#             */
-/*   Updated: 2025/08/04 23:49:24 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/08/05 21:55:09 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,16 @@
 
 Harl::Harl( void )
 {
-	table[0] = "DEBUG";
-	table[1] = "INFO";
-	table[2] = "WARNING";
-	table[3] = "ERROR";
-	std::cout << "Harl 2.0 booted and is ready and filtered." << std::endl;
+	Harl::table[0] = "DEBUG";
+	Harl::table[1] = "INFO";
+	Harl::table[2] = "WARNING";
+	Harl::table[3] = "ERROR";
+	//std::cout << "Harl 2.0 booted and is ready and filtered." << std::endl;
 	return ;
 }
 Harl::~Harl( void )
 {
-	std::cout << "Harl 2.0 is shutting off." << std::endl;
+	//std::cout << "Harl 2.0 is shutting off." << std::endl;
 	return ;
 }
 

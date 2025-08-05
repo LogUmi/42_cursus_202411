@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 16:09:22 by lgerard           #+#    #+#             */
-/*   Updated: 2025/08/04 23:50:28 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/08/05 21:56:26 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ class	Harl
 		void	complain(std::string level);
 
 	private:
-		static std::string	table[4];
+		std::string	table[4];
 
 		void	debug( void );
 		void	info( void );
