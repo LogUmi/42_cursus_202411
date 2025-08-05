@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Harl.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 16:09:22 by lgerard           #+#    #+#             */
-/*   Updated: 2025/08/04 23:49:59 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/08/05 19:03:12 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ class	Harl
 
 	private:
 		typedef 			void (Harl::*functions)();
-		struct 				s_dispatch
+		struct 				dispatch_entry
 		{
 			std::string		name;
 			functions		function;
 		};
-		static s_dispatch	table[4];
+		dispatch_entry	table[4];
 
 		void	debug( void );
 		void	info( void );

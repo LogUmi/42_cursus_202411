@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Account.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 18:37:17 by lgerard           #+#    #+#             */
-/*   Updated: 2025/07/31 20:20:43 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/08/05 15:09:31 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ Account::Account( int initial_deposit )
 	std::cout 	<< "index:" << _accountIndex << ";amount:" << _amount << ";created"
 				<< std::endl;
 }
+
 Account::~Account( void )
 {
 	_displayTimestamp();

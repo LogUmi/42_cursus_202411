@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/03 17:12:01 by lgerard           #+#    #+#             */
-/*   Updated: 2025/08/04 16:00:20 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/08/05 18:38:22 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	main( int argc, char** argv )
 					<< std::endl;
 		return (1);
 	}
-	ifs.open( file, std::ios::in );
+	ifs.open( argv[1], std::ios::in );
 	if (!ifs.is_open())
 	{
 		std::cerr 	<< "ERROR: file " << argv[1] << " can't be opened" 
@@ -78,7 +78,7 @@ int	main( int argc, char** argv )
 	}
 	result = result + str.substr(pos, str.size());
 	file = file + std::string(".replace");
-	ofs.open( file, std::ios::trunc );
+	ofs.open( file.c_str(), std::ios::trunc );
 	if (!ofs.is_open())
 	{
 		std::cerr 	<< "ERROR: file " << argv[1] << " can't be opened" 

@@ -12,7 +12,7 @@ all:		init_dirs	$(NAME)
 
 $(NAME):	$(OBJS)
 			@$(CC) $(FLAGS) $(OBJS) -o $(NAME)
-			@echo "comgit pilation completed, exec $(NAME) ready."
+			@echo "compilation completed, exec $(NAME) ready."
 
 # Compilation des fichiers .o dans obj/
 $(OBJDIR)/%.o: $(SRCDIR)/%.cpp | $(OBJDIR)
