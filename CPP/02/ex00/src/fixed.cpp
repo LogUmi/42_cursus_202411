@@ -1,93 +1,54 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Harl.cpp                                           :+:      :+:    :+:   */
+/*   fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 21:46:18 by lgerard           #+#    #+#             */
-/*   Updated: 2025/08/04 23:49:24 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/08/06 13:57:27 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include <string>
-#include "Harl.hpp"
+#include "Fixed.hpp"
 
-Harl::Harl( void )
+Fixed::Fixed( void ) : _value(0)
 {
-	table[0] = "DEBUG";
-	table[1] = "INFO";
-	table[2] = "WARNING";
-	table[3] = "ERROR";
-	std::cout << "Harl 2.0 booted and is ready and filtered." << std::endl;
-	return ;
-}
-Harl::~Harl( void )
-{
-	std::cout << "Harl 2.0 is shutting off." << std::endl;
+	std::cout << "Default constructor called" << std::endl;
 	return ;
 }
 
-void Harl::debug( void )
+Fixed::Fixed( const Fixed & f)
 {
-	std::cout 	<< "[ DEBUG ]" << std::endl
-				<< "I love having extra bacon for my "
-				<< "7XL-double-cheese-triple-pickle-special-ketchup burger."
-				<< std::endl << "I really do!" << std::endl << std::endl;
+	this->_value = f.getRawBits();
+	std::cout << "Copy constructor called" << std::endl;
 	return ;
 }
 
-void Harl::info( void )
+Fixed::~Fixed( void )
 {
-	std::cout 	<< "[ INFO ]" << std::endl
-				<< "I cannot believe adding extra bacon costs more money." << std::endl
-				<< "You didn’t put enough bacon in my burger! If you did, "
-				<< "I wouldn’t be asking for more!" << std::endl << std::endl;
+	std::cout << "Destructor called" << std::endl;
 	return ;
 }
 
-void Harl::warning( void )
+Fixed&	Fixed::operator=(const Fixed& f)
 {
-	std::cout 	<< "[ WARNING ]" << std::endl
-				<< "I think I deserve to have some extra bacon for free." << std::endl
-				<< "I’ve been coming for years, whereas you started working "
-				<< "here just last month." << std::endl << std::endl;
-	return ;
+	std::cout << "Copy assignment operator called" << std::endl;
+	if (this != &f)
+		this->_value = f.getRawBits();
+	return (*this);
 }
 
-void Harl::error( void )
+int		Fixed::getRawBits( void ) const
 {
-	std::cout 	<< "[ ERROR ]" << std::endl
-				<< "This is unacceptable! I want to speak to the manager now."
-				<< std::endl << std::endl;
-	return ;
+	std::cout << "getRawBits member function called" << std::endl;
+	return (this->_value);
 }
 
-void	Harl::complain( std::string level )
+void	Fixed::setRawBits( int const raw )
 {
-	int	filter = 4;
-	for (int i = 0; i < 4; i++)
-		if (level == this->table[i])
-		{
-			filter = i;
-			break;
-		}
-	switch (filter)
-	{
-		case 0:
-			Harl::debug();
-		case 1:
-			Harl::info();
-		case 2:
-			Harl::warning();
-		case 3:
-			Harl::error();
-			break ;
-		case 4:
-			std::cout 	<< "[ Probably complaining about insignificant problems ]"
-						<< std::endl;
-			break ;
-	}
+	std::cout << "setRawBits member function called" << std::endl;
+	this->_value = raw;
 	return ;
 }
