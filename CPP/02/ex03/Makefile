@@ -1,4 +1,4 @@
-NAME = fixed
+NAME = bsp
 OBJ = obj
 OBJDIR = obj/
 SRCDIR = src/

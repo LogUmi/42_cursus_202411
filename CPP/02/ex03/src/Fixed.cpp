@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Fixed.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 21:46:18 by lgerard           #+#    #+#             */
-/*   Updated: 2025/08/08 17:06:16 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/08/08 20:21:13 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,14 @@ Fixed::Fixed( const float f )
 					<< std::endl;
 		this->_value = INT_MIN;
 	}
-	else if (f < (float(1) / (1 << this->_nbits)))
+	else if ((f < 1 && f > 0) && f < (float(1) / (1 << this->_nbits)))
+	{
+		std::cout 	<< "[Error]: This float underflow Fixed class "
+					<< "and was converted to 0"
+					<< std::endl;
+		this->_value = 0;
+	}
+	else if ((f > -1 && f < 0) && (f * -1.0f) < (float(1) / (1 << this->_nbits)))
 	{
 		std::cout 	<< "[Error]: This float underflow Fixed class "
 					<< "and was converted to 0"

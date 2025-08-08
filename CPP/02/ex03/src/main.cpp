@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 21:46:04 by lgerard           #+#    #+#             */
-/*   Updated: 2025/08/08 19:04:36 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/08/08 20:56:13 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int main( void )
 {
 	Point a;
 	Point b(5, 5);
-	Point c(10.5f, 0.0f);
+	Point c(10.0f, -1.0f);
 	Point test1(-1, 4);
 	Point test2(2, 2);
 	Point test3(3, 4);
