@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 21:46:18 by lgerard           #+#    #+#             */
-/*   Updated: 2025/08/09 21:20:11 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/08/10 21:55:50 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ ClapTrap::ClapTrap( std::string id )
 }
 
 ClapTrap::ClapTrap( const ClapTrap & ct)
+ :	name( "default" )
 {
 	std::cout << "ClapTrap copy constructor called for " << name << std::endl;
 	*this = ct;
@@ -62,11 +63,13 @@ ClapTrap&	ClapTrap::operator=(const ClapTrap& ct)
 	std::cout 	<< "ClapTrap copy assignment operator called for " << this->name
 				<< " = " << ct.name << std::endl;
 	if (this != &ct)
+	{
 		this->name = ct.name;
 		this->attack_damage = ct.attack_damage;
 		this->hit_points = ct.hit_points;
 		this->energy_points = ct.energy_points;
 		this->max_hit = ct.max_hit;
+	}
 	return (*this);
 }
 
@@ -89,15 +92,15 @@ void	ClapTrap::attack(const std::string& target)
 			break ;
 		case 1:
 			std::cout 	<< " is unable to attack: no more Hit points"
-						<< std::endl;
+						<< "\033[0m" << std::endl;
 			return ;
 		case 2:
 			std::cout 	<< " is unable to attack: no more Energy points"
-						<< std::endl;
+						<< "\033[0m" << std::endl;
 			return ;
 		case 3:
 			std::cout 	<< " is unable to attack: no more Energy nor Hit points"
-						<< std::endl;
+						<< "\033[0m" << std::endl;
 			return ;
 		default:
 			break ;
@@ -143,25 +146,27 @@ void	ClapTrap::beRepaired(unsigned int amount)
 			break ;
 		case 1:
 			std::cout 	<< " is unable to repair himself: no more Hit points"
-						<< std::endl;
+						<< "\033[0m" << std::endl;
 			return ;
 		case 2:
 			std::cout 	<< " is unable to repair himself: no more Energy points"
-						<< std::endl;
+						<< "\033[0m" << std::endl;
 			return ;
 		case 3:
 			std::cout 	<< " is unable to repair himself: no more Energy nor Hit points"
-						<< std::endl;
+						<< "\033[0m" << std::endl;
 			return ;
 		case 4:
-			std::cout 	<< " is unable to repair himself: Hit points cannot exceed the " 
-						<< this->max_hit << " points already in place" << std::endl;
+			std::cout 	<< " is unable to repair himself: Hit points cannot exceed the "
+						<< this->max_hit << " points already in place"
+						<< "\033[0m" << std::endl;
 			return ;
 		default:
 			break ;
 	}
 	std::cout 	<< " repairs himself " << amount << ", receiving ";
 	this->hit_points += amount;
+	this->energy_points--;
 	if (this->hit_points <= this->max_hit)
 		std::cout	<< amount << " Hit points!\033[0m" << std::endl;
 	else

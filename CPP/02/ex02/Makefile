@@ -6,7 +6,8 @@ FILEC =	main.cpp \
 		Fixed.cpp
 OBJS = $(patsubst %.cpp, $(OBJDIR)/%.o, $(FILEC))
 SRCS = $(addprefix	$(SRCDIR),	$(FILEC))
-FLAGS = -Wall -Werror -Wextra -g -std=c++98
+DEPS = $(OBJS:.o=.d)
+FLAGS = -Wall -Werror -Wextra -g -std=c++98 -MMD -MP
 CXX = c++
 
 all:		init_dirs	$(NAME)
@@ -25,6 +26,7 @@ init_dirs:
 
 clean:		
 			@rm -rf	$(OBJS)
+			@rm -rf $(DEPS)
 			@echo "Make clean command executed."
 
 fclean:		clean
@@ -34,3 +36,6 @@ fclean:		clean
 re:			fclean all
 
 .PHONY:		all clean fclean re
+
+# Inclure les dépendances générées (.d) si elles existent
+-include $(DEPS)

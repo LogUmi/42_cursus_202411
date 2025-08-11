@@ -1,8 +1,11 @@
-NAME = sed
+NAME = fragtrap
 OBJ = obj
 OBJDIR = obj/
 SRCDIR = src/
-FILEC =	main.cpp 
+FILEC =	main.cpp \
+		ClapTrap.cpp \
+		ScavTrap.cpp \
+		FragTrap.cpp
 OBJS = $(patsubst %.cpp, $(OBJDIR)/%.o, $(FILEC))
 SRCS = $(addprefix	$(SRCDIR),	$(FILEC))
 DEPS = $(OBJS:.o=.d)
@@ -25,6 +28,7 @@ init_dirs:
 
 clean:		
 			@rm -rf	$(OBJS)
+			@rm -rf $(DEPS)
 			@echo "Make clean command executed."
 
 fclean:		clean

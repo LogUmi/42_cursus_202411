@@ -1,4 +1,4 @@
-NAME = claptrap
+NAME = scavtrap
 OBJ = obj
 OBJDIR = obj/
 SRCDIR = src/
@@ -27,6 +27,7 @@ init_dirs:
 
 clean:		
 			@rm -rf	$(OBJS)
+			@rm -rf $(DEPS)
 			@echo "Make clean command executed."
 
 fclean:		clean

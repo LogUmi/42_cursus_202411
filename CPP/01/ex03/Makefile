@@ -8,7 +8,8 @@ FILEC =	main.cpp \
 		Weapon.cpp
 OBJS = $(patsubst %.cpp, $(OBJDIR)/%.o, $(FILEC))
 SRCS = $(addprefix	$(SRCDIR),	$(FILEC))
-FLAGS = -Wall -Werror -Wextra -g -std=c++98
+DEPS = $(OBJS:.o=.d)
+FLAGS = -Wall -Werror -Wextra -g -std=c++98 -MMD -MP
 CXX = c++
 
 all:		init_dirs	$(NAME)
@@ -36,3 +37,6 @@ fclean:		clean
 re:			fclean all
 
 .PHONY:		all clean fclean re
+
+# Inclure les dépendances générées (.d) si elles existent
+-include $(DEPS)

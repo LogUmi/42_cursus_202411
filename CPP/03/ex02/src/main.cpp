@@ -6,13 +6,14 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 21:46:04 by lgerard           #+#    #+#             */
-/*   Updated: 2025/08/10 18:56:18 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/08/10 19:02:45 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include "ClapTrap.hpp"
 #include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
 void	write_clap(ClapTrap & a)
 {
@@ -30,7 +31,15 @@ void	write_scav(ScavTrap & a)
 	return ;
 }
 
-int	main(void)
+void	write_frag(FragTrap & a)
+{
+	std::cout	<< a.get_name() << " is FragTrap and has: " << a.get_energy_points()
+				<< " Energy points, " << a.get_hit_points() << " Hit points, "
+				<< a.get_attack_damage() << " attack damage" << std::endl;
+	return ;
+}
+
+int		main(void)
 {
 	std::cout << "\033[34m*** Constructing ***\033[0m" << std::endl << std::endl;
 	ClapTrap	a("One");
@@ -38,8 +47,12 @@ int	main(void)
 	ScavTrap	b("Two");
 	write_scav	(b);
 	ScavTrap	c("Three");
-	write_scav 	(c);
-	std::cout 	<< std::endl << "*** Testing member functions ***" 
+	write_scav	(c);
+	FragTrap	d("Four");
+	write_frag	(d);
+	FragTrap	e("Five");
+	write_frag	(e);
+std::cout 	<< std::endl << "*** Testing member functions ***" 
 				<< std::endl;
 	std::cout << std::endl << "** ClapTrap **" << std::endl;
 	a.attack("some other ClapTrap");
@@ -81,6 +94,32 @@ int	main(void)
 		ScavTrap g(c);
 		std::cout << "copie de c : ";
 		write_scav(g);
+	}
+	std::cout << std::endl << "** FragTrap **" << std::endl;
+	d.highFivesGuys();
+	for (int i = 0; i < 102; i++)
+		d.attack("those who don't give him fives back");
+	d.highFivesGuys();
+	d.takeDamage(99);
+	d.beRepaired(49);
+	d.highFivesGuys();
+	d.takeDamage(3000);
+	d.highFivesGuys();
+	e.highFivesGuys();
+	e.takeDamage(30);
+	e.beRepaired(50);
+	e.takeDamage(-1000);
+	e.highFivesGuys();
+	{
+		std::cout 	<< std::endl << "* Intermediary FragTrap constructor testing *"
+					<< std::endl;
+		FragTrap	f;
+		f = d;
+		std::cout << "assignation de d : ";
+		write_frag(f);
+		FragTrap g(e);
+		std::cout << "copie de e : ";
+		write_frag(g);
 	}
 	std::cout 	<< std::endl << "\033[31m*** Deconstructing ***\033[0m"
 				<< std::endl;

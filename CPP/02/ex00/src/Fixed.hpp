@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fixed.hpp                                          :+:      :+:    :+:   */
+/*   Fixed.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/04 16:09:22 by lgerard           #+#    #+#             */
-/*   Updated: 2025/08/06 14:00:20 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/08/08 11:49:01 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ class	Fixed
 		Fixed( const Fixed & f);
 		~Fixed( void );
 
-		Fixed&	operator=(const Fixed& f);
+		Fixed&	operator=( const Fixed& f );
 		int		getRawBits( void ) const;
 		void	setRawBits( int const raw );
 
