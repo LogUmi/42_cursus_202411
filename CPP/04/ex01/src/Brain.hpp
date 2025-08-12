@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Brain.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 17:33:42 by lgerard           #+#    #+#             */
-/*   Updated: 2025/08/12 17:39:25 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/08/12 23:35:53 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,16 @@ class	Brain
 {
 	public:
 		Brain( void );
-		Brain( std::string id );
 		Brain( const Brain & ct );
 		virtual	~Brain( void );
 		Brain&	operator=(const Brain& ct);
 
-		virtual void		makeSound() const;
-		std::string	getType( void ) const;
+		void	displayIdeas( void ) const;
+		int		get_n_ideas (void ) const;
+		void	gotAnIdea(const std::string str);
 
-		protected:
-		std::string		type;
+	private:
+		std::string	ideas[100];
+		int			count;
 };
 #endif

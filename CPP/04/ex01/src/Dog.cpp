@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 21:26:37 by lgerard           #+#    #+#             */
-/*   Updated: 2025/08/11 23:23:39 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/08/12 23:35:22 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ Dog::Dog( void )
 {
 	std::cout 	<< "Dog default constructor called for " 
 				<< this->name << std::endl;
+	brain = new Brain();
+	brain->gotAnIdea("I'm a default Dog named Buddy which like to run and bark");
 	return ;
 }
 
@@ -32,6 +34,8 @@ Dog::Dog( std::string id )
 	name( id )
 {
 	std::cout << "Dog named object constructor called for " << name << std::endl;
+	brain = new Brain();
+	brain->gotAnIdea("I'm a named Dog named " + id + " which like to run and bark");
 	return ;
 }
 
@@ -39,7 +43,8 @@ Dog::Dog( const Dog & ct)
  :	Animal( "Dog" ),
 	name( "copy" )
 {
-	std::cout << "Dog copy constructor called for " << name << std::endl;
+	std::cout << "Dog copy constructor called for " << this->name << std::endl;
+	brain = new Brain((*ct.brain));
 	*this = ct;
 	return ;
 }
@@ -47,6 +52,7 @@ Dog::Dog( const Dog & ct)
 Dog::~Dog( void )
 {
 	std::cout << "Dog destructor called for " << name << std::endl;
+	delete brain;
 	return ;
 }
 
@@ -62,6 +68,7 @@ Dog&	Dog::operator=(const Dog& ct)
 	{
 		this->name = ct.name;
 		Animal::type = ct.getType();
+		this->brain = ct.brain;
 	}
 	return (*this);
 }

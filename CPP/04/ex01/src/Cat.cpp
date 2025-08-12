@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 21:26:37 by lgerard           #+#    #+#             */
-/*   Updated: 2025/08/11 23:10:02 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/08/12 23:34:12 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ Cat::Cat( void )
 {
 	std::cout 	<< "Cat default constructor called for " 
 				<< this->name << std::endl;
+	brain = new Brain();
+	brain->gotAnIdea("I'm a default Cat named Kitty which like to jump up the roofs");
 	return ;
 }
 
@@ -32,6 +34,8 @@ Cat::Cat( std::string id )
 	name( id )
 {
 	std::cout << "Cat named object constructor called for " << name << std::endl;
+	brain = new Brain();
+	brain->gotAnIdea("I'm a named Cat named " + id + " which like to jump up to the roofs");
 	return ;
 }
 
@@ -40,6 +44,7 @@ Cat::Cat( const Cat & ct)
 	name( "copy" )
 {
 	std::cout << "Cat copy constructor called for " << name << std::endl;
+	brain = new Brain((*ct.brain));
 	*this = ct;
 	return ;
 }
@@ -47,6 +52,7 @@ Cat::Cat( const Cat & ct)
 Cat::~Cat( void )
 {
 	std::cout << "Cat destructor called for " << name << std::endl;
+	delete brain;
 	return ;
 }
 
@@ -62,6 +68,7 @@ Cat&	Cat::operator=(const Cat& ct)
 	{
 		this->name = ct.name;
 		Animal::type = ct.getType();
+		this->brain = ct.brain;
 	}
 	return (*this);
 }
