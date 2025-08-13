@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Dog.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 21:26:37 by lgerard           #+#    #+#             */
-/*   Updated: 2025/08/12 23:35:22 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/08/13 19:01:05 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ Dog::Dog( const Dog & ct)
 {
 	std::cout << "Dog copy constructor called for " << this->name << std::endl;
 	brain = new Brain((*ct.brain));
-	*this = ct;
+	this->name = ct.name;
+	Animal::type = ct.getType();
 	return ;
 }
 
@@ -68,7 +69,7 @@ Dog&	Dog::operator=(const Dog& ct)
 	{
 		this->name = ct.name;
 		Animal::type = ct.getType();
-		this->brain = ct.brain;
+		*(this->brain) = *(ct.brain);
 	}
 	return (*this);
 }
@@ -85,4 +86,16 @@ void	Dog::makeSound( void ) const
 std::string	Dog::getName( void ) const
 {
 	return (this->name);
+}
+
+void	Dog::thinking ( void ) const
+{
+	this->brain->displayIdeas();
+	return ;
+}
+
+void	Dog::set_idea( const std::string str)
+{	
+	this->brain->gotAnIdea(str);
+	return ;	
 }

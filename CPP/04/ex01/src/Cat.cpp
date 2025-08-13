@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Cat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 21:26:37 by lgerard           #+#    #+#             */
-/*   Updated: 2025/08/12 23:34:12 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/08/13 19:03:04 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,8 @@ Cat::Cat( const Cat & ct)
 {
 	std::cout << "Cat copy constructor called for " << name << std::endl;
 	brain = new Brain((*ct.brain));
-	*this = ct;
+	this->name = ct.name;
+	Animal::type = ct.getType();
 	return ;
 }
 
@@ -68,7 +69,7 @@ Cat&	Cat::operator=(const Cat& ct)
 	{
 		this->name = ct.name;
 		Animal::type = ct.getType();
-		this->brain = ct.brain;
+		(*this->brain) = (*ct.brain);
 	}
 	return (*this);
 }
@@ -85,4 +86,16 @@ void	Cat::makeSound( void ) const
 std::string	Cat::getName( void ) const
 {
 	return (this->name);
+
+}
+void	Cat::thinking ( void ) const
+{
+	this->brain->displayIdeas();
+	return ;
+}
+
+void	Cat::set_idea( const std::string str)
+{	
+	this->brain->gotAnIdea(str);
+	return ;	
 }

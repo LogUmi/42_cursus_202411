@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Dog.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 21:26:41 by lgerard           #+#    #+#             */
-/*   Updated: 2025/08/12 23:04:20 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/08/13 17:28:37 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,13 @@ class Dog : public Animal
 		Dog ( void );
 		Dog (std::string id);
 		Dog( const Dog & ct );
-		virtual	~Dog( void );
+		~Dog( void );
 		Dog&	operator=( const Dog& ct );
 
-		virtual void	makeSound( void ) const;
-		virtual std::string		getName( void ) const;
+		void	makeSound( void ) const;
+		std::string		getName( void ) const;
+		void			thinking ( void ) const;
+		void			set_idea( const std::string str);
 
 	private:
 		std::string	name;

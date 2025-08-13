@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Brain.cpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/12 21:48:55 by lgerard           #+#    #+#             */
-/*   Updated: 2025/08/12 22:58:53 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/08/13 16:47:06 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,11 @@ Brain&	Brain::operator=(const Brain& ct)
 
 void	Brain::displayIdeas( void ) const
 {
-	std::cout << "\033[034has " << this->count << "ideas:";
+	std::cout << "\033[33mhas " << this->count << " ideas:";
 	for (int i = 0; i < this->count; i++)
 		std::cout 	<< std::endl << std::setfill ('0') << std::setw (3) << (i + 1)
 					<<  ". " << this->ideas[i];
-	std::cout << "\033[0m]" << std::endl;
+	std::cout << "\033[0m" << std::endl;
 	return ;
 }
 
@@ -79,7 +79,7 @@ int	Brain::get_n_ideas (void ) const
 void	Brain::gotAnIdea(const std::string str)
 {
 	if (this->count >= 100)
-		std::cout << "\033[033mBrain can't have mode ideas\033[0m" << std::endl;
+		std::cout << "\033[33mBrain can't have more ideas\033[0m" << std::endl;
 	else
 	{
 		this->ideas[this->count] = str;
