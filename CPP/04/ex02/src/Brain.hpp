@@ -1,31 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cure.hpp                                           :+:      :+:    :+:   */
+/*   Brain.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/13 23:11:44 by lgerard           #+#    #+#             */
-/*   Updated: 2025/08/14 12:50:40 by lgerard          ###   ########.fr       */
+/*   Created: 2025/08/12 17:33:42 by lgerard           #+#    #+#             */
+/*   Updated: 2025/08/12 23:35:53 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CURE_HPP
-# define CURE_HPP
+#ifndef BRAIN_HPP
+# define BRAIN_HPP
 
-# include <string>
-# include <ostream>
-# include "AMateria.hpp"
+#include <string>
 
-class Cure : public AMateria
+class	Brain
 {
 	public:
-						Cure( void );
-						Cure( std::string typ);
-						Cure( std::string const & type);
-		virtual 		~Cure( void );
-		Cure & 			operator=( Cure const & am );
-		virtual Cure* 	clone( void ) const;
+		Brain( void );
+		Brain( const Brain & ct );
+		virtual	~Brain( void );
+		Brain&	operator=(const Brain& ct);
+
+		void	displayIdeas( void ) const;
+		int		get_n_ideas (void ) const;
+		void	gotAnIdea(const std::string str);
+
+	private:
+		std::string	ideas[100];
+		int			count;
 };
-std::ostream &	operator<<(std::ostream& os, const Cure& am);
 #endif

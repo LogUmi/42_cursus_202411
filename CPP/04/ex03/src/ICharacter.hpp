@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 23:03:30 by lgerard           #+#    #+#             */
-/*   Updated: 2025/08/13 23:11:10 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/08/14 13:06:06 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,9 @@
 
 class ICharacter
 {
+	private:
+		std::string	name;
+		
 	public:
 		virtual ~ICharacter() {}
 		virtual std::string const & getName() const = 0;

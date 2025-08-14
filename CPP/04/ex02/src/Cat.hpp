@@ -1,34 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.hpp                                            :+:      :+:    :+:   */
+/*   Cat.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 21:26:41 by lgerard           #+#    #+#             */
-/*   Updated: 2025/08/12 23:02:55 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/08/13 22:16:10 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DOG_HPP
-# define DOG_HPP
+#ifndef CAT_HPP
+# define CAT_HPP
 
-# include "Animal.hpp"
+# include "AAnimal.hpp"
+# include "Brain.hpp"
 
-class Dog : public Animal
+class Cat : public AAnimal
 {
 	public:
-		Dog ( void );
-		Dog (std::string id);
-		Dog( const Dog & ct );
-		virtual	~Dog( void );
-		Dog&	operator=( const Dog& ct );
+		Cat ( void );
+		Cat (std::string id);
+		Cat( const Cat & ct );
+		virtual	~Cat( void );
+		Cat&	operator=( const Cat& ct );
 
-		virtual void		makeSound( void ) const;
-		virtual std::string	getName( void ) const;
+		virtual void	makeSound( void ) const;
+		std::string		getName( void ) const;
+		void			thinking ( void ) const;
+		void			set_idea( const std::string str );
 
 	private:
 		std::string	name;
-
+		Brain*		brain;
 };
 #endif

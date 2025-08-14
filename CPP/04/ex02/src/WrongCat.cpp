@@ -1,43 +1,52 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Brain.cpp                                          :+:      :+:    :+:   */
+/*   WrongCat.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/12 21:48:55 by lgerard           #+#    #+#             */
-/*   Updated: 2025/08/13 20:36:45 by lgerard          ###   ########.fr       */
+/*   Created: 2025/08/09 21:26:37 by lgerard           #+#    #+#             */
+/*   Updated: 2025/08/11 23:08:20 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include <iomanip>
 #include <string>
-#include "Brain.hpp"
+#include "WrongCat.hpp"
 
 // ****************************************************************************
 // Constructors and destructor
 // ****************************************************************************
 
-Brain::Brain( void )
- :	count(1)
+WrongCat::WrongCat( void )
+ :	WrongAnimal( "WrongCat" ),
+ 	name( "Weirdo" )
 {
-	ideas[0] = "I have a brain";
-	std::cout << "Brain default constructor called " << std::endl;
+	std::cout 	<< "WrongCat default constructor called for " 
+				<< this->name << std::endl;
 	return ;
 }
 
-Brain::Brain( const Brain & ct)
-: 	count(0)
+WrongCat::WrongCat( std::string id ) 
+: 	WrongAnimal( "WrongCat" ),
+	name( id )
 {
-	std::cout << "Brain copy constructor called" << std::endl;
+	std::cout << "WrongCat named object constructor called for " << name << std::endl;
+	return ;
+}
+
+WrongCat::WrongCat( const WrongCat & ct)
+ :	WrongAnimal( "WrongCat" ),
+	name( "copy" )
+{
+	std::cout << "WrongCat copy constructor called for " << name << std::endl;
 	*this = ct;
 	return ;
 }
 
-Brain::~Brain( void )
+WrongCat::~WrongCat( void )
 {
-	std::cout << "Brain destructor called" << std::endl;
+	std::cout << "WrongCat destructor called for " << name << std::endl;
 	return ;
 }
 
@@ -45,14 +54,14 @@ Brain::~Brain( void )
 // overload of assignation operator
 // ****************************************************************************
 
-Brain&	Brain::operator=(const Brain& ct)
+WrongCat&	WrongCat::operator=(const WrongCat& ct)
 {
-	std::cout 	<< "Brain copy assignment operator called" << std::endl;
+	std::cout 	<< "WrongCat copy assignment operator called for " << this->name
+				<< " = " << ct.name << std::endl;
 	if (this != &ct)
 	{
-		this->count = ct.count;
-		for (int i = 0; i < 100; i++)
-			this->ideas[i] = ct.ideas[i];
+		this->name = ct.name;
+		WrongAnimal::type = ct.getType();
 	}
 	return (*this);
 }
@@ -61,29 +70,12 @@ Brain&	Brain::operator=(const Brain& ct)
 // member functions
 // ****************************************************************************
 
-void	Brain::displayIdeas( void ) const
+void	WrongCat::makeSound( void ) const
 {
-	std::cout << "\033[33mhas " << this->count << " ideas:";
-	for (int i = 0; i < this->count; i++)
-		std::cout 	<< std::endl << std::setfill ('0') << std::setw (3) << (i + 1)
-					<<  ". " << this->ideas[i];
-	std::cout << "\033[0m" << std::endl;
-	return ;
+	std::cout << "This WrongCat makes a WrongCat sound: MEEEEOOOOOOW " << std::endl;
 }
 
-int	Brain::get_n_ideas (void ) const
+std::string	WrongCat::getName( void ) const
 {
-	return (this->count);
-}
-
-void	Brain::gotAnIdea(const std::string str)
-{
-	if (this->count >= 100)
-		std::cout << "\033[33mBrain can't have more ideas\033[0m" << std::endl;
-	else
-	{
-		this->ideas[this->count] = str;
-		this->count++;
-	}
-	return ;
+	return (this->name);
 }

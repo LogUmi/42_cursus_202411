@@ -1,43 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Brain.cpp                                          :+:      :+:    :+:   */
+/*   WrongAnimal.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/12 21:48:55 by lgerard           #+#    #+#             */
-/*   Updated: 2025/08/13 20:36:45 by lgerard          ###   ########.fr       */
+/*   Created: 2025/07/31 21:46:18 by lgerard           #+#    #+#             */
+/*   Updated: 2025/08/11 23:10:42 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
-#include <iomanip>
 #include <string>
-#include "Brain.hpp"
+#include "WrongAnimal.hpp"
 
 // ****************************************************************************
 // Constructors and destructor
 // ****************************************************************************
 
-Brain::Brain( void )
- :	count(1)
+WrongAnimal::WrongAnimal( void )
 {
-	ideas[0] = "I have a brain";
-	std::cout << "Brain default constructor called " << std::endl;
+	std::cout << "WrongAnimal default constructor called " << std::endl;
 	return ;
 }
 
-Brain::Brain( const Brain & ct)
-: 	count(0)
+WrongAnimal::WrongAnimal( std::string id )
+ : 	type(id)
 {
-	std::cout << "Brain copy constructor called" << std::endl;
+	std::cout << "WrongAnimal named object constructor called for " << id << std::endl;
+	return ;
+}
+
+WrongAnimal::WrongAnimal( const WrongAnimal & ct)
+ :	type( "copy" )
+{
+	std::cout << "WrongAnimal copy constructor called for " << type << std::endl;
 	*this = ct;
 	return ;
 }
 
-Brain::~Brain( void )
+WrongAnimal::~WrongAnimal( void )
 {
-	std::cout << "Brain destructor called" << std::endl;
+	std::cout << "WrongAnimal destructor called for " << type << std::endl;
 	return ;
 }
 
@@ -45,14 +49,13 @@ Brain::~Brain( void )
 // overload of assignation operator
 // ****************************************************************************
 
-Brain&	Brain::operator=(const Brain& ct)
+WrongAnimal&	WrongAnimal::operator=(const WrongAnimal& ct)
 {
-	std::cout 	<< "Brain copy assignment operator called" << std::endl;
+	std::cout 	<< "WrongAnimal copy assignment operator called for " << this->type
+				<< " = " << ct.type <<std::endl;
 	if (this != &ct)
 	{
-		this->count = ct.count;
-		for (int i = 0; i < 100; i++)
-			this->ideas[i] = ct.ideas[i];
+		this->type = ct.type;
 	}
 	return (*this);
 }
@@ -61,29 +64,13 @@ Brain&	Brain::operator=(const Brain& ct)
 // member functions
 // ****************************************************************************
 
-void	Brain::displayIdeas( void ) const
+void	WrongAnimal::makeSound( void ) const
 {
-	std::cout << "\033[33mhas " << this->count << " ideas:";
-	for (int i = 0; i < this->count; i++)
-		std::cout 	<< std::endl << std::setfill ('0') << std::setw (3) << (i + 1)
-					<<  ". " << this->ideas[i];
-	std::cout << "\033[0m" << std::endl;
+	std::cout << "This WrongAnimal makes an WrongAnimal sound: * CACAPHONY *" << std::endl;
 	return ;
 }
 
-int	Brain::get_n_ideas (void ) const
+std::string	WrongAnimal::getType( void ) const
 {
-	return (this->count);
-}
-
-void	Brain::gotAnIdea(const std::string str)
-{
-	if (this->count >= 100)
-		std::cout << "\033[33mBrain can't have more ideas\033[0m" << std::endl;
-	else
-	{
-		this->ideas[this->count] = str;
-		this->count++;
-	}
-	return ;
+	return (this->type);
 }

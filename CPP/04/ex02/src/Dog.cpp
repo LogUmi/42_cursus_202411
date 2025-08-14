@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 21:26:37 by lgerard           #+#    #+#             */
-/*   Updated: 2025/08/12 23:00:30 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/08/13 22:19:57 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,35 +19,41 @@
 // ****************************************************************************
 
 Dog::Dog( void )
- :	Animal("Dog"),
+ :	AAnimal("Dog"),
  	name("Buddy")
 {
 	std::cout 	<< "Dog default constructor called for " 
 				<< this->name << std::endl;
-	
+	brain = new Brain();
+	brain->gotAnIdea("I'm a default Dog named Buddy which like to run and bark");
 	return ;
 }
 
 Dog::Dog( std::string id ) 
-: 	Animal( "Dog" ),
+: 	AAnimal( "Dog" ),
 	name( id )
 {
 	std::cout << "Dog named object constructor called for " << name << std::endl;
+	brain = new Brain();
+	brain->gotAnIdea("I'm a named Dog named " + id + " which like to run and bark");
 	return ;
 }
 
 Dog::Dog( const Dog & ct)
- :	Animal( "Dog" ),
+ :	AAnimal( "Dog" ),
 	name( "copy" )
 {
-	std::cout << "Dog copy constructor called for " << name << std::endl;
-	*this = ct;
+	std::cout << "Dog copy constructor called for " << this->name << std::endl;
+	brain = new Brain((*ct.brain));
+	this->name = ct.name;
+	AAnimal::type = ct.getType();
 	return ;
 }
 
 Dog::~Dog( void )
 {
 	std::cout << "Dog destructor called for " << name << std::endl;
+	delete brain;
 	return ;
 }
 
@@ -62,7 +68,8 @@ Dog&	Dog::operator=(const Dog& ct)
 	if (this != &ct)
 	{
 		this->name = ct.name;
-		Animal::type = ct.getType();
+		AAnimal::type = ct.getType();
+		*(this->brain) = *(ct.brain);
 	}
 	return (*this);
 }
@@ -79,4 +86,16 @@ void	Dog::makeSound( void ) const
 std::string	Dog::getName( void ) const
 {
 	return (this->name);
+}
+
+void	Dog::thinking ( void ) const
+{
+	this->brain->displayIdeas();
+	return ;
+}
+
+void	Dog::set_idea( const std::string str)
+{	
+	this->brain->gotAnIdea(str);
+	return ;	
 }

@@ -1,31 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Cure.hpp                                           :+:      :+:    :+:   */
+/*   AAnimal.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/08/13 23:11:44 by lgerard           #+#    #+#             */
-/*   Updated: 2025/08/14 12:50:40 by lgerard          ###   ########.fr       */
+/*   Created: 2025/08/04 16:09:22 by lgerard           #+#    #+#             */
+/*   Updated: 2025/08/13 22:45:14 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CURE_HPP
-# define CURE_HPP
+#ifndef AANIMAL_HPP
+# define AANIMAL_HPP
 
-# include <string>
-# include <ostream>
-# include "AMateria.hpp"
+#include <string>
 
-class Cure : public AMateria
+class	AAnimal
 {
 	public:
-						Cure( void );
-						Cure( std::string typ);
-						Cure( std::string const & type);
-		virtual 		~Cure( void );
-		Cure & 			operator=( Cure const & am );
-		virtual Cure* 	clone( void ) const;
+					AAnimal( void );
+					AAnimal( std::string id );
+					AAnimal( const AAnimal & ct );
+		virtual		~AAnimal( void );
+		AAnimal&	operator=(const AAnimal& ct);
+
+		virtual void	makeSound() const = 0;
+		std::string		getType( void ) const;
+
+		protected:
+		std::string		type;
 };
-std::ostream &	operator<<(std::ostream& os, const Cure& am);
 #endif

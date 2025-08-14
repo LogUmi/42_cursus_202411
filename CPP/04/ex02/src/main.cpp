@@ -6,16 +6,16 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/31 21:46:04 by lgerard           #+#    #+#             */
-/*   Updated: 2025/08/13 21:34:02 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/08/13 22:18:54 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <string>
-//#include "Animal.hpp"
+#include "AAnimal.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
-//#include "WrongAnimal.hpp"
+#include "WrongAnimal.hpp"
 #include "WrongCat.hpp"
 
 std::string	int_to_string( int val )
@@ -52,19 +52,19 @@ int main()
 					<< std::endl
 					<< "**********************************************"
 					<< std::endl;
-		const Animal* j = new Dog();
-		const Animal* i = new Cat();
+		const AAnimal* j = new Dog();
+		const AAnimal* i = new Cat();
 		delete j;//should not create a leak
 		delete i;
 	}
 
 	std::cout 	<< "\033[34m**********************************************\033[0m"
 				<< std::endl
-				<< "\033[34m*********  Animal table construction  ********\033[0m"
+				<< "\033[34m*********  AAnimal table construction  ********\033[0m"
 				<< std::endl
 				<< "\033[34m**********************************************\033[0m"
 				<< std::endl;
-	Animal* tableau[10];
+	AAnimal* tableau[10];
 	for (i = 0; i < 5; i++)
 	{
 		tableau[i] = new Dog( "Fido" + int_to_string(i + 1));
@@ -80,7 +80,7 @@ int main()
 	
 	std::cout 	<< "\033[31m**********************************************\033[0m"
 				<< std::endl
-				<< "\033[31m********* Animal table deconstruction ********\033[0m"
+				<< "\033[31m********* AAnimal table deconstruction ********\033[0m"
 				<< std::endl
 				<< "\033[31m**********************************************\033[0m"
 				<< std::endl;
@@ -99,7 +99,7 @@ int main()
 	
 	std::cout << std::endl << "\033[34m** Dog a = Dog() **\033[0m" << std::endl;
 	Dog a = Dog();
-	std::cout 	<< "This new born is " << a.getName() << " is an Animal type :" 
+	std::cout 	<< "This new born is " << a.getName() << " is an AAnimal type :" 
 				<< a.getType() << std::endl;	
 	a.makeSound();
 	std::cout 	<< "Dog by default ";
@@ -110,7 +110,7 @@ int main()
 
 	std::cout << std::endl << "\033[34m** Dog b = Dog(a) **\033[0m" << std::endl;
 	Dog b = Dog(a);
-	std::cout 	<< "This new born is " << b.getName() << " is an Animal type :" 
+	std::cout 	<< "This new born is " << b.getName() << " is an AAnimal type :" 
 				<< b.getType() << std::endl;	
 	b.makeSound();
 	std::cout 	<< "this copy of buddy ";
@@ -118,7 +118,7 @@ int main()
 
 	std::cout << std::endl << "\033[34m** Dog e = Dog(); e = a **\033[0m" << std::endl;
 	Dog e = a;
-	std::cout 	<< "This new born is " << e.getName() << " is an Animal type :" 
+	std::cout 	<< "This new born is " << e.getName() << " is an AAnimal type :" 
 				<< e.getType() << std::endl;	
 	e.makeSound();
 	std::cout 	<< "this assignation of buddy ";
@@ -127,7 +127,7 @@ int main()
 
 	std::cout << std::endl << "\033[34m** Cat c = Cat() **\033[0m" << std::endl;
 	Cat c = Cat();
-	std::cout 	<< "This new born is " << c.getName() << " is an Animal type :" 
+	std::cout 	<< "This new born is " << c.getName() << " is an AAnimal type :" 
 				<< c.getType() << std::endl;	
 	c.makeSound();
 	std::cout 	<< "Cat by default ";
@@ -137,7 +137,7 @@ int main()
 	c.thinking();
 	std::cout << std::endl << "\033[34m** Cat d = Cat(c) **\033[0m" << std::endl;
 	Cat d = Cat(c);
-	std::cout 	<< "This new born is " << d.getName() << " is an Animal type :" 
+	std::cout 	<< "This new born is " << d.getName() << " is an AAnimal type :" 
 				<< d.getType() << std::endl;	
 	d.makeSound();
 	std::cout 	<< "this copy of kitty ";
@@ -145,7 +145,7 @@ int main()
 
 	std::cout << std::endl << "\033[34m** Cat f = Cat(); f = c **\033[0m" << std::endl;
 	Dog f = a;
-	std::cout 	<< "This new born is " << f.getName() << " is an Animal type :" 
+	std::cout 	<< "This new born is " << f.getName() << " is an AAnimal type :" 
 				<< f.getType() << std::endl;	
 	f.makeSound();
 	std::cout 	<< "this assignation of buddy ";

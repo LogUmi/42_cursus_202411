@@ -1,53 +1,59 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.cpp                                            :+:      :+:    :+:   */
+/*   Cat.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/09 21:26:37 by lgerard           #+#    #+#             */
-/*   Updated: 2025/08/12 23:00:30 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/08/13 22:20:20 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <iostream>
 #include <string>
-#include "Dog.hpp"
+#include "Cat.hpp"
 
 // ****************************************************************************
 // Constructors and destructor
 // ****************************************************************************
 
-Dog::Dog( void )
- :	Animal("Dog"),
- 	name("Buddy")
+Cat::Cat( void )
+ :	AAnimal ( "Cat" ),
+ 	name("Kitty")
 {
-	std::cout 	<< "Dog default constructor called for " 
+	std::cout 	<< "Cat default constructor called for " 
 				<< this->name << std::endl;
-	
+	brain = new Brain();
+	brain->gotAnIdea("I'm a default Cat named Kitty which like to jump up the roofs");
 	return ;
 }
 
-Dog::Dog( std::string id ) 
-: 	Animal( "Dog" ),
+Cat::Cat( std::string id ) 
+: 	AAnimal( "Cat" ),
 	name( id )
 {
-	std::cout << "Dog named object constructor called for " << name << std::endl;
+	std::cout << "Cat named object constructor called for " << name << std::endl;
+	brain = new Brain();
+	brain->gotAnIdea("I'm a named Cat named " + id + " which like to jump up to the roofs");
 	return ;
 }
 
-Dog::Dog( const Dog & ct)
- :	Animal( "Dog" ),
+Cat::Cat( const Cat & ct)
+ :	AAnimal( "Cat" ),
 	name( "copy" )
 {
-	std::cout << "Dog copy constructor called for " << name << std::endl;
-	*this = ct;
+	std::cout << "Cat copy constructor called for " << name << std::endl;
+	brain = new Brain((*ct.brain));
+	this->name = ct.name;
+	AAnimal::type = ct.getType();
 	return ;
 }
 
-Dog::~Dog( void )
+Cat::~Cat( void )
 {
-	std::cout << "Dog destructor called for " << name << std::endl;
+	std::cout << "Cat destructor called for " << name << std::endl;
+	delete brain;
 	return ;
 }
 
@@ -55,14 +61,15 @@ Dog::~Dog( void )
 // overload of assignation operator
 // ****************************************************************************
 
-Dog&	Dog::operator=(const Dog& ct)
+Cat&	Cat::operator=(const Cat& ct)
 {
-	std::cout 	<< "Dog copy assignment operator called for " << this->name
+	std::cout 	<< "Cat copy assignment operator called for " << this->name
 				<< " = " << ct.name << std::endl;
 	if (this != &ct)
 	{
 		this->name = ct.name;
-		Animal::type = ct.getType();
+		AAnimal::type = ct.getType();
+		(*this->brain) = (*ct.brain);
 	}
 	return (*this);
 }
@@ -71,12 +78,24 @@ Dog&	Dog::operator=(const Dog& ct)
 // member functions
 // ****************************************************************************
 
-void	Dog::makeSound( void ) const
+void	Cat::makeSound( void ) const
 {
-	std::cout << "This Dog makes a Dog sound: WOOOFFF WOOOFFF" << std::endl;
+	std::cout << "This Cat makes a Cat sound: MEEEEOOOOOOW " << std::endl;
 }
 
-std::string	Dog::getName( void ) const
+std::string	Cat::getName( void ) const
 {
 	return (this->name);
+
+}
+void	Cat::thinking ( void ) const
+{
+	this->brain->displayIdeas();
+	return ;
+}
+
+void	Cat::set_idea( const std::string str)
+{	
+	this->brain->gotAnIdea(str);
+	return ;	
 }
