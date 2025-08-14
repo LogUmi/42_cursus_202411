@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/14 13:06:59 by lgerard           #+#    #+#             */
-/*   Updated: 2025/08/14 13:12:01 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/08/14 17:00:24 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "IMateriaSource.hpp"
 #include "Ice.hpp"
 #include "Cure.hpp"
-#include "ICharacter.hpp"
+#include "Character.hpp"
 
 int main()
 {
