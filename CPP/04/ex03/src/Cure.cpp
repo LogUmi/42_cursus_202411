@@ -6,10 +6,9 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 23:11:22 by lgerard           #+#    #+#             */
-/*   Updated: 2025/08/14 12:52:42 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/08/15 13:47:02 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include <iostream>
 #include <string>
@@ -20,7 +19,7 @@
 // ****************************************************************************
 
 Cure::Cure( void )
-:	AMateria("Cure")
+:	AMateria("cure")
 {
 	std::cout << "Cure default constructor called" << std::endl;
 	return ;
@@ -76,3 +75,10 @@ std::ostream &	operator<<(std::ostream& os, const Cure& am)
 // ****************************************************************************
 // member functions
 // ****************************************************************************
+
+void	Cure::use(ICharacter& target)
+{
+	std::cout 	<< "\033[32m* heals " << target.getName()
+				<<"’s wounds *\033[0m" << std::endl;
+	return ;
+}

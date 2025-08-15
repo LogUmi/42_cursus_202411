@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 23:01:38 by lgerard           #+#    #+#             */
-/*   Updated: 2025/08/14 13:04:02 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/08/15 12:47:05 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,11 +81,6 @@ std::string const &	AMateria::getType() const //Returns the materia type
 
 void	AMateria::use(ICharacter& target)
 {
-	if (this->type == "ice")
-		std::cout 	<< "\033[31m* shoots an ice bolt at " << target.getName()
-					<<" *\033[0m" << std::endl;
-	else if (this->type == "cure")
-		std::cout 	<< "\033[32m* heals " << target.getName()
-					<<"’s wounds *\033[0m" << std::endl;
+	(void)target;
 	return ;
 }

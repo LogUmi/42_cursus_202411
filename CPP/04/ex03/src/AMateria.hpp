@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 22:56:32 by lgerard           #+#    #+#             */
-/*   Updated: 2025/08/14 12:49:06 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/08/15 13:51:17 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,8 @@
 
 # include <string>
 # include <ostream>
-# include "ICharacter.hpp"
+
+class ICharacter;
 
 class AMateria
 {

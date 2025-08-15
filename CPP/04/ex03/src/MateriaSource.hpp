@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   MateriaSource.hpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 23:06:29 by lgerard           #+#    #+#             */
-/*   Updated: 2025/08/14 18:06:01 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/08/15 13:18:10 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,14 @@ class MateriaSource : public IMateriaSource
 		
 	public:
 		MateriaSource ( void );
-		MateriaSource ( MateriaSource & ms );
+		MateriaSource ( MateriaSource const & ms );
 		virtual ~MateriaSource();
-		virtual void learnMateria(AMateria*);
-		virtual AMateria* createMateria(std::string const & type);
+		MateriaSource &	operator=(MateriaSource const & ms);
+
+		virtual void 		learnMateria(AMateria* am);
+		virtual AMateria* 	createMateria(std::string const & type);
+		AMateria const *	getInv(int const idx) const;
+		bool				checkInventory( void ) const;
 };
+std::ostream &	operator<<(std::ostream& os, const MateriaSource& am);
 #endif

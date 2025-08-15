@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 23:12:37 by lgerard           #+#    #+#             */
-/*   Updated: 2025/08/14 12:52:55 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/08/15 12:45:29 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,3 +75,10 @@ std::ostream &	operator<<(std::ostream& os, const Ice& am)
 // ****************************************************************************
 // member functions
 // ****************************************************************************
+
+void Ice::use(ICharacter& target)
+ {
+	std::cout 	<< "\033[31m* shoots an ice bolt at " << target.getName()
+				<<" *\033[0m" << std::endl;
+	return ;
+ }

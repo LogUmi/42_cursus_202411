@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   Character.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 23:03:30 by lgerard           #+#    #+#             */
-/*   Updated: 2025/08/14 17:32:19 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/08/15 13:53:52 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,9 @@
 
 # include <string>
 # include <ostream>
-# include "AMateria.hpp"
 # include "ICharacter.hpp"
+
+class AMateria;
 
 class Character : public ICharacter
 {
@@ -36,7 +37,7 @@ class Character : public ICharacter
 		virtual void 					equip(AMateria* m);
 		virtual void 					unequip(int idx);
 		virtual void 					use(int idx, ICharacter& target);
-		AMateria const &				getInv(int const idx) const;
+		AMateria const *				getInv(int const idx) const;
+		bool							checkInventory( void ) const;
 };
-
 #endif

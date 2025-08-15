@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   MateriaSource.cpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 23:08:38 by lgerard           #+#    #+#             */
-/*   Updated: 2025/08/14 18:16:25 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/08/15 13:45:27 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,28 +26,26 @@ MateriaSource::MateriaSource( void )
 	return ;
 }
 
-MateriaSource::MateriaSource(MateriaSource const & am)
+MateriaSource::MateriaSource(MateriaSource const & ms)
 {
 	std::cout 	<< "MateriaSource copy constructor called" 
 				<< std::endl;
-	for (int i = 0; i < 4; i++)
-		inv[i] = 0;
+	for (int i = 0; i < 4; ++i)
+        	this->inv[i] = ms.inv[i] ? ms.inv[i]->clone() : 0;
 	return ;
 }
 
 MateriaSource::~MateriaSource( void )
 {
 	std::cout 	<< "MateriaSource destructor called for " 
-				<< this->name << std::endl;
+				<< std::endl;
 	for (int i = 0; i < 4; i++)
 	{
 		if (inv[i] != 0)
+		{
 			delete inv[i];
-	}
-	for (int i = 0; i < 100; i++)
-	{
-		if (ground[i] != 0)
-			delete inv[i];			
+			inv[i] = 0;
+		}
 	}
 	return ;
 }
@@ -56,12 +54,20 @@ MateriaSource::~MateriaSource( void )
 // overload of assignation operator
 // ****************************************************************************
 
-MateriaSource &	MateriaSource::operator=(MateriaSource const & am)
+MateriaSource &	MateriaSource::operator=(MateriaSource const & ms)
 {
-	std::cout 	<< "MateriaSource assignation overload called for " 
-				<< this->name << " = " << am.name << std::endl;
-	if (this != &am)
-		this->name = am.name;
+	std::cout 	<< "MateriaSource assignation overload called" 
+				<< std::endl;
+	if (this != &ms)
+	{
+		for (int i = 0; i < 4; ++i)
+		{
+			delete this->inv[i];
+			this->inv[i] = 0;
+		}
+		for (int i = 0; i < 4; ++i)
+        	this->inv[i] = ms.inv[i] ? ms.inv[i]->clone() : 0;
+	}
 	return (*this);
 }
 
@@ -71,9 +77,15 @@ MateriaSource &	MateriaSource::operator=(MateriaSource const & am)
 
 std::ostream &	operator<<(std::ostream& os, const MateriaSource& am)
 {
-	os 	<< "MateriaSource " << am.getName() << " has in inventory:" << std::endl;
+	os 	<< "MateriaSource has in inventory:" << std::endl;
 	for (int i = 0; i < 4; i++)
-		os 	<< "slot " << i + 1 << ": " << am.getInv(i) << std::endl;		
+	{
+		if (am.getInv(i)) 
+			os 	<< "slot " << i+1 << ": " << am.getInv(i)->getType()
+				<< std::endl;
+		else 
+			os 	<< "slot " << i+1 << ": (empty)" << std::endl;	
+	}
 	return (os);
 }
 
@@ -81,35 +93,46 @@ std::ostream &	operator<<(std::ostream& os, const MateriaSource& am)
 // member functions
 // ****************************************************************************
 
-std::string const &		MateriaSource::getName( void ) const
+AMateria const *	MateriaSource::getInv(int const idx) const
 {
-	return (this->name);
+	return (this->inv[idx]);
 }
 
-void	MateriaSource::equip(AMateria* m)
+void	MateriaSource::learnMateria(AMateria* am)
 {
 	for (int i = 0; i < 4; i++)
 	{
+		if (this->inv[i] == 0)
+		{
+			this->inv[i] = am;
+			return ;
+		}
+	}
+	return ;
+}
+AMateria* 	MateriaSource::createMateria(std::string const & type)
+{
+	if (type.empty())
+		return (0);
+	for (int i = 0; i < 4; i++)
+	{
+		if (this->inv[i] && this->inv[i]->getType() == type)
+		{
+			return (this->inv[i]->clone());
+		}
+	}
+	return (0);
+}
+
+bool	MateriaSource::checkInventory( void ) const
+{
+	int	j = 0;
+	for (int i = 0; i < 4; i++)
+	{
 		if (this->inv[i] != 0)
-			inv[i] = m;
-	}	
-	return ;
-}
-void 	MateriaSource::unequip(int idx)
-{
-	this->inv[idx] = 0;
-	return ;
-}
-
-void	MateriaSource::use(int idx, IMateriaSource& target)
-{
-	(*this->inv[idx]).use( target );
-	delete this->inv[idx];
-	this->inv[idx] = 0;
-	return ;	
-}
-
-AMateria const &	MateriaSource::getInv(int const idx) const
-{
-	return ((*this->inv[idx]));
+			j++;
+	}
+	if (j == 4)
+		return (false); // return false if inventory full
+	return (true);
 }
