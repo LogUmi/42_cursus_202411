@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 23:11:22 by lgerard           #+#    #+#             */
-/*   Updated: 2025/08/15 13:47:02 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/08/15 14:51:41 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,22 +21,22 @@
 Cure::Cure( void )
 :	AMateria("cure")
 {
-	std::cout << "Cure default constructor called" << std::endl;
+	//std::cout << "Cure default constructor called" << std::endl;
 	return ;
 }
 
 Cure::Cure(Cure const & am)
  :	AMateria(am.type)
 {
-	std::cout 	<< "Cure copy constructor called for " 
-				<< this->type << std::endl;
+	//std::cout 	<< "Cure copy constructor called for " 
+	//			<< this->type << std::endl;
 	return ;
 }
 
 Cure::~Cure( void )
 {
-	std::cout 	<< "Cure destructor called for " 
-				<< this->type << std::endl;
+	//std::cout 	<< "Cure destructor called for " 
+	//			<< this->type << std::endl;
 	return ;
 }
 
@@ -46,8 +46,8 @@ Cure::~Cure( void )
 
 Cure &	Cure::operator=(Cure const & am)
 {
-	std::cout 	<< "Cure assignation overload called for " 
-				<< this->type << " = " << am.type << std::endl;
+	//std::cout 	<< "Cure assignation overload called for " 
+	//			<< this->type << " = " << am.type << std::endl;
 	if (this != &am)
 		this->type = am.type;
 	return (*this);
@@ -78,7 +78,7 @@ std::ostream &	operator<<(std::ostream& os, const Cure& am)
 
 void	Cure::use(ICharacter& target)
 {
-	std::cout 	<< "\033[32m* heals " << target.getName()
-				<<"’s wounds *\033[0m" << std::endl;
+	std::cout 	<< "* heals " << target.getName()
+				<<"'s wounds *" << std::endl;
 	return ;
 }

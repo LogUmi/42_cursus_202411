@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 23:02:43 by lgerard           #+#    #+#             */
-/*   Updated: 2025/08/15 13:59:40 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/08/15 14:51:01 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 Character::Character( void )
  :	name("John DOE")
 {
-	std::cout << "Character default constructor called" << std::endl;
+	//std::cout << "Character default constructor called" << std::endl;
 	for (int i = 0; i < 4; i++)
 		this->inv[i] = 0;
 	for (int i = 0; i < 100; i++)
@@ -33,8 +33,8 @@ Character::Character( void )
 Character::Character(std::string const & name)
  :	name(name)
 {
-	std::cout 	<< "Character typed constructor called for " 
-				<< this->name << std::endl;
+	//std::cout 	<< "Character typed constructor called for " 
+	//			<< this->name << std::endl;
 	for (int i = 0; i < 4; i++)
 		this->inv[i] = 0;
 	for (int i = 0; i < 100; i++)
@@ -45,8 +45,8 @@ Character::Character(std::string const & name)
 Character::Character(Character const & am)
  :	name (am.name)
 {
-	std::cout 	<< "Character copy constructor called for " 
-				<< this->name << std::endl;
+	//std::cout 	<< "Character copy constructor called for " 
+	//			<< this->name << std::endl;
 	for (int i = 0; i < 4; ++i)
         this->inv[i] = am.inv[i] ? am.inv[i]->clone() : 0;
     for (int i = 0; i < 100; ++i)
@@ -56,8 +56,8 @@ Character::Character(Character const & am)
 
 Character::~Character( void )
 {
-	std::cout 	<< "Character destructor called for " 
-				<< this->name << std::endl;
+	//std::cout 	<< "Character destructor called for " 
+	//			<< this->name << std::endl;
 	for (int i = 0; i < 4; i++)
 	{
 		if (this->inv[i] != 0)
@@ -83,8 +83,8 @@ Character::~Character( void )
 
 Character &	Character::operator=(Character const & am)
 {
-	std::cout 	<< "Character assignation overload called for " 
-				<< this->name << " = " << am.name << std::endl;
+	//std::cout 	<< "Character assignation overload called for " 
+	//			<< this->name << " = " << am.name << std::endl;
 	if (this != &am)
 	{
 		for (int i = 0; i < 4; ++i) 

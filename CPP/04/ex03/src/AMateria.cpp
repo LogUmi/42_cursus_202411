@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 23:01:38 by lgerard           #+#    #+#             */
-/*   Updated: 2025/08/15 12:47:05 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/08/15 14:49:36 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,30 +20,30 @@
 
 AMateria::AMateria( void )
 {
-	std::cout << "AMateria default constructor called" << std::endl;
+	//std::cout << "AMateria default constructor called" << std::endl;
 	return ;
 }
 
 AMateria::AMateria(std::string const & type)
  :	type (type)
 {
-	std::cout 	<< "AMateria typed constructor called for " 
-				<< this->type << std::endl;
+	//std::cout 	<< "AMateria typed constructor called for " 
+	//			<< this->type << std::endl;
 	return ;
 }
 
 AMateria::AMateria(AMateria const & am)
  :	type (am.type)
 {
-	std::cout 	<< "AMateria copy constructor called for " 
-				<< this->type << std::endl;
+	//std::cout 	<< "AMateria copy constructor called for " 
+	//			<< this->type << std::endl;
 	return ;
 }
 
 AMateria::~AMateria( void )
 {
-	std::cout 	<< "AMateria destructor called for " 
-				<< this->type << std::endl;
+	//std::cout 	<< "AMateria destructor called for " 
+	//			<< this->type << std::endl;
 	return ;
 }
 
@@ -53,8 +53,8 @@ AMateria::~AMateria( void )
 
 AMateria &	AMateria::operator=(AMateria const & am)
 {
-	std::cout 	<< "AMateria assignation overload called for " 
-				<< this->type << " = " << am.type << std::endl;
+	//std::cout 	<< "AMateria assignation overload called for " 
+	//			<< this->type << " = " << am.type << std::endl;
 	if (this != &am)
 		this->type = am.type;
 	return (*this);

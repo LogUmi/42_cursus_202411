@@ -6,7 +6,7 @@
 /*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 23:08:38 by lgerard           #+#    #+#             */
-/*   Updated: 2025/08/15 13:45:27 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/08/15 14:53:34 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 MateriaSource::MateriaSource( void )
 {
-	std::cout << "MateriaSource default constructor called" << std::endl;
+	//std::cout << "MateriaSource default constructor called" << std::endl;
 	for (int i = 0; i < 4; i++)
 		inv[i] = 0;
 	return ;
@@ -28,8 +28,8 @@ MateriaSource::MateriaSource( void )
 
 MateriaSource::MateriaSource(MateriaSource const & ms)
 {
-	std::cout 	<< "MateriaSource copy constructor called" 
-				<< std::endl;
+	//std::cout 	<< "MateriaSource copy constructor called" 
+	//			<< std::endl;
 	for (int i = 0; i < 4; ++i)
         	this->inv[i] = ms.inv[i] ? ms.inv[i]->clone() : 0;
 	return ;
@@ -37,8 +37,8 @@ MateriaSource::MateriaSource(MateriaSource const & ms)
 
 MateriaSource::~MateriaSource( void )
 {
-	std::cout 	<< "MateriaSource destructor called for " 
-				<< std::endl;
+	//std::cout 	<< "MateriaSource destructor called for " 
+	//			<< std::endl;
 	for (int i = 0; i < 4; i++)
 	{
 		if (inv[i] != 0)
@@ -56,8 +56,8 @@ MateriaSource::~MateriaSource( void )
 
 MateriaSource &	MateriaSource::operator=(MateriaSource const & ms)
 {
-	std::cout 	<< "MateriaSource assignation overload called" 
-				<< std::endl;
+	//std::cout 	<< "MateriaSource assignation overload called" 
+	//			<< std::endl;
 	if (this != &ms)
 	{
 		for (int i = 0; i < 4; ++i)
