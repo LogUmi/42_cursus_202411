@@ -3,18 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   MateriaSource.hpp                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lgerard <lgerard@student.42perpignan.fr    +#+  +:+       +#+        */
+/*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 23:06:29 by lgerard           #+#    #+#             */
-/*   Updated: 2025/08/15 13:18:10 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/08/15 15:52:33 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MATERIASOURCE_HPP
 # define MATERIASOURCE_HPP
 
+# include <ostream>
 # include "AMateria.hpp"
 # include "IMateriaSource.hpp"
+
 
 class MateriaSource : public IMateriaSource
 {

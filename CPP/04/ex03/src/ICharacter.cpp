@@ -6,11 +6,14 @@
 /*   By: lgerard <lgerard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/13 23:02:43 by lgerard           #+#    #+#             */
-/*   Updated: 2025/08/14 15:31:06 by lgerard          ###   ########.fr       */
+/*   Updated: 2025/08/15 16:04:24 by lgerard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ICharacter.hpp"
+#include <ostream>
+#include "Character.hpp"
+#include "AMateria.hpp"
 
 // ****************************************************************************
 // Constructors and destructor
